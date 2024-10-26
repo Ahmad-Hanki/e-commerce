@@ -1,4 +1,5 @@
 "use client";
+import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
 import { usePathname } from "next/navigation";
 import { Divide as Hamburger } from "hamburger-react";

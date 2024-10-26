@@ -32,7 +32,7 @@ export default function RootLayout({
         <header>
           <Navbar />
         </header>{" "}
-        <main>{children}</main>
+        <main className="max-w-[100vw] overflow-hidden">{children}</main>
         {/* 
       <footer>
         <Footer />
