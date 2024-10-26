@@ -7,23 +7,59 @@ import Logo from "../Logo";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Cart from "../cart/Cart";
-import { User } from "lucide-react";
-import { cn } from "@/lib/utils";
-
+import {
+  Facebook,
+  Instagram,
+  LogIn,
+  LogOut,
+  Twitch,
+  Twitter,
+  User,
+} from "lucide-react";
+import OurProducts from "./OurProducts";
 
 const MobileNavbar = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  const login = false;
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
   const navLinks = [
     {
-      title: "",
-      url: "",
+      title: "Ana Sayfa",
+      url: "/",
       active: pathname === "/",
+    },
+    {
+      title: "Hakkımızda",
+      url: "/about",
+      active: pathname === "/about",
+    },
+    {
+      title: "Bize Ulaşın",
+      url: "/contact",
+      active: pathname === "/contact",
+    },
+  ];
+
+  const loginLinks = [
+    {
+      title: "Giriş Yap",
+      icon: <LogIn size={30} />,
+      hidden: login,
+    },
+    {
+      title: "Kayıt Ol",
+      icon: <User size={30} />,
+      hidden: login,
+    },
+    {
+      title: "Çıkış Yap",
+      icon: <LogOut size={30} />,
+      hidden: !login,
     },
   ];
 
@@ -36,15 +72,7 @@ const MobileNavbar = () => {
 
         <div className="z-[100] flex gap-4 items-center">
           {!open && <Cart />}
-          {!open && (
-            <Link href={"/dashboard"}>
-              <User
-                className={cn(
-                  "transition-all duration-200  hover:text-primary/70 w-9 h-9 lg:w-8 lg:h-8"
-                )}
-              />
-            </Link>
-          )}
+
           <Hamburger
             toggled={open}
             onToggle={() => setOpen((prev) => !prev)}
@@ -61,35 +89,63 @@ const MobileNavbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-50 w-full bg-popover pt-[112px] text-popover-foreground px-4 flex justify-center flex-col  h-[100vh]"
+            className="fixed inset-0 z-50 w-full bg-popover text-popover-foreground px-4 pt-[120px] min-h-[100vh] overflow-scroll"
           >
-            <p className="text-lg text-muted-foreground">{"text"}</p>
+            <div className="relative pb-10">
+              <div className="flex flex-col gap-6">
+                <OurProducts />
 
-            <div className="flex flex-col gap-8 mt-7">
-              {navLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.url}
-                  className={`text-5xl ${
-                    link.active ? "text-primary" : "text-secondary-foreground"
-                  }`}
-                >
-                  {link.title}
-                </Link>
-              ))}
-            </div>
+                {navLinks.map((link, index) => (
+                  <Link
+                    key={index}
+                    href={link.url}
+                    className={`text-4xl ${link.active ? "text-primary" : ""}`}
+                  >
+                    {link.title}
+                  </Link>
+                ))}
+              </div>
 
-            {/* 
-           input?
-            */}
-            <div className="mt-10 flex flex-col gap-2">
-              <p className="text-muted-foreground  text-lg">
-                {"get in touch?"}
+              <div className="flex flex-col gap-6 mt-5">
+                {loginLinks.map(
+                  (link, index) =>
+                    !link.hidden && (
+                      <div
+                        key={index}
+                        className="flex items-center gap-2 cursor-pointer"
+                      >
+                        {link.icon}
+                        <p className="text-3xl">{link.title}</p>
+                      </div>
+                    )
+                )}
+              </div>
+
+              <p className=" mt-5 text-2xl">
+                {/*  random location */}
+                Random Location within a City or Radius: Specify a central point
+                and radius to limit random locations within that area.
               </p>
+            
 
-              <Link className="text-2xl" href={"mailto:itxti909@gmail.com"}>
-                itxti909@gmail.com
-              </Link>
+              <div className="mt-5 flex gap-3">
+                <Instagram
+                  size={40}
+                  className="transition-all duration-200  cursor-pointer hover:text-secondary-foreground"
+                />
+                <Twitch
+                  size={40}
+                  className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
+                />
+                <Twitter
+                  size={40}
+                  className="transition-all duration-200 cursor-pointer  hover:text-secondary-foreground"
+                />
+                <Facebook
+                  size={40}
+                  className="transition-all duration-200 cursor-pointer  hover:text-secondary-foreground"
+                />
+              </div>
             </div>
           </motion.div>
         )}

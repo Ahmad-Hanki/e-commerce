@@ -6,19 +6,13 @@ import { Button } from "../ui/button";
 import Logo from "../Logo";
 import { cn } from "@/lib/utils";
 import Cart from "../cart/Cart";
-import { User } from "lucide-react";
-
+import { LogIn, LogOut, User } from "lucide-react";
+import { Input } from "../ui/input";
 
 const PcNavbar = () => {
   const pathname = usePathname();
+  const login = true;
 
-  const navLinks = [
-    {
-      title: "",
-      url: "",
-      active: pathname === "/",
-    },
-  ];
 
   const contact = {
     title: "Get in touch",
@@ -28,41 +22,37 @@ const PcNavbar = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between gap-1">
-        <Logo w="w-20" />
+      <div className="flex items-center justify-between gap-5">
+        <Logo w="w-12 " />
 
-        <nav className="flex gap-8 items-center">
-          {navLinks.map((link, index) => (
-            <Link
-              key={index}
-              href={link.url}
-              className={cn(
-                "text-xl text-secondary-foreground/70  transition-all duration-200 hover:text-primary/70",
-                link.active && "text-primary",
-                 
-              )}
-            >
-              {link.title}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-4 mx-9">
-            <Cart />
-            <Link href={"/dashboard"}>
-              <User
-                className={cn(
-                  "transition-all duration-200  hover:text-primary/70 w-9 h-9 lg:w-8 lg:h-8",
-                )}
-              />
-            </Link>
+        <div className="flex flex-1 justify-between gap-8 items-center">
+          <div className="flex-1 flex gap-0 items-center">
+            <Input className="flex-1 h-[40px] border-r-0 rounded-r-none text-xl" />
+            <Button className="h-[40px] border-l-0 rounded-l-none">Bul</Button>
           </div>
-          <Link href={contact.url}>
-            <Button variant={"default"} className="px-3 rounded-md text-xl">
-              {contact.title}
-            </Button>
-          </Link>
+
+          <div className="flex items-center gap-4">
+            {!login ? (
+              <>
+                <div className="flex justify-between gap-2 items-center">
+                  <LogIn size={24} />
+                  <p>Login</p>
+                </div>
+                <div className="flex justify-between gap-2 items-center">
+                  <User size={24} />
+                  <p>Login</p>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center gap-4">
+                <Cart />
+                <div className="flex justify-between gap-2 items-center">
+                  <LogOut size={24} />
+                  <p>Logout</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
