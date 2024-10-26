@@ -14,12 +14,12 @@ const Navbar = () => {
             <div className="hidden lg:block">
               <PcNavbar />
             </div>
-            <div className="lg:hidden">
+            <div className="lg:hidden fixed w-full inset-0 bg-popover h-fit py-2 px-4">
               <MobileNavbar />
             </div>
           </div>
         </Container>
-        <CategoryBar/>
+        <CategoryBar />
       </div>
     </>
   );
