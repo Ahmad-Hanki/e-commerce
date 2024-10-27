@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { ShoppingBasketIcon } from "lucide-react";
+import CartIcon from "@/public/icons/CartIcon";
 import { usePathname } from "next/navigation";
 
 const Cart = () => {
@@ -19,7 +19,7 @@ const Cart = () => {
       <Dialog>
         <DialogTrigger className="relative ">
 
-          <ShoppingBasketIcon
+          <CartIcon
             className={cn(
               "transition-all duration-200  hover:text-primary/70 w-9 h-9 lg:w-8 lg:h-8"
             )}

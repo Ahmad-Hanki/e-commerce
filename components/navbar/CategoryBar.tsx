@@ -13,14 +13,14 @@ const CategoryBar = () => {
     "Appliances",
   ];
   return (
-    <div className="bg-zinc-800 py-3 hidden lg:block">
+    <div className=" py-3 hidden lg:block">
       <Container>
-        <div className="flex items-center justify-center w-full">
+        <div className="flex items-center w-full">
           <div className="flex gap-4 flex-nowrap w-fit">
             {categories.map((category, index) => (
               <p
                 key={index}
-                className="text-secondary hover:text-yellow-500 transition-all duration-300 cursor-pointer"
+                className="hover:text-yellow-500 transition-all duration-300 cursor-pointer"
               >
                 {category}
               </p>

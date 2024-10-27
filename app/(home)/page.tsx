@@ -1,4 +1,6 @@
+import Blog from "./_components/Blog";
 import CarouselHero from "./_components/CarouselHero";
+import LongPosts from "./_components/LongPosts";
 import MostSells from "./_components/MostSells";
 import Posts from "./_components/Posts";
 
@@ -6,9 +8,12 @@ export default function Home() {
   return (
     <div>
       <CarouselHero />
+
       <MostSells products={products} />
       <Posts />
+      <LongPosts />
       <MostSells products={products} />
+      <Blog />
     </div>
   );
 }

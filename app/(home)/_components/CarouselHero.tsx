@@ -1,6 +1,9 @@
+'use client'
 import bg1 from "@/public/images/bg-1.jpg";
 import bg2 from "@/public/images/bg-2.jpg";
 import bg3 from "@/public/images/bg-3.jpg";
+import Autoplay from "embla-carousel-autoplay";
+
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -14,7 +17,17 @@ import Image from "next/image";
 function CarouselHero() {
   const images = [bg1, bg2, bg3];
   return (
-    <Carousel className="w-full md:w-[90vw] mx-auto">
+    <Carousel
+      plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
+      opts={{
+        loop: true,
+      }}
+      className="w-full mx-auto relative"
+    >
       <CarouselContent>
         {images.map((src, index) => (
           <CarouselItem key={index}>
@@ -33,8 +46,8 @@ function CarouselHero() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="absolute left-3 hidden sm:block" />
+      <CarouselNext className="absolute right-3 hidden sm:block" />
     </Carousel>
   );
 }

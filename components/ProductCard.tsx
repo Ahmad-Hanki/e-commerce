@@ -16,23 +16,21 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Image
               src={product.image}
               fill
-              className="object-cover object-center transition-all duration-300 group-hover:scale-110"
+              className="object-cover object-center transition-all duration-300 group-hover:scale-110 rounded-2xl"
               alt={product.name}
             />
 
             {product.freeShipping && (
               <div className="absolute right-0 -top-2 z-10 rounded-md ">
-                <p className="text-white text-sm font-bold bg-green-500/80 p-1">Ücretsiz Kargo</p>
-                {
-                  product.discount && (
-                    <div className="text-white text-sm font-bold w-full mt-1 group-hover:flex justify-end hidden" >
-                      <p className="bg-primary/80 p-1">
-                      %{product.discount}
-                      </p>
-                    </div>
-                  )
+                <p className="text-white text-sm font-bold bg-green-500/80 p-1">
+                  Ücretsiz Kargo
+                </p>
+              </div>
+            )}
 
-                }
+            {product.discount && (
+              <div className="text-white text-sm font-bold w-full  group-hover:flex justify-end hidden absolute right-0 top-5">
+                <p className="bg-primary/80 p-1">%{product.discount}</p>
               </div>
             )}
             {product.new && (
@@ -45,7 +43,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 />
               </div>
             )}
-      
+
             {product.rating && (
               <div className="hidden absolute -bottom-2 w-full group-hover:flex justify-center z-10 ">
                 {/* make an array with the number of index of rating */}

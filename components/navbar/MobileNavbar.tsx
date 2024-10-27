@@ -1,6 +1,9 @@
 "use client";
-import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
-
+import {
+  RegisterLink,
+  LoginLink,
+  LogoutLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 import { usePathname } from "next/navigation";
 import { Divide as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
@@ -19,11 +22,16 @@ import {
 } from "lucide-react";
 import OurProducts from "./OurProducts";
 
-const MobileNavbar = () => {
+interface MobileNavbarProps {
+  isLoggedIn: boolean;
+}
+
+
+const MobileNavbar = ({isLoggedIn}:MobileNavbarProps) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const login = false;
+
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
@@ -43,24 +51,6 @@ const MobileNavbar = () => {
       title: "Bize Ulaşın",
       url: "/contact",
       active: pathname === "/contact",
-    },
-  ];
-
-  const loginLinks = [
-    {
-      title: "Giriş Yap",
-      icon: <LogIn size={30} />,
-      hidden: login,
-    },
-    {
-      title: "Kayıt Ol",
-      icon: <User size={30} />,
-      hidden: login,
-    },
-    {
-      title: "Çıkış Yap",
-      icon: <LogOut size={30} />,
-      hidden: !login,
     },
   ];
 
@@ -108,31 +98,42 @@ const MobileNavbar = () => {
               </div>
 
               <div className="flex flex-col gap-6 mt-5">
-                {loginLinks.map(
-                  (link, index) =>
-                    !link.hidden && (
-                      <div
-                        key={index}
-                        className="flex items-center gap-2 cursor-pointer"
-                      >
-                        {link.icon}
-                        <p className="text-3xl">{link.title}</p>
+                {!isLoggedIn ? (
+                  <>
+                    <LoginLink>
+                      <div className="flex items-center gap-2 cursor-pointer">
+                        <LogIn size={30} />
+                        <p className="text-3xl">Giriş Yap</p>
                       </div>
-                    )
+                    </LoginLink>
+
+                    <RegisterLink>
+                      <div className="flex items-center gap-2 cursor-pointer">
+                        <User size={30} />
+                        <p className="text-3xl">Kayıt Ol</p>
+                      </div>
+                    </RegisterLink>
+                  </>
+                ) : (
+                  <LogoutLink>
+                    <div className="flex items-center gap-2 cursor-pointer">
+                      <LogOut size={30} />
+                      <p className="text-3xl">Çıkış Yap</p>
+                    </div>
+                  </LogoutLink>
                 )}
               </div>
 
-              <p className=" mt-5 text-2xl">
-                {/*  random location */}
+              <p className="mt-5 text-2xl">
+                {/* Random location information */}
                 Random Location within a City or Radius: Specify a central point
                 and radius to limit random locations within that area.
               </p>
-            
 
               <div className="mt-5 flex gap-3">
                 <Instagram
                   size={40}
-                  className="transition-all duration-200  cursor-pointer hover:text-secondary-foreground"
+                  className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
                 />
                 <Twitch
                   size={40}
@@ -140,11 +141,11 @@ const MobileNavbar = () => {
                 />
                 <Twitter
                   size={40}
-                  className="transition-all duration-200 cursor-pointer  hover:text-secondary-foreground"
+                  className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
                 />
                 <Facebook
                   size={40}
-                  className="transition-all duration-200 cursor-pointer  hover:text-secondary-foreground"
+                  className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
                 />
               </div>
             </div>

@@ -137,11 +137,11 @@ const Footer = () => {
                 <LinkedInLogoIcon className="text-muted-foreground hover:text-secondary-foreground transition-all duration-300 cursor-pointer w-7 h-7" />
                 <GitHubLogoIcon className="text-muted-foreground hover:text-secondary-foreground transition-all duration-300 cursor-pointer w-7 h-7" />
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center w-full">
                 <Input
                   placeholder="Your Email"
                   className={cn(
-                    "rounded-md h-[40px]  w-full text-secondary-foreground ",
+                    "rounded-md h-[40px] flex-1 w-full text-secondary-foreground ",
                     "rounded-r-none"
                   )}
                 />

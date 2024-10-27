@@ -1,28 +1,26 @@
 "use client";
-
-import Link from "next/link";
+import {
+  RegisterLink,
+  LoginLink,
+  LogoutLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import Logo from "../Logo";
-import { cn } from "@/lib/utils";
 import Cart from "../cart/Cart";
 import { LogIn, LogOut, User } from "lucide-react";
 import { Input } from "../ui/input";
 
-const PcNavbar = () => {
+interface PcNavbarProps {
+  isLoggedIn: boolean;
+}
+
+const PcNavbar = ({isLoggedIn}:PcNavbarProps) => {
   const pathname = usePathname();
-  const login = true;
-
-
-  const contact = {
-    title: "Get in touch",
-    url: "/menu",
-    active: pathname === "/menu",
-  };
 
   return (
     <div>
-      <div className="flex items-center justify-between gap-5">
+      <div className="flex items-center justify-between gap-5 ">
         <Logo w="w-12 " />
 
         <div className="flex flex-1 justify-between gap-8 items-center">
@@ -32,24 +30,31 @@ const PcNavbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            {!login ? (
+            {!isLoggedIn ? (
               <>
-                <div className="flex justify-between gap-2 items-center">
-                  <LogIn size={24} />
-                  <p>Login</p>
-                </div>
-                <div className="flex justify-between gap-2 items-center">
-                  <User size={24} />
-                  <p>Login</p>
-                </div>
+                <LoginLink
+                >
+                  <div className="flex justify-between gap-2 items-center">
+                    <LogIn size={24} />
+                    <p>Oturum Aç</p>
+                  </div>
+                </LoginLink>
+                <RegisterLink>
+                  <div className="flex justify-between gap-2 items-center">
+                    <User size={24} />
+                    <p>Kayıt Ol</p>
+                  </div>
+                </RegisterLink>
               </>
             ) : (
               <div className="flex items-center gap-4">
                 <Cart />
-                <div className="flex justify-between gap-2 items-center">
-                  <LogOut size={24} />
-                  <p>Logout</p>
-                </div>
+                <LogoutLink>
+                  <div className="flex justify-between gap-2 items-center">
+                    <LogOut size={24} />
+                    <p>Çıkış Yap</p>
+                  </div>
+                </LogoutLink>
               </div>
             )}
           </div>

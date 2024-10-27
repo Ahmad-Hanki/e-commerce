@@ -30,7 +30,7 @@ const Posts = () => {
           {posts.map((post) => (
             <div
               key={post.id}
-              className="border border-primary p-[1px] rounded-md w-full aspect-square relative overflow-hidden"
+              className="border border-primary p-[1px] rounded-2xl w-full aspect-square relative overflow-hidden"
             >
               <Image
                 src={post.image}
