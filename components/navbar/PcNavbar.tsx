@@ -29,18 +29,18 @@ const PcNavbar = ({isLoggedIn}:PcNavbarProps) => {
             <Button className="h-[40px] border-l-0 rounded-l-none">Bul</Button>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ">
             {!isLoggedIn ? (
               <>
                 <LoginLink
                 >
-                  <div className="flex justify-between gap-2 items-center">
+                  <div className="flex justify-between gap-2 items-center transition-all duration-300 hover:text-primary">
                     <LogIn size={24} />
                     <p>Oturum Aç</p>
                   </div>
                 </LoginLink>
                 <RegisterLink>
-                  <div className="flex justify-between gap-2 items-center">
+                  <div className="flex justify-between gap-2 items-center transition-all duration-300 hover:text-primary">
                     <User size={24} />
                     <p>Kayıt Ol</p>
                   </div>
@@ -50,7 +50,7 @@ const PcNavbar = ({isLoggedIn}:PcNavbarProps) => {
               <div className="flex items-center gap-4">
                 <Cart />
                 <LogoutLink>
-                  <div className="flex justify-between gap-2 items-center">
+                  <div className="flex justify-between gap-2 items-center transition-all duration-300 hover:text-primary">
                     <LogOut size={24} />
                     <p>Çıkış Yap</p>
                   </div>

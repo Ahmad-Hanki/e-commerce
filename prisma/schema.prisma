@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id           String   @id @default(uuid())
+  description  String
+  price        Float
+  inStock      Boolean  @default(true)
+  image        String?   @db.VarChar(1000) 
+  image2       String?  @db.VarChar(1000)
+  image3       String?  @db.VarChar(1000)
+  oldPrice     Float?
+  discount     Float?
+  new          Boolean?
+  freeShipping Boolean?
+  rating       Int?     @default(5)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  categoryId String
+  Category   Category @relation(fields: [categoryId], references: [id])
+
+  Packages Package[]
+}
+
+model Category {
+  id       String    @id @default(uuid())
+  name     String
+  products Product[]
+}
+
+model Package {
+  id      String  @id @default(uuid())
+  price   Float
+  inStock Boolean @default(true)
+
+  oldPrice  Float?
+  discount  Float?
+  Piece     Int?    @default(1)
+  productId String
+  products  Product @relation(fields: [productId], references: [id])
+}

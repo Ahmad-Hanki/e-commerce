@@ -1,18 +1,6 @@
 import Container from "@/components/Container";
 import ProductCard from "@/components/ProductCard";
-
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  rating?: number;
-  freeShipping?: boolean;
-  new?: boolean;
-  discount?: number;
-  oldPrice?: number;
-}
+import { Product } from "@prisma/client";
 
 interface MostSellsProps {
   products: Product[];

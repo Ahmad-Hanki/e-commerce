@@ -20,7 +20,7 @@ const CategoryBar = () => {
             {categories.map((category, index) => (
               <p
                 key={index}
-                className="hover:text-yellow-500 transition-all duration-300 cursor-pointer"
+                className="hover:text-primary transition-all duration-300 cursor-pointer"
               >
                 {category}
               </p>

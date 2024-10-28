@@ -21,7 +21,7 @@ const Cart = () => {
 
           <CartIcon
             className={cn(
-              "transition-all duration-200  hover:text-primary/70 w-9 h-9 lg:w-8 lg:h-8"
+              "transition-all duration-300  hover:text-primary w-9 h-9 lg:w-8 lg:h-8"
             )}
           />
 

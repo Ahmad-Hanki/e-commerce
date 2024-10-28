@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import bg1 from "@/public/images/bg-1.jpg";
 import bg2 from "@/public/images/bg-2.jpg";
 import bg3 from "@/public/images/bg-3.jpg";
