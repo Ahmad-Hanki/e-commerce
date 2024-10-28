@@ -6,14 +6,17 @@ interface ProductData {
   description: string;
   rating: number | null; // Allow null
   extraInfo?: string;
+
 }
 
 interface ProductPackageCardProps {
   packages: Package[];
   product: ProductData;
+  isLoggedIn: boolean;
+
 }
 
-const ProductPackageCard = ({ packages, product }: ProductPackageCardProps) => {
+const ProductPackageCard = ({ packages, product, isLoggedIn }: ProductPackageCardProps) => {
   console.log(product.extraInfo);
   return (
     <div className="w-full space-y-5">
@@ -35,7 +38,7 @@ const ProductPackageCard = ({ packages, product }: ProductPackageCardProps) => {
         </div>
       </div>
       {/* packages */}
-      <PackageCard packages={packages} />
+      <PackageCard isLoggedIn={isLoggedIn} packages={packages} />
 
       <div className="mt-3">
         <p>{product.extraInfo}</p>

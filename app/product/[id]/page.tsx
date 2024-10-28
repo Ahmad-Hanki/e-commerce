@@ -1,9 +1,17 @@
 import prisma from "@/lib/db";
 import ProductContainer from "./_components/ProductContainer";
-import { Package } from "@prisma/client";
+import { Package, Product as PrismaProduct } from "@prisma/client";
+import IsAuthenticated from "@/actions/isAuthenticated";
+
+// Define a type for the product with packages
+type ProductWithPackages = PrismaProduct & {
+  Packages: Package[];
+};
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {
-  const product = await prisma.product.findFirst({
+  const isLoggedIn = await IsAuthenticated();
+
+  const product: ProductWithPackages | null = await prisma.product.findFirst({
     where: {
       id: params.id,
     },
@@ -22,7 +30,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
     },
   });
 
-  const extractPackages = (product: any): Package[] => {
+  const extractPackages = (product: ProductWithPackages | null): Package[] => {
     return product?.Packages || [];
   };
 
@@ -47,6 +55,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
         product={productData}
         packages={packages}
         images={images}
+        isLoggedIn={isLoggedIn}
       />
     </div>
   );

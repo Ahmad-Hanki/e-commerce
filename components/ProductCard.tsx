@@ -53,7 +53,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 <div className="hidden absolute -bottom-2 w-full group-hover:flex justify-center z-10 ">
                   {/* make an array with the number of index of rating */}
                   {[...Array(product.rating)].map((_, index) => (
-                    <p className="text-yellow-400 text-3xl">★</p>
+                    <p key={index} className="text-yellow-400 text-3xl">
+                      ★
+                    </p>
                   ))}
                 </div>
               )}

@@ -1,10 +1,8 @@
-"use client";
 import {
   RegisterLink,
   LoginLink,
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
-import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import Logo from "../Logo";
 import Cart from "../cart/Cart";

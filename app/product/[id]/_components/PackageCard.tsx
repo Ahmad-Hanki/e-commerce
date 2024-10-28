@@ -6,8 +6,15 @@ import { cn } from "@/lib/utils";
 import { Package } from "@prisma/client";
 import { Check } from "lucide-react";
 import { useState } from "react";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
-const PackageCard = ({ packages }: { packages: Package[] }) => {
+const PackageCard = ({
+  packages,
+  isLoggedIn,
+}: {
+  packages: Package[];
+  isLoggedIn: boolean;
+}) => {
   const [pkg, setPkg] = useState<Package>(packages[0]);
   const [quantity, setQuantity] = useState(1);
 
@@ -98,7 +105,17 @@ const PackageCard = ({ packages }: { packages: Package[] }) => {
           >
             +
           </Button>
-          <Button className=" rounded-2xl text-2xl p-5 ">Sepete Ekle</Button>
+          {isLoggedIn && (
+            <Button className=" rounded-2xl text-2xl p-5 ">Sepete Ekle</Button>
+          )}
+
+          {!isLoggedIn && (
+            <LoginLink>
+              <Button type="button" className=" rounded-2xl text-2xl p-5 ">
+                Sepete Ekle
+              </Button>
+            </LoginLink>
+          )}
         </div>
       </div>
     </div>

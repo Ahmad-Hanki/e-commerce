@@ -96,7 +96,7 @@ const Footer = () => {
               </h1>
               <div className="flex flex-col gap-2 ">
                 {navItems.map((item) => (
-                  <Links item={item} />
+                  <Links key={item.href} item={item} />
                 ))}
               </div>
             </div>
@@ -109,7 +109,7 @@ const Footer = () => {
               </h1>
               <div className="flex flex-col gap-2 ">
                 {hizmet.map((item) => (
-                  <Links item={item} />
+                  <Links key={item.href} item={item} />
                 ))}
               </div>
             </div>
@@ -122,7 +122,7 @@ const Footer = () => {
               </h1>
               <div className="flex flex-col gap-2 ">
                 {Musteri.map((item) => (
-                  <Links item={item} />
+                  <Links key={item.href} item={item} />
                 ))}
               </div>
             </div>

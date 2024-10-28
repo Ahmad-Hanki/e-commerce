@@ -1,7 +1,7 @@
 import Container from "@/components/Container";
 import ProductImageCard from "./ProductImageCard";
 import ProductPackageCard from "./ProductPackageCard";
-import { Package, Product } from "@prisma/client";
+import { Package } from "@prisma/client";
 import { Card } from "@/components/ui/card";
 
 interface ProductData {
@@ -20,12 +20,14 @@ interface ProductContainerProps {
   product: ProductData;
 
   packages: Package[];
+  isLoggedIn: boolean;
 }
 
 const ProductContainer = ({
   images,
   packages,
   product,
+  isLoggedIn,
 }: ProductContainerProps) => {
   return (
     <div className="py-20">
@@ -37,7 +39,11 @@ const ProductContainer = ({
               image2={images?.image2}
               image3={images?.image3}
             />
-            <ProductPackageCard product={product} packages={packages} />
+            <ProductPackageCard
+              isLoggedIn={isLoggedIn}
+              product={product}
+              packages={packages}
+            />
           </div>
         </Card>
       </Container>

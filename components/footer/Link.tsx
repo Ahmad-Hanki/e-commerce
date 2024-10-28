@@ -11,11 +11,17 @@ const Links = ({
     name: string;
   };
 }) => {
-  let pathnmae = usePathname();
+  const pathName = usePathname();
 
-  const active = pathnmae == item.href;
+  const active = pathName == item.href;
   return (
-    <Link href={item.href} className={cn("text-base text-muted-foreground hover:text-secondary transition-all duration-300", active && "text-lg text-primary")}>
+    <Link
+      href={item.href}
+      className={cn(
+        "text-base text-muted-foreground hover:text-secondary transition-all duration-300",
+        active && "text-lg text-primary"
+      )}
+    >
       {item.name}
     </Link>
   );
