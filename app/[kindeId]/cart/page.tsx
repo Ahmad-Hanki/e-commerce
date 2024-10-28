@@ -1,3 +1,5 @@
+import getUser from "@/actions/getUser";
+import { notFound } from "next/navigation";
 
 const CartPage = async ({
   params: { kindeId },
@@ -6,9 +8,15 @@ const CartPage = async ({
     kindeId: string;
   };
 }) => {
+  const userExists = await getUser(kindeId);
 
+  if (!userExists) {
+    notFound();
+  }
 
-  return <div>{kindeId}</div>;
+  return <div>
+    
+  </div>;
 };
 
 export default CartPage;

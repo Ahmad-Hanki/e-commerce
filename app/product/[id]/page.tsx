@@ -1,4 +1,3 @@
-import Container from "@/components/Container";
 import prisma from "@/lib/db";
 import ProductContainer from "./_components/ProductContainer";
 import { Package } from "@prisma/client";
