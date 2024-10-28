@@ -12,13 +12,14 @@ model Product {
   description  String
   price        Float
   inStock      Boolean  @default(true)
-  image        String?   @db.VarChar(1000) 
+  image        String   @db.VarChar(1000) 
   image2       String?  @db.VarChar(1000)
   image3       String?  @db.VarChar(1000)
   oldPrice     Float?
   discount     Float?
   new          Boolean?
   freeShipping Boolean?
+  extraInfo    String? @db.VarChar(2000)
   rating       Int?     @default(5)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -42,7 +43,7 @@ model Package {
 
   oldPrice  Float?
   discount  Float?
-  Piece     Int?    @default(1)
+  Piece     Int    @default(1)
   productId String
   products  Product @relation(fields: [productId], references: [id])
 }
