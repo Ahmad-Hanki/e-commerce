@@ -13,11 +13,10 @@ import { Input } from "../ui/input";
 
 interface PcNavbarProps {
   isLoggedIn: boolean;
+  kindeId: string;
 }
 
-const PcNavbar = ({isLoggedIn}:PcNavbarProps) => {
-  const pathname = usePathname();
-
+const PcNavbar = ({ isLoggedIn, kindeId }: PcNavbarProps) => {
   return (
     <div>
       <div className="flex items-center justify-between gap-5 ">
@@ -32,8 +31,7 @@ const PcNavbar = ({isLoggedIn}:PcNavbarProps) => {
           <div className="flex items-center gap-4 ">
             {!isLoggedIn ? (
               <>
-                <LoginLink
-                >
+                <LoginLink>
                   <div className="flex justify-between gap-2 items-center transition-all duration-300 hover:text-primary">
                     <LogIn size={24} />
                     <p>Oturum Aç</p>
@@ -48,7 +46,7 @@ const PcNavbar = ({isLoggedIn}:PcNavbarProps) => {
               </>
             ) : (
               <div className="flex items-center gap-4">
-                <Cart />
+                <Cart kindeId={kindeId} />
                 <LogoutLink>
                   <div className="flex justify-between gap-2 items-center transition-all duration-300 hover:text-primary">
                     <LogOut size={24} />

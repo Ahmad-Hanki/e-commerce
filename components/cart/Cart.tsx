@@ -1,5 +1,6 @@
 "use client";
 
+import getKindeId from "@/actions/getKindeId";
 import {
   Dialog,
   DialogContent,
@@ -10,38 +11,21 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import CartIcon from "@/public/icons/CartIcon";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
 
-const Cart = () => {
- 
+interface CartProps {
+  kindeId: string;
+}
+
+const Cart = async ({ kindeId }: CartProps) => {
   return (
-   
-      <Dialog>
-        <DialogTrigger className="relative ">
-
-          <CartIcon
-            className={cn(
-              "transition-all duration-300  hover:text-primary w-9 h-9 lg:w-8 lg:h-8"
-            )}
-          />
-
-          {/* TODO: motion */}
-          <div className="absolute -top-3 right-0">
-            <span className="text-xs bg-primary text-white rounded-full px-1 py-0.5">
-              3
-            </span>
-          </div>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+    <Link href={`/${kindeId}/cart`}>
+      <CartIcon
+        className={cn(
+          "transition-all duration-300  hover:text-primary w-9 h-9 lg:w-8 lg:h-8"
+        )}
+      />
+    </Link>
   );
 };
 
