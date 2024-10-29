@@ -2,17 +2,21 @@ import prisma from "@/lib/db";
 import { Product } from "@prisma/client";
 
 const getMostSailedProducts = async (): Promise<Product[]> => {
-  const mostSailed = await prisma.product.findMany({
-    where: {
-      categoryId: "7e4bd023-bf4e-49a1-9fa9-794985e7a549",
-    },
-    take: 8,
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  try {
+    const mostSailed = await prisma.product.findMany({
+      where: {
+        categoryId: "7e4bd023-bf4e-49a1-9fa9-794985e7a549",
+      },
+      take: 8,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-  return mostSailed;
+    return mostSailed;
+  } catch (error) {
+    return [];
+  }
 };
 
 export default getMostSailedProducts;

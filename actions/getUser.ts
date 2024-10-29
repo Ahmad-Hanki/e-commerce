@@ -11,7 +11,6 @@ const getUser = async (kindeId: string): Promise<boolean> => {
       return false;
     }
   } catch (error) {
-    console.error("Error getting user:", error);
     return false;
   }
 };
