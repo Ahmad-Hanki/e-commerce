@@ -13,7 +13,7 @@ type VariantType =
   | "ghost"
   | "link";
 
-interface DeleteButtonProps extends ButtonProps {
+interface SubmitButtonProps extends ButtonProps {
   // Extend ButtonProps
   submit: string;
   submitting: string;
@@ -27,7 +27,7 @@ const SubmitButton = ({
   variant = "default",
   submitting,
   ...props
-}: DeleteButtonProps) => {
+}: SubmitButtonProps) => {
   const { pending } = useFormStatus();
 
   if (!pending)

@@ -12,7 +12,6 @@ const getCategories = async (): Promise<Category[]> => {
         },
       },
     });
-    console.log("categories", categories);
     return categories;
   } catch (error) {
     console.error("Error getting categories:", error);

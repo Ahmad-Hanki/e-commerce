@@ -7,6 +7,9 @@ import { Package } from "@prisma/client";
 import { Check } from "lucide-react";
 import { useState } from "react";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import addToCart from "@/actions/addToCart";
+import SubmitButton from "@/components/SubmitButton";
+import toast from "react-hot-toast";
 
 const PackageCard = ({
   packages,
@@ -21,6 +24,17 @@ const PackageCard = ({
   const getPricePerPiece = (price: number, piece: number | null): number => {
     if (!piece || piece === 0) return 0;
     return parseFloat((price / piece).toFixed(2));
+  };
+
+  const AddToCart = async () => {
+    const res = await addToCart({ id: pkg.id, quantity: quantity });
+
+    if (res) {
+      toast.success("Successfully Added To Cart!");
+      return;
+    } else {
+      toast.error("Something went wrong!");
+    }
   };
 
   return (
@@ -106,7 +120,14 @@ const PackageCard = ({
             +
           </Button>
           {isLoggedIn && (
-            <Button className=" rounded-2xl text-2xl p-5 ">Sepete Ekle</Button>
+            <form action={AddToCart}>
+              <SubmitButton
+                submit="Sepete Ekle"
+                submitting="Sepete'ye Ekleniyor ..."
+                type="submit"
+                className=" rounded-2xl text-2xl p-5 "
+              />
+            </form>
           )}
 
           {!isLoggedIn && (
