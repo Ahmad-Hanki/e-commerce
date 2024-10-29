@@ -20,14 +20,20 @@ import {
   Twitter,
   User,
 } from "lucide-react";
-import OurProducts from "./OurProducts";
+import { Category } from "@prisma/client";
+import MobileCategories from "./MobileCategories";
 
 interface MobileNavbarProps {
   isLoggedIn: boolean;
   kindeId: string;
+  categories: Category[];
 }
 
-const MobileNavbar = ({ isLoggedIn, kindeId }: MobileNavbarProps) => {
+const MobileNavbar = ({
+  isLoggedIn,
+  kindeId,
+  categories,
+}: MobileNavbarProps) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -83,7 +89,7 @@ const MobileNavbar = ({ isLoggedIn, kindeId }: MobileNavbarProps) => {
           >
             <div className="relative pb-10">
               <div className="flex flex-col gap-6">
-                <OurProducts />
+                <MobileCategories categories={categories} />
 
                 {navLinks.map((link, index) => (
                   <Link
@@ -96,7 +102,7 @@ const MobileNavbar = ({ isLoggedIn, kindeId }: MobileNavbarProps) => {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-6 mt-5">
+              <div className="flex items-center gap-6 mt-10">
                 {!isLoggedIn ? (
                   <>
                     <LoginLink>

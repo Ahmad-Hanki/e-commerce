@@ -1,29 +1,25 @@
+import { Category } from "@prisma/client";
 import Container from "../Container";
+import Link from "next/link";
 
-const CategoryBar = () => {
-  const categories = [
-    "Electronics",
-    "Mobiles",
-    "Books",
-    "Fashion",
-    "Beauty",
-    "Sports",
-    "Home",
-    "Kitchen",
-    "Appliances",
-  ];
+interface CategoryBarProps {
+  categories: Category[];
+}
+
+const CategoryBar = ({ categories }: CategoryBarProps) => {
   return (
     <div className=" py-3 hidden lg:block">
       <Container>
         <div className="flex items-center w-full">
           <div className="flex gap-4 flex-nowrap w-fit">
-            {categories.map((category, index) => (
-              <p
-                key={index}
-                className="hover:text-primary transition-all duration-300 cursor-pointer"
+            {categories.map((category) => (
+              <Link
+                href={"/category/" + category.id}
+                key={category.id}
+                className="hover:text-primary transition-all duration-300 cursor-pointer "
               >
-                {category}
-              </p>
+                {category.name}
+              </Link>
             ))}
           </div>
         </div>
