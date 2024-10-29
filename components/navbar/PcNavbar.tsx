@@ -12,9 +12,10 @@ import { Input } from "../ui/input";
 interface PcNavbarProps {
   isLoggedIn: boolean;
   kindeId: string;
+  cartLength: number;
 }
 
-const PcNavbar = ({ isLoggedIn, kindeId }: PcNavbarProps) => {
+const PcNavbar = ({ isLoggedIn, kindeId, cartLength }: PcNavbarProps) => {
   return (
     <div>
       <div className="flex items-center justify-between gap-5 ">
@@ -44,7 +45,7 @@ const PcNavbar = ({ isLoggedIn, kindeId }: PcNavbarProps) => {
               </>
             ) : (
               <div className="flex items-center gap-4">
-                <Cart kindeId={kindeId} />
+                <Cart cartLength={cartLength} kindeId={kindeId} />
                 <LogoutLink>
                   <div className="flex justify-between gap-2 items-center transition-all duration-300 hover:text-primary">
                     <LogOut size={24} />

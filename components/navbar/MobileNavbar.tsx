@@ -27,12 +27,14 @@ interface MobileNavbarProps {
   isLoggedIn: boolean;
   kindeId: string;
   categories: Category[];
+  cartLength: number;
 }
 
 const MobileNavbar = ({
   isLoggedIn,
   kindeId,
   categories,
+  cartLength
 }: MobileNavbarProps) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -67,7 +69,7 @@ const MobileNavbar = ({
         </div>
 
         <div className="z-[100] flex gap-4 items-center">
-          {!open && <Cart kindeId={kindeId} />}
+          {!open && <Cart cartLength={cartLength} kindeId={kindeId} />}
 
           <Hamburger
             toggled={open}

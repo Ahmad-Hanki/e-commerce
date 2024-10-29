@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/db";
 import getKindeId from "./getKindeId";
+import { revalidatePath } from "next/cache";
 
 interface addedToCartData {
   id: string;
@@ -48,6 +49,8 @@ const addToCart = async ({ id, quantity }: addedToCartData) => {
         },
       });
     }
+
+    revalidatePath(`/cart/${kindeId}`);
 
     return true;
   } catch (error) {
