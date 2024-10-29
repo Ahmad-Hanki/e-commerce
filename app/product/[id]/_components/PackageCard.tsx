@@ -21,13 +21,15 @@ const PackageCard = ({
   // Filter packages that are in stock
   const inStockPackages = packages.filter((pack) => pack.inStock);
 
-  // Display message if there are no packages or all are out of stock
-  if (inStockPackages.length === 0) {
-    return <p className="text-center text-lg font-semibold">Stok'ta Yok</p>;
-  }
-
   const [pkg, setPkg] = useState<Package>(inStockPackages[0]);
   const [quantity, setQuantity] = useState(1);
+
+  // Display message if there are no packages or all are out of stock
+  if (inStockPackages.length === 0) {
+    return (
+      <p className="text-center text-lg font-semibold">Stok&apos;ta Yok</p>
+    );
+  }
 
   const getPricePerPiece = (price: number, piece: number | null): number => {
     if (!piece || piece === 0) return 0;
