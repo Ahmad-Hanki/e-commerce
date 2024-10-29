@@ -12,10 +12,10 @@ const createOrFindUser = async () => {
       create: { kindeId },
     });
 
-    console.log(user ? "User found or created" : "User created");
     return user;
   } catch (error) {
     console.error("Error creating or finding user:", error);
+    return ;
   }
 };
 
