@@ -18,7 +18,15 @@ const PackageCard = ({
   packages: Package[];
   isLoggedIn: boolean;
 }) => {
-  const [pkg, setPkg] = useState<Package>(packages[0]);
+  // Filter packages that are in stock
+  const inStockPackages = packages.filter((pack) => pack.inStock);
+
+  // Display message if there are no packages or all are out of stock
+  if (inStockPackages.length === 0) {
+    return <p className="text-center text-lg font-semibold">Stok'ta Yok</p>;
+  }
+
+  const [pkg, setPkg] = useState<Package>(inStockPackages[0]);
   const [quantity, setQuantity] = useState(1);
 
   const getPricePerPiece = (price: number, piece: number | null): number => {
@@ -27,7 +35,7 @@ const PackageCard = ({
   };
 
   const AddToCart = async () => {
-    const res = await addToCart({ id: pkg.id, quantity: quantity });
+    const res = await addToCart({ id: pkg?.id, quantity: quantity });
 
     if (res) {
       toast.success("Successfully Added To Cart!");
@@ -41,7 +49,7 @@ const PackageCard = ({
     <div>
       <Card className="p-4 space-y-4">
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
-          {packages.map((pack) => (
+          {inStockPackages.map((pack) => (
             <Card
               onClick={() => setPkg(pack)}
               key={pack.id}
@@ -59,16 +67,16 @@ const PackageCard = ({
                 </div>
               )}
               <div className="mt-5">
-                <p className="text-lg">Adet: {pack.Piece}</p>
+                <p className="text-lg">Adet: {pack?.Piece}</p>
                 <p className="text-base text-gray-500 line-through ">
-                  {pack.oldPrice && `Eski Fiyat: ${pack.oldPrice} ₺`}
+                  {pack?.oldPrice && `Eski Fiyat: ${pack?.oldPrice} ₺`}
                 </p>
                 <p className="text-lg text-yellow-400 font-medium">
                   Fiyat: {pack.price} ₺
                 </p>
 
                 <p className="text-lg">
-                  {getPricePerPiece(pack.price, pack.Piece)} ₺ / Adet
+                  {getPricePerPiece(pack?.price, pack?.Piece)} ₺ / Adet
                 </p>
               </div>
             </Card>
@@ -78,25 +86,25 @@ const PackageCard = ({
         <div
           className={cn(
             "w-fit px-5 bg-yellow-400 rounded-tr-full py-3 hidden",
-            pkg.discount && pkg.oldPrice && "block"
+            pkg?.discount && pkg?.oldPrice && "block"
           )}
         >
           <p className="text-lg text-secondary font-semibold ">
-            {`%${pkg.discount} İndirim`}
+            {`%${pkg?.discount} İndirim`}
           </p>
         </div>
       </Card>
 
       <div className="mt-6 flex items-center gap-3">
-        <p className="text-green-500 font-medium text-3xl">{pkg.price} ₺</p>
+        <p className="text-green-500 font-medium text-3xl">{pkg?.price} ₺</p>
 
         <p
           className={cn(
             " text-muted-foreground text-xl hidden line-through",
-            pkg.oldPrice && "block"
+            pkg?.oldPrice && "block"
           )}
         >
-          {pkg.oldPrice} ₺
+          {pkg?.oldPrice} ₺
         </p>
       </div>
       <div>

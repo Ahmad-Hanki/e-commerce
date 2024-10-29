@@ -20,7 +20,7 @@ const ProductPackageCard = ({
   isLoggedIn,
 }: ProductPackageCardProps) => {
   return (
-    <div className="w-full space-y-5">
+    <div className="w-full space-y-5 my-6">
       <h1 className="text-3xl  font-semibold">{product.description}</h1>
 
       <div className="flex items-center gap-5">

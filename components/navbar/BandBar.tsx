@@ -1,7 +1,12 @@
 "use client";
 import React from "react";
 import Container from "../Container";
-import { Facebook, Instagram, Twitch, Twitter } from "lucide-react";
+import {
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+  TwitterLogoIcon,
+  GitHubLogoIcon,
+} from "@radix-ui/react-icons";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -50,20 +55,24 @@ const BandBar = () => {
           </div>
 
           <div className="flex it gap-4">
-            <Instagram
-              size={20}
+            <InstagramLogoIcon
+              width={25}
+              height={25}
               className="transition-all duration-200 text-white cursor-pointer hover:text-yellow-500"
             />
-            <Twitch
-              size={20}
+            <LinkedInLogoIcon
+              width={25}
+              height={25}
               className="transition-all duration-200 cursor-pointer text-white hover:text-yellow-500"
             />
-            <Twitter
-              size={20}
+            <TwitterLogoIcon
+              width={25}
+              height={25}
               className="transition-all duration-200 cursor-pointer text-white hover:text-yellow-500"
             />
-            <Facebook
-              size={20}
+            <GitHubLogoIcon
+              width={25}
+              height={25}
               className="transition-all duration-200 cursor-pointer text-white hover:text-yellow-500"
             />
           </div>
