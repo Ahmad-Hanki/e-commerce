@@ -8,12 +8,13 @@ type ProductWithPackages = PrismaProduct & {
   Packages: Package[];
 };
 
-const ProductPage = async ({ params }: { params: { id: string } }) => {
+const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
   const isLoggedIn = await IsAuthenticated();
 
   const product: ProductWithPackages | null = await prisma.product.findFirst({
     where: {
-      id: params.id,
+      id
     },
     include: {
       Packages: {

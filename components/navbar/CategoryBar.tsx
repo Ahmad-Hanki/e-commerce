@@ -1,12 +1,17 @@
+'use client'
 import { Category } from "@prisma/client";
 import Container from "../Container";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface CategoryBarProps {
   categories: Category[];
 }
 
 const CategoryBar = ({ categories }: CategoryBarProps) => {
+  const pathname = usePathname();
+
   return (
     <div className=" py-3 hidden lg:block">
       <Container>
@@ -16,7 +21,7 @@ const CategoryBar = ({ categories }: CategoryBarProps) => {
               <Link
                 href={"/category/" + category.id}
                 key={category.id}
-                className="hover:text-primary transition-all duration-300 cursor-pointer "
+                className={cn("hover:text-yellow-600 transition-all duration-300 cursor-pointer text-lg",  pathname == `category/${category.id}` ? "text-primary" : "text-gray-600")}
               >
                 {category.name}
               </Link>

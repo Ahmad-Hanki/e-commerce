@@ -4,6 +4,12 @@ import {
   LoginLink,
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
+import {
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+  TwitterLogoIcon,
+  GitHubLogoIcon,
+} from "@radix-ui/react-icons";
 import { usePathname } from "next/navigation";
 import { Divide as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
@@ -11,15 +17,7 @@ import Logo from "../Logo";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Cart from "../cart/Cart";
-import {
-  Facebook,
-  Instagram,
-  LogIn,
-  LogOut,
-  Twitch,
-  Twitter,
-  User,
-} from "lucide-react";
+import { LogIn, LogOut, User } from "lucide-react";
 import { Category } from "@prisma/client";
 import MobileCategories from "./MobileCategories";
 
@@ -34,7 +32,7 @@ const MobileNavbar = ({
   isLoggedIn,
   kindeId,
   categories,
-  cartLength
+  cartLength,
 }: MobileNavbarProps) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -138,20 +136,24 @@ const MobileNavbar = ({
               </p>
 
               <div className="mt-5 flex gap-3">
-                <Instagram
-                  size={40}
+                <InstagramLogoIcon
+                  height={40}
+                  width={40}
                   className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
                 />
-                <Twitch
-                  size={40}
+                <LinkedInLogoIcon
+                  height={40}
+                  width={40}
                   className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
                 />
-                <Twitter
-                  size={40}
+                <TwitterLogoIcon
+                  height={40}
+                  width={40}
                   className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
                 />
-                <Facebook
-                  size={40}
+                <GitHubLogoIcon
+                  height={40}
+                  width={40}
                   className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
                 />
               </div>

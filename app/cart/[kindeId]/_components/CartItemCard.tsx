@@ -3,7 +3,6 @@ import decreesQuantity from "@/actions/decreesQuantity";
 import deleteCartItem from "@/actions/deleteCartItem";
 import increaseQuantity from "@/actions/increseQuantity";
 import SubmitButton from "@/components/SubmitButton";
-import { Button } from "@/components/ui/button";
 import { Truck } from "lucide-react";
 import Image from "next/image";
 import toast from "react-hot-toast";

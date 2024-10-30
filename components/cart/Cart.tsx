@@ -7,9 +7,9 @@ interface CartProps {
   cartLength: number;
 }
 
-const Cart = async ({ kindeId, cartLength }: CartProps) => {
+const Cart = ({ kindeId, cartLength }: CartProps) => {
   return (
-    <Link href={`/${kindeId}/cart`} className="relative">
+    <Link href={`/cart/${kindeId}`} className="relative">
       <CartIcon
         className={cn(
           "transition-all duration-300  hover:text-primary w-9 h-9 lg:w-8 lg:h-8"

@@ -25,7 +25,7 @@
     "framer-motion": "^11.11.10",
     "hamburger-react": "^2.5.1",
     "lucide-react": "^0.453.0",
-    "next": "14.2.11",
+    "next": "^15.0.2",
     "prisma": "^5.21.1",
     "react": "^18",
     "react-dom": "^18",

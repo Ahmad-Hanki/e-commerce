@@ -23,9 +23,9 @@ export default function CarouselComponent({
       <Container>
         <Carousel className="w-full">
           <CarouselContent>
-            {products.map((product, index) => (
+            {products.map((product) => (
               <CarouselItem
-                key={index}
+                key={product.id}
                 className=" md:basis-1/2 lg:basis-1/3 group px-4"
               >
                 <Link href={`/product/${product.id}`} className="p-1">

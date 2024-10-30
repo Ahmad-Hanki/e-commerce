@@ -60,10 +60,6 @@ const Footer = () => {
       href: "/cancel-return-conditions",
     },
     {
-      name: "Iptal Iade Kosullari",
-      href: "/cancel-return-conditions",
-    },
-    {
       name: "Banka Hesap Bilgileri",
       href: "/bank-account-information",
     },

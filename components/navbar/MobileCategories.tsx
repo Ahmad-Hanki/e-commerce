@@ -1,13 +1,18 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 import { Category } from "@prisma/client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const MobileCategories = ({ categories }: { categories: Category[] }) => {
+  const pathname = usePathname();
   return (
     <div>
       <Accordion type="single" collapsible defaultValue="item-1">
@@ -19,7 +24,12 @@ const MobileCategories = ({ categories }: { categories: Category[] }) => {
                 <Link
                   key={category.id}
                   href={`/category/${category.id}`}
-                  className="hover:text-primary transition-all duration-300 cursor-pointer text-3xl"
+                  className={cn(
+                    "cursor-pointer text-3xl",
+                    pathname == `category/${category.id}`
+                      ? "text-primary"
+                      : "text-gray-600"
+                  )}
                 >
                   {category.name}
                 </Link>

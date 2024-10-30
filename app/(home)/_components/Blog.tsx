@@ -26,8 +26,8 @@ const Blog = () => {
   return (
     <div className="pb-20">
       <h1 className="text-4xl text-center font-semibold pb-10">Bloglar</h1>
-      <Container >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Container>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {blogs.map((blog) => (
             <div key={blog.id}>
               <BlogCard blog={blog} />
@@ -58,16 +58,18 @@ const BlogCard = ({ blog }: BlogCardProps) => {
     <div>
       <Card>
         <CardContent className="p-4">
-            <div className="relative w-full  aspect-square overflow-hidden">
-                <Image
-                src={blog.image}
-                alt={blog.title}
-                fill
-                className="object-cover object-center rounded-2xl"
-                />
-            </div>
-            <h2 className="text-center font-semibold mt-5">{blog.title}</h2>
-            <p className="text-center text-muted-foreground line-clamp-2">{blog.content}</p>
+          <div className="relative w-full  aspect-square overflow-hidden">
+            <Image
+              src={blog.image}
+              alt={blog.title}
+              fill
+              className="object-cover object-center rounded-2xl"
+            />
+          </div>
+          <h2 className="text-center font-semibold mt-5">{blog.title}</h2>
+          <p className="text-center text-muted-foreground line-clamp-2">
+            {blog.content}
+          </p>
         </CardContent>
       </Card>
     </div>
