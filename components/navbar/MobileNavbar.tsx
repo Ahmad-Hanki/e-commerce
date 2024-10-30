@@ -20,13 +20,14 @@ import Cart from "../cart/Cart";
 import { LogIn, LogOut, User } from "lucide-react";
 import { Category } from "@prisma/client";
 import MobileCategories from "./MobileCategories";
-import SearchBar from "./SearchBar";
+import DashboardIcon from "@/public/icons/DashboardIcon";
 
 interface MobileNavbarProps {
   isLoggedIn: boolean;
   kindeId: string;
   categories: Category[];
   cartLength: number;
+  admin: boolean;
 }
 
 const MobileNavbar = ({
@@ -34,6 +35,7 @@ const MobileNavbar = ({
   kindeId,
   categories,
   cartLength,
+  admin,
 }: MobileNavbarProps) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -68,7 +70,11 @@ const MobileNavbar = ({
         </div>
 
         <div className="z-[100] flex gap-4 items-center">
-          <SearchBar />
+          {admin && (
+            <Link href={"/dashboard"}>
+              <DashboardIcon className="transition-all duration-300  hover:text-yellow-500 w-8 h-8 lg:w-6 lg:h-6" />
+            </Link>
+          )}
           {!open && <Cart cartLength={cartLength} kindeId={kindeId} />}
 
           <Hamburger
@@ -109,14 +115,14 @@ const MobileNavbar = ({
                   <>
                     <LoginLink>
                       <div className="flex items-center gap-2 cursor-pointer">
-                        <LogIn size={30} />
+                        <LogIn className="w-8 h-8 " />
                         <p className="text-3xl">Giriş Yap</p>
                       </div>
                     </LoginLink>
 
                     <RegisterLink>
                       <div className="flex items-center gap-2 cursor-pointer">
-                        <User size={30} />
+                        <User className="w-8 h-8" />
                         <p className="text-3xl">Kayıt Ol</p>
                       </div>
                     </RegisterLink>
@@ -124,7 +130,7 @@ const MobileNavbar = ({
                 ) : (
                   <LogoutLink>
                     <div className="flex items-center gap-2 cursor-pointer">
-                      <LogOut size={30} />
+                      <LogOut className="w-8 h-8 " />
                       <p className="text-3xl">Çıkış Yap</p>
                     </div>
                   </LogoutLink>

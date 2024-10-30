@@ -2,6 +2,7 @@ import getProductsSearch from "@/actions/getProductsSearch";
 import CategoryName from "../category/[categoryId]/_components/CategoryName";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
+import { notFound } from "next/navigation";
 
 const CategoryNamePage = async ({
   searchParams,
@@ -11,6 +12,9 @@ const CategoryNamePage = async ({
   }>;
 }) => {
   const { q } = await searchParams;
+  if (q == "") {
+    notFound();
+  }
   const products = await getProductsSearch(q);
   if (!products || products.length === 0) {
     return (

@@ -11,12 +11,16 @@ import getCartLength from "@/actions/getCartLength";
 const Navbar = async () => {
   const isLoggedIn = await IsAuthenticated();
   let kindeId = "";
+  let email = "";
   let cartLength = 0;
   if (isLoggedIn) {
-    kindeId = await getKindeId();
+    kindeId = (await getKindeId()).kindeId;
     cartLength = await getCartLength(kindeId);
+    email = (await getKindeId()).email;
   }
   const categories = await getCategories();
+  const admins = ["itxti909@gmail.com"];
+  const admin = admins.includes(email);
 
   return (
     <>
@@ -29,12 +33,14 @@ const Navbar = async () => {
                 kindeId={kindeId}
                 isLoggedIn={isLoggedIn}
                 cartLength={cartLength}
+                admin={admin}
               />
             </Container>
           </div>
           <div className="lg:hidden fixed w-full inset-0 bg-popover h-fit py-2 px-4">
             <Container>
               <MobileNavbar
+                admin={admin}
                 categories={categories}
                 kindeId={kindeId}
                 isLoggedIn={isLoggedIn}

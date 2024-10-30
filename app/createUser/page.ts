@@ -2,7 +2,7 @@ import createOrFindUser from "@/actions/createOrFindUser";
 import { redirect } from "next/navigation";
 
 const CreateUser = async () => {
-  await createOrFindUser();
+  await createOrFindUser()
   redirect("/");
 };
 

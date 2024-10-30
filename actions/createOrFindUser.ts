@@ -5,7 +5,7 @@ import getKindeId from "./getKindeId";
 
 const createOrFindUser = async () => {
   try {
-    const kindeId = await getKindeId();
+    const {kindeId} = await getKindeId();
     
     const user = await prisma.user.upsert({
       where: { kindeId },

@@ -12,7 +12,7 @@ const Cart = ({ kindeId, cartLength }: CartProps) => {
     <Link href={`/cart/${kindeId}`} className="relative">
       <CartIcon
         className={cn(
-          "transition-all duration-300  hover:text-primary w-9 h-9 lg:w-8 lg:h-8"
+          "transition-all duration-300  hover:text-yellow-500 w-9 h-9 lg:w-6 lg:h-6"
         )}
       />
       {cartLength !== 0 && (
