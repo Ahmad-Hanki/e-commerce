@@ -3,13 +3,15 @@ import getUser from "@/actions/getUser";
 import Container from "@/components/Container";
 import { notFound } from "next/navigation";
 import Checkout from "./_components/Checkout";
+import { Suspense } from "react";
+import Loading from "@/components/loading";
 
 const CartPage = async ({
-  params
+  params,
 }: {
-  params:Promise < {
+  params: Promise<{
     kindeId: string;
-  }>
+  }>;
 }) => {
   const { kindeId } = await params;
   const userExists = await getUser(kindeId);
@@ -23,7 +25,6 @@ const CartPage = async ({
   const packageData =
     cartItem?.cartItems?.map((item) => {
       return {
-        
         id: item.id,
         quantity: item.quantity,
         price: item.package.price,
@@ -53,13 +54,15 @@ const CartPage = async ({
           </span>
         </h1>
 
-        <div className="mt-10 pb-20 ">
-          {packageData?.length > 0 ? (
-            <Checkout items={packageData} />
-          ) : (
-            <p>No items in the cart</p>
-          )}
-        </div>
+        <Suspense fallback={<Loading />}>
+          <div className="mt-10 pb-20 ">
+            {packageData?.length > 0 ? (
+              <Checkout items={packageData} />
+            ) : (
+              <p>No items in the cart</p>
+            )}
+          </div>
+        </Suspense>
       </Container>
     </div>
   );

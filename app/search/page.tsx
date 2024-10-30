@@ -1,0 +1,32 @@
+import getProductsSearch from "@/actions/getProductsSearch";
+import CategoryName from "../category/[categoryId]/_components/CategoryName";
+import { Suspense } from "react";
+import Loading from "@/components/loading";
+
+const CategoryNamePage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    q: string;
+  }>;
+}) => {
+  const { q } = await searchParams;
+  const products = await getProductsSearch(q);
+  if (!products || products.length === 0) {
+    return (
+      <p className="text-3xl text-center my-10">
+        No Product for this Search: {q}
+      </p>
+    );
+  }
+
+  return (
+    <div>
+      <Suspense fallback={<Loading />}>
+        <CategoryName products={products} categoryName={q} />
+      </Suspense>
+    </div>
+  );
+};
+
+export default CategoryNamePage;

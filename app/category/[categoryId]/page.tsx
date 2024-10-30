@@ -1,6 +1,7 @@
 import getProductsCategory from "@/actions/getProductsCategory";
 import CategoryName from "./_components/CategoryName";
-import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import Loading from "@/components/loading";
 
 const CategoryNamePage = async ({
   params,
@@ -11,15 +12,19 @@ const CategoryNamePage = async ({
   const products = await getProductsCategory(categoryId);
 
   if (!products || products.products.length === 0) {
-    return <p className="text-3xl text-center my-10">No Product for this category</p>;
+    return (
+      <p className="text-3xl text-center my-10">No Product for this category</p>
+    );
   }
 
   return (
     <div>
-      <CategoryName
-        products={products.products}
-        categoryName={products.categoryName!}
-      />
+      <Suspense fallback={<Loading />}>
+        <CategoryName
+          products={products.products}
+          categoryName={products.categoryName!}
+        />
+      </Suspense>
     </div>
   );
 };

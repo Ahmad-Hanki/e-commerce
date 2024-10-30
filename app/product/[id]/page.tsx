@@ -2,6 +2,8 @@ import prisma from "@/lib/db";
 import ProductContainer from "./_components/ProductContainer";
 import { Package, Product as PrismaProduct } from "@prisma/client";
 import IsAuthenticated from "@/actions/isAuthenticated";
+import { Suspense } from "react";
+import Loading from "@/components/loading";
 
 // Define a type for the product with packages
 type ProductWithPackages = PrismaProduct & {
@@ -14,7 +16,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const product: ProductWithPackages | null = await prisma.product.findFirst({
     where: {
-      id
+      id,
     },
     include: {
       Packages: {
@@ -52,12 +54,14 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <div>
-      <ProductContainer
-        product={productData}
-        packages={packages}
-        images={images}
-        isLoggedIn={isLoggedIn}
-      />
+      <Suspense fallback={<Loading />}>
+        <ProductContainer
+          product={productData}
+          packages={packages}
+          images={images}
+          isLoggedIn={isLoggedIn}
+        />
+      </Suspense>
     </div>
   );
 };

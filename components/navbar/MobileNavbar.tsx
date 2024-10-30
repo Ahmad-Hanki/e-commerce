@@ -20,6 +20,7 @@ import Cart from "../cart/Cart";
 import { LogIn, LogOut, User } from "lucide-react";
 import { Category } from "@prisma/client";
 import MobileCategories from "./MobileCategories";
+import SearchBar from "./SearchBar";
 
 interface MobileNavbarProps {
   isLoggedIn: boolean;
@@ -67,6 +68,7 @@ const MobileNavbar = ({
         </div>
 
         <div className="z-[100] flex gap-4 items-center">
+          <SearchBar />
           {!open && <Cart cartLength={cartLength} kindeId={kindeId} />}
 
           <Hamburger

@@ -1,7 +1,6 @@
 import getMostSailedProducts from "@/actions/getMostSailedProducts";
 import Blog from "./_components/Blog";
 import MostSells from "./_components/MostSells";
-import { Product } from "@prisma/client";
 import Hero from "./_components/Hero";
 import img1 from "@/public/images/watch.png";
 import img2 from "@/public/images/model.png";
@@ -9,7 +8,6 @@ import CarouselComponent from "./_components/Carousel";
 import getRandomProducts from "@/actions/getRandomProducts";
 
 export default async function Home() {
-
   const [mostSailed, randomProducts] = await Promise.all([
     getMostSailedProducts(),
     getRandomProducts(),
@@ -20,8 +18,7 @@ export default async function Home() {
       <Hero
         img={img1}
         title="Discover the Best Deals on Your Favorite Products!"
-        desc="      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ducimus cupiditate natus inventore laudantium adipisci temporibus qui quis sint minus! Natus, assumenda vitae ut dignissimos mollitia culpa. Officiis, ad voluptas?
-"
+        desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ducimus cupiditate natus inventore laudantium adipisci temporibus qui quis sint minus! Natus, assumenda vitae ut dignissimos mollitia culpa. Officiis, ad voluptas?"
       />
       <MostSells products={mostSailed} />
       <Hero
@@ -34,6 +31,8 @@ export default async function Home() {
       <CarouselComponent products={randomProducts} />
 
       <Blog />
+
+
     </div>
   );
 }
