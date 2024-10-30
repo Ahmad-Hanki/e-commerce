@@ -15,12 +15,17 @@ import Link from "next/link";
 
 export default function CarouselComponent({
   products,
+  like,
 }: {
   products: Product[];
+  like?: boolean;
 }) {
   return (
     <div className="py-20">
       <Container>
+        <h2 className="text-3xl font-semibold mb-6">
+          {like && "You may also like"}
+        </h2>
         <Carousel className="w-full">
           <CarouselContent>
             {products.map((product) => (

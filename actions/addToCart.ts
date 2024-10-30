@@ -11,7 +11,7 @@ interface addedToCartData {
 
 const addToCart = async ({ id, quantity }: addedToCartData) => {
   try {
-    const kindeId = await getKindeId();
+    const kindeId = (await getKindeId()).kindeId;
 
     // get the user
     const user = await prisma.user.findUnique({

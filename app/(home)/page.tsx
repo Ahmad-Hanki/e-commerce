@@ -4,8 +4,8 @@ import MostSells from "./_components/MostSells";
 import Hero from "./_components/Hero";
 import img1 from "@/public/images/watch.png";
 import img2 from "@/public/images/model.png";
-import CarouselComponent from "./_components/Carousel";
 import getRandomProducts from "@/actions/getRandomProducts";
+import CarouselComponent from "@/components/Carousel";
 
 export default async function Home() {
   const [mostSailed, randomProducts] = await Promise.all([
