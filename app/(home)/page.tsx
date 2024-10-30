@@ -6,9 +6,14 @@ import Hero from "./_components/Hero";
 import img1 from "@/public/images/watch.png";
 import img2 from "@/public/images/model.png";
 import CarouselComponent from "./_components/Carousel";
+import getRandomProducts from "@/actions/getRandomProducts";
 
 export default async function Home() {
-  const mostSailed: Product[] = await getMostSailedProducts();
+
+  const [mostSailed, randomProducts] = await Promise.all([
+    getMostSailedProducts(),
+    getRandomProducts(),
+  ]);
 
   return (
     <div>
@@ -26,7 +31,7 @@ export default async function Home() {
         desc="      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ducimus cupiditate natus inventore laudantium adipisci temporibus qui quis sint minus! Natus, assumenda vitae ut dignissimos mollitia culpa. Officiis, ad voluptas?"
       />
 
-      <CarouselComponent products={mostSailed} />
+      <CarouselComponent products={randomProducts} />
 
       <Blog />
     </div>
