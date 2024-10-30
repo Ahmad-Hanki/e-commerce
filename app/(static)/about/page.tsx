@@ -3,11 +3,11 @@ import Image from "next/image";
 import img from "@/public/images/aboutUs.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-const page = () => {
+const AboutUsPage = () => {
   return (
-    <div className="bg-gray-50 py-20">
+    <div className="bg-gray-50">
       <Container>
-        <div className="flex flex-col gap-4 sm:flex-row ">
+        <div className="flex flex-col gap-4 sm:flex-row py-20">
           <div className="w-full flex-1">
             <div className="flex flex-col gap-5">
               <p className="text-2xl  leading-5 text-muted-foreground">
@@ -48,4 +48,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AboutUsPage;
