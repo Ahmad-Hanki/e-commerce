@@ -39,7 +39,7 @@ const Footer = () => {
   ];
   const Musteri = [
     {
-      name: "Müşteri İlişkileri",
+      name: "Sipareş ve Teslimat",
       href: "/handling-orders",
     },
     {

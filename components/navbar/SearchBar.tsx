@@ -3,12 +3,10 @@
 import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Search } from "lucide-react";
 import { redirect } from "next/navigation";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
-  
 
   const goTo = () => {
     if (search == "") return;
