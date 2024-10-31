@@ -1,4 +1,3 @@
-import prisma from "@/lib/db";
 import ProductContainer from "./_components/ProductContainer";
 import { Package, Product as PrismaProduct } from "@prisma/client";
 import IsAuthenticated from "@/actions/isAuthenticated";

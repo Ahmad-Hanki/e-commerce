@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Category } from "@prisma/client";
-import { Dispatch, SetStateAction } from "react";
 
 interface ChooseCategoryProps {
   categoryData: Category[];

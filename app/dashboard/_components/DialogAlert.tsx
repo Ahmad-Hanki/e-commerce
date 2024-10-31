@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 
-import { Separator } from "@/components/ui/separator";
 import { Dispatch, SetStateAction } from "react";
 
 interface DialogAlertProps {

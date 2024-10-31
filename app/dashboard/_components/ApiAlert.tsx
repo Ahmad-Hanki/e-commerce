@@ -25,7 +25,7 @@ interface ApiAlertProps {
 }
 
 export const ApiAlert: React.FC<ApiAlertProps> = ({ variant = "get" }) => {
-  let pathName = usePathname();
+  const pathName = usePathname();
   const origin = useOrigin();
   const baseUrl = `${origin}/api${pathName}`;
 
