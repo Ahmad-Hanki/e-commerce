@@ -1,7 +1,6 @@
 "use server";
 
 import prisma from "@/lib/db";
-import { Product } from "@prisma/client";
 
 // Define a custom type that represents the formatted product with category info
 export type FormattedProduct = {
