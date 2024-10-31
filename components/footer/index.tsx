@@ -1,6 +1,6 @@
 import Container from "../Container";
 import { Separator } from "../ui/separator";
-import Links from "./Link";
+import Links from "../Link";
 import {
   InstagramLogoIcon,
   LinkedInLogoIcon,
@@ -92,7 +92,7 @@ const Footer = () => {
               </h1>
               <div className="flex flex-col gap-2 ">
                 {navItems.map((item) => (
-                  <Links key={item.href} item={item} />
+                  <Links key={item.href} item={item}/>
                 ))}
               </div>
             </div>

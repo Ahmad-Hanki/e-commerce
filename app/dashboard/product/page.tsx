@@ -1,29 +1,30 @@
-import { ApiAlert } from "../_components/ApiAlert";
-import Heading from "../_components/Heading";
+import { ApiAlert } from "../_components/ApiAlert"; 
+import Heading from "../_components/Heading"; 
 
-import Container from "@/components/Container";
+import Container from "@/components/Container"; 
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { DataTable } from "../_components/DataTable";
-import { categoryColumns } from "./_components/table/columns";
+import { DataTable } from "../_components/DataTable"; 
 import { Plus } from "lucide-react";
-import getCategories from "@/actions/getCategories";
+import getAllProducts from "./_actions/getAllProducts";
+import { productColumns } from "./_components/table/columns";
 
-const CategoryPage = async () => {
-  const catagories = await getCategories();
+
+const ProductPage = async () => {
+  const products = await getAllProducts();
 
   return (
     <div className="mt-[88px] sm:mt-[10px] w-full flex-1">
       <Container>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-5 gap-12 sm:gap-2">
           <Heading
-            total={catagories?.length}
-            description={"Total Categories"}
-            title={"Category Data Data"}
+            total={products?.length}
+            description={"Total Products"}
+            title={"Product Data Table"}
           />
 
-          <Link href={"/dashboard/category/add"}>
+          <Link href={"/dashboard/product/add"}>
             <Button className="py-4 px-3 bg-secondary-foreground hover:bg-secondary-foreground/70">
               <Plus className="h-5 w-5 text-secondary " />
             </Button>
@@ -33,11 +34,11 @@ const CategoryPage = async () => {
         <Separator className="mt-5 mb-10" />
 
         <DataTable
-          columns={categoryColumns}
-          data={catagories}
-          filtered="name"
+          columns={productColumns}
+          data={products}
+          filtered="description"
         />
-        <Heading title="API" description="API calls for entered Category" />
+        <Heading title="API" description="API calls for entered Product" />
         <Separator />
         <ApiAlert />
       </Container>
@@ -45,4 +46,4 @@ const CategoryPage = async () => {
   );
 };
 
-export default CategoryPage;
+export default ProductPage;

@@ -17,10 +17,11 @@ model Product {
   image3       String?  @db.VarChar(1000)
   oldPrice     Float?
   discount     Float?
-  new          Boolean?
-  freeShipping Boolean?
+  new          Boolean? @default(false)
+  freeShipping Boolean? @default(false)
   extraInfo    String?  @db.VarChar(2000)
   rating       Int?     @default(5)
+  mostSale     Boolean? @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -45,7 +46,7 @@ model Package {
   discount  Float?
   Piece     Int        @default(1)
   productId String
-  products  Product    @relation(fields: [productId], references: [id])
+  products  Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
   CartItem  CartItem[] // can refer to more than one cart item
 }
 

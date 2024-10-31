@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Edit, Trash2, MoreVertical } from "lucide-react";
-import DialogAlert from "../DialogAlert"; 
+import DialogAlert from "../../../_components/DialogAlert";
 import { Category } from "@prisma/client";
 
 import {
@@ -16,8 +16,7 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import DeleteCategoryAction from "../../category/_actions/deleteLocationAction"; 
-
+import DeleteCategoryAction from "../../_actions/deleteLocationAction";
 
 interface cellActionProps {
   data: Category;
@@ -30,12 +29,14 @@ const CellAction = ({ data }: cellActionProps) => {
   const onDelete = async () => {
     const response = await DeleteCategoryAction(id);
     if (response) {
-      toast.success("Deleted Successfully" );
+      toast.success("Deleted Successfully");
       setOpen(false);
       router.push("/dashboard/category");
       return;
     }
-    toast.error( "Something went wrong" );
+    toast.error(
+      "Category is connected with at least one product. please delete the product first."
+    );
 
     setOpen(false);
   };
@@ -53,16 +54,14 @@ const CellAction = ({ data }: cellActionProps) => {
           <MoreVertical className="text-secondary-foreground w-6 h-6" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>
-            { "Manage Your data"}
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>{"Manage Your data"}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link
               href={"/dashboard/category/" + id}
               className="flex items-center justify-between gap-2 w-full cursor-pointer"
             >
-              <Label>{ "Edit" }</Label>
+              <Label>{"Edit"}</Label>
               <Edit className="text-secondary-foreground h-4 w-4 cursor-pointer" />
             </Link>
           </DropdownMenuItem>

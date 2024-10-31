@@ -8,6 +8,9 @@ import getKindeId from "@/actions/getKindeId";
 import getCategories from "@/actions/getCategories";
 import getCartLength from "@/actions/getCartLength";
 
+export const admins = ["itxti909@gmail.com"];
+
+
 const Navbar = async () => {
   const isLoggedIn = await IsAuthenticated();
   let kindeId = "";
@@ -19,7 +22,6 @@ const Navbar = async () => {
     email = (await getKindeId()).email;
   }
   const categories = await getCategories();
-  const admins = ["itxti909@gmail.com"];
   const admin = admins.includes(email);
 
   return (
