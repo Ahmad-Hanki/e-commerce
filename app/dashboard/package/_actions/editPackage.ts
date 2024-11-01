@@ -1,0 +1,57 @@
+"use server";
+
+import prisma from "@/lib/db";
+import getDiscountAmount from "@/utils/getDiscountAmount";
+
+interface EditPackage {
+  id: string;
+  price: number;
+
+  productId: string;
+  Piece: number;
+
+  oldPrice?: number;
+  inStock?: boolean;
+}
+
+const editPackage = async ({
+  id,
+  Piece,
+  price,
+  productId,
+  inStock,
+  oldPrice,
+}: EditPackage) => {
+  if (!Piece || !price || !productId || !id) {
+    return false;
+  }
+  let discount;
+  if (oldPrice && oldPrice < price) {
+    return false;
+  }
+  if (oldPrice) {
+    discount = getDiscountAmount(oldPrice, price);
+  }
+
+  try {
+    await prisma.package.update({
+      where: {
+        id,
+      },
+      data: {
+        Piece,
+        price,
+        productId,
+        inStock,
+        discount,
+        oldPrice,
+      },
+    });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export default editPackage;
