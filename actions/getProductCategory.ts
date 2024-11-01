@@ -14,13 +14,14 @@ const getProductsCategory = async (
       },
       include: {
         Category: {
-          select: { name: true }, // Include only the name of the category
+          select: { name: true, id: true }, // Include only the name of the category
         },
       },
     });
 
     // If products are found, extract the category name from the first product
-    const categoryName = products.length > 0 ? products[0].Category?.name || null : null;
+    const categoryName =
+      products.length > 0 ? products[0].Category?.name || null : null;
 
     // Return products and category name
     return { products, categoryName };

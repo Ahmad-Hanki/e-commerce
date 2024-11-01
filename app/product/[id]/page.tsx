@@ -4,8 +4,8 @@ import IsAuthenticated from "@/actions/isAuthenticated";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
 import getProductWithPackage from "@/actions/getProductWithPackage";
-import getProductsCategory from "@/actions/getProductsCategory";
 import CarouselComponent from "@/components/Carousel";
+import getProductsCategory from "@/actions/getProductCategory";
 
 // Define a type for the product with packages
 type ProductWithPackages = PrismaProduct & {
@@ -40,7 +40,8 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     extraInfo: product?.extraInfo,
   };
 
-  const productsCategory = await getProductsCategory(product!.categoryId);
+  const productsCategory = await getProductsCategory(product?.categoryId!);
+  
 
   return (
     <div>
@@ -54,7 +55,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
       </Suspense>
       
       <Suspense fallback={<Loading />}>
-        <CarouselComponent like={true} products={productsCategory.products} />
+        <CarouselComponent like={true} products={productsCategory.products ?? []} />
       </Suspense>
     </div>
   );

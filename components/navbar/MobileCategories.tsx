@@ -7,11 +7,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { Category } from "@prisma/client";
+import { UpperCategory } from "@prisma/client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const MobileCategories = ({ categories }: { categories: Category[] }) => {
+const MobileCategories = ({ categories }: { categories: UpperCategory[] }) => {
   const pathname = usePathname();
   return (
     <div>
@@ -22,16 +22,16 @@ const MobileCategories = ({ categories }: { categories: Category[] }) => {
             <div className="flex flex-col gap-4">
               {categories.map((category) => (
                 <Link
-                  key={category.id}
-                  href={`/category/${category.id}`}
+                  key={category}
+                  href={`/category/${category}`}
                   className={cn(
-                    "cursor-pointer text-3xl",
-                    pathname == `category/${category.id}`
+                    "cursor-pointer text-3xl lowercase first-letter:uppercase",
+                    pathname == `category/${category}`
                       ? "text-primary"
                       : "text-gray-600"
                   )}
                 >
-                  {category.name}
+                  {category}
                 </Link>
               ))}
             </div>

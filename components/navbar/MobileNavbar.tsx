@@ -21,11 +21,12 @@ import { LogIn, LogOut, User } from "lucide-react";
 import { Category } from "@prisma/client";
 import MobileCategories from "./MobileCategories";
 import DashboardIcon from "@/public/icons/DashboardIcon";
+import { UpperCategory } from "@prisma/client";
 
 interface MobileNavbarProps {
   isLoggedIn: boolean;
   kindeId: string;
-  categories: Category[];
+  categories: UpperCategory[];
   cartLength: number;
   admin: boolean;
 }

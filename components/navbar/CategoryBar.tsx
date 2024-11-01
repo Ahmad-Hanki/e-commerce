@@ -1,16 +1,17 @@
-'use client'
-import { Category } from "@prisma/client";
+"use client";
+import { UpperCategory } from "@prisma/client";
 import Container from "../Container";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface CategoryBarProps {
-  categories: Category[];
+  categories: UpperCategory[];
 }
 
 const CategoryBar = ({ categories }: CategoryBarProps) => {
   const pathname = usePathname();
+  // console.log(pathname);
 
   return (
     <div className=" py-3 hidden lg:block">
@@ -19,11 +20,16 @@ const CategoryBar = ({ categories }: CategoryBarProps) => {
           <div className="flex gap-4 flex-nowrap w-fit">
             {categories.map((category) => (
               <Link
-                href={"/category/" + category.id}
-                key={category.id}
-                className={cn("hover:text-yellow-600 transition-all duration-300 cursor-pointer text-lg",  pathname == `category/${category.id}` ? "text-primary" : "text-gray-600")}
+                href={"/category/" + category}
+                key={category}
+                className={cn(
+                  "hover:text-yellow-600 transition-all duration-300 cursor-pointer text-lg lowercase first-letter:uppercase",
+                  pathname.includes(`/category/${category}`)
+                    ? "!text-primary underline"
+                    : "text-gray-600"
+                )}
               >
-                {category.name}
+                {category}
               </Link>
             ))}
           </div>
