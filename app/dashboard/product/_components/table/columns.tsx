@@ -47,6 +47,10 @@ export const productColumns: ColumnDef<FormattedProduct>[] = [
     header: () => <div className="text-start w-full">Most Sale</div>,
   },
   {
+    accessorKey: "upperCategory",
+    header: () => <div className="text-start w-full">Upper Category</div>,
+  },
+  {
     id: "category",
     header: () => <div className="text-start w-full">Category</div>,
 

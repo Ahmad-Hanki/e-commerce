@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/lib/db";
-
+import { UpperCategory } from "@prisma/client";
 // Define a custom type that represents the formatted product with category info
 export type FormattedProduct = {
   id: string;
@@ -13,6 +13,7 @@ export type FormattedProduct = {
   image3?: string | null;
   oldPrice?: number | null;
   discount?: number | null;
+  upperCategory: UpperCategory;
   new?: boolean | null;
   freeShipping?: boolean | null;
   extraInfo?: string | null;
@@ -28,7 +29,7 @@ export type FormattedProduct = {
 
 const getOneProduct = async (id: string): Promise<FormattedProduct | null> => {
   try {
-    const product = await prisma.product.findUnique({
+    const product = await prisma.product.findFirst({
       where: { id },
       include: {
         Category: {
@@ -49,6 +50,7 @@ const getOneProduct = async (id: string): Promise<FormattedProduct | null> => {
       inStock: product.inStock,
       image: product.image,
       image2: product.image2,
+      upperCategory: product.upperCategory,
       image3: product.image3,
       oldPrice: product.oldPrice,
       discount: product.discount,
@@ -58,7 +60,7 @@ const getOneProduct = async (id: string): Promise<FormattedProduct | null> => {
       rating: product.rating,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
-      mostSale: product.mostSale ?? undefined,  // Convert null to undefined if necessary
+      mostSale: product.mostSale ?? undefined, // Convert null to undefined if necessary
 
       category: {
         name: product.Category.name,

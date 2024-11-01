@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/db";
+import { UpperCategory } from "@prisma/client";
 
 // Define a custom type that represents the formatted product with category info
 export type FormattedProduct = {
@@ -14,6 +15,7 @@ export type FormattedProduct = {
   oldPrice?: number | null;
   discount?: number | null;
   new?: boolean | null;
+  upperCategory: UpperCategory
   freeShipping?: boolean | null;
   extraInfo?: string | null;
   rating?: number | null;
@@ -41,6 +43,7 @@ const getAllProducts = async (): Promise<FormattedProduct[]> => {
 
     const formattedProducts: FormattedProduct[] = products.map((product) => ({
       id: product.id,
+      upperCategory: product.upperCategory,
       description: product.description,
       price: product.price,
       inStock: product.inStock,

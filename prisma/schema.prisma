@@ -25,10 +25,19 @@ model Product {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
+  upperCategory UpperCategory
   categoryId String
   Category   Category @relation(fields: [categoryId], references: [id])
 
   Packages Package[]
+}
+
+enum UpperCategory {
+  ELECTRONICS
+  CLOTHING
+  BEAUTY
+  HOME
+  SPORTS
 }
 
 model Category {

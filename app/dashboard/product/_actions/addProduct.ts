@@ -2,11 +2,13 @@
 
 import prisma from "@/lib/db";
 import getDiscountAmount from "@/utils/getDiscountAmount";
+import { UpperCategory } from "@prisma/client";
 
 interface AddProduct {
   price: number;
   description: string;
   image: string;
+  upperCategory: UpperCategory;
   categoryId: string;
 
   image2?: string;
@@ -28,6 +30,8 @@ const addProduct = async ({
   image2,
   image3,
   categoryId,
+  upperCategory,
+
   oldPrice,
   rating,
   inStock,
@@ -37,25 +41,40 @@ const addProduct = async ({
   extraInfo,
 }: AddProduct) => {
   try {
-
-    if (!price || !description || !image || !categoryId) {
+    if (!price || !description || !image || !categoryId || !upperCategory) {
       return false;
     }
 
     if (oldPrice && oldPrice < price) {
-        return false
+      return false;
     }
 
     let discount;
 
-    if (oldPrice)
-    {
-        discount = getDiscountAmount(oldPrice, price);
+    if (oldPrice) {
+      discount = getDiscountAmount(oldPrice, price);
     }
 
-    console.log(price, description, image, image2, image3, categoryId, oldPrice, rating, inStock, New, freeShipping, mostSale, extraInfo, discount);
+    console.log(
+      price,
+      description,
+      image,
+      image2,
+      image3,
+      categoryId,
+      oldPrice,
+      rating,
+
+      inStock,
+      New,
+      freeShipping,
+      mostSale,
+      extraInfo,
+      discount
+    );
     await prisma.product.create({
       data: {
+        upperCategory,
         price,
         description,
         image,
@@ -70,7 +89,6 @@ const addProduct = async ({
         mostSale,
         extraInfo,
         discount,
-
       },
     });
 

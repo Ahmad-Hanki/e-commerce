@@ -2,7 +2,7 @@
 
 import prisma from "@/lib/db";
 import getDiscountAmount from "@/utils/getDiscountAmount";
-
+import { UpperCategory } from "@prisma/client";
 interface UpdateProduct {
   id: string;
   price: number;
@@ -12,7 +12,7 @@ interface UpdateProduct {
 
   image2?: string;
   image3?: string;
-
+  upperCategory: UpperCategory;
   extraInfo?: string;
   oldPrice?: number;
   rating?: number;
@@ -33,14 +33,14 @@ const updateProduct = async ({
   oldPrice,
   rating,
   inStock,
+  upperCategory,
   New,
   freeShipping,
   mostSale,
   extraInfo,
 }: UpdateProduct) => {
   try {
-
-    if (!price || !description || !image || !categoryId) {
+    if (!price || !description || !image || !categoryId || !upperCategory) {
       return false;
     }
 
@@ -70,6 +70,7 @@ const updateProduct = async ({
         inStock,
         new: New,
         freeShipping,
+        upperCategory,
         mostSale,
         extraInfo,
         discount,

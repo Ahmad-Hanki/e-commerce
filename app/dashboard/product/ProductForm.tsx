@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Category } from "@prisma/client";
+import { Category, UpperCategory } from "@prisma/client";
 import { ChooseCategory } from "./_components/chooseCategory";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
@@ -23,6 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import addProduct from "./_actions/addProduct";
 import updateProduct from "./_actions/updateProduct";
 import { TrashIcon } from "lucide-react";
+import { ChooseUpperCategory } from "./_components/ChooseUpperCategory";
 
 interface ProductFormProps {
   initialData?: FormattedProduct;
@@ -45,6 +46,8 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
     initialData?.category || null
   );
 
+  const [chosenUpperCategory, setChosenUpperCategory] =
+    useState<UpperCategory | null>(initialData?.upperCategory || null);
   //images
 
   const [image, setImage] = useState<string>(initialData?.image || "");
@@ -58,7 +61,13 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
     const rating = formData.get("rating");
     const extraInfo = formData.get("extraInfo") as string;
 
-    if (!description || !price || !chosenCategory || !image) {
+    if (
+      !description ||
+      !price ||
+      !chosenCategory ||
+      !image ||
+      !chosenUpperCategory
+    ) {
       toast.error("Please fill all fields");
       return;
     }
@@ -72,6 +81,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
         image3,
         description,
         price: Number(price),
+        upperCategory: chosenUpperCategory,
         oldPrice: Number(oldPrice),
         rating: Number(rating),
         inStock,
@@ -92,6 +102,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
     // Add
     const response = await addProduct({
       description,
+      upperCategory: chosenUpperCategory,
       price: Number(price),
       oldPrice: Number(oldPrice),
       rating: Number(rating),
@@ -221,6 +232,13 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
             </DropdownMenuCheckboxItem>
           </DropdownMenuContent>
         </DropdownMenu>
+      </div>
+
+      <div>
+        <ChooseUpperCategory
+          chosenUpperCategory={chosenUpperCategory}
+          setChosenUpperCategory={setChosenUpperCategory}
+        />
       </div>
 
       <div>
