@@ -81,7 +81,7 @@ const addProduct = async ({
         image2,
         image3,
         categoryId,
-        oldPrice,
+        oldPrice:oldPrice == 0 ? null : oldPrice,
         rating,
         inStock,
         new: New,

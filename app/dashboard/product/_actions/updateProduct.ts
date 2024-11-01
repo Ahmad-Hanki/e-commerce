@@ -53,7 +53,7 @@ const updateProduct = async ({
     if (oldPrice) {
       discount = getDiscountAmount(oldPrice, price);
     }
-
+// qwlks dkd]
     await prisma.product.update({
       where: {
         id,
@@ -65,7 +65,7 @@ const updateProduct = async ({
         image2,
         image3,
         categoryId,
-        oldPrice,
+        oldPrice:oldPrice == 0 ? null : oldPrice,
         rating,
         inStock,
         new: New,
