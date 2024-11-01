@@ -28,20 +28,21 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const packages = extractPackages(product);
 
   const images = {
-    image: product!.image,
+    image: product?.image ?? "",
     image2: product?.image2 ?? "",
     image3: product?.image3 ?? "",
   };
 
   const productData = {
-    id: product!.id,
-    description: product!.description,
-    rating: product!.rating,
-    extraInfo: product?.extraInfo,
+    id: product?.id ?? "",
+    description: product?.description ?? "",
+    rating: product?.rating ?? 0,
+    extraInfo: product?.extraInfo ?? "",
   };
 
-  const productsCategory = await getProductsCategory(product?.categoryId!);
-  
+  const productsCategory = product?.categoryId 
+    ? await getProductsCategory(product.categoryId)
+    : { products: [] }; // Fallback in case categoryId is undefined
 
   return (
     <div>

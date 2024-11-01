@@ -1,4 +1,3 @@
-import getProductsCategory from "@/actions/getProductsUpperCategory";
 import CategoryName from "./_components/CategoryName";
 import { Suspense } from "react";
 import Loading from "@/components/loading";

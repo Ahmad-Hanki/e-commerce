@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import CategoryForm from "../PackageForm";
 import getOnePackage from "../_actions/getOnePackage";
 import PackageForm from "../PackageForm";
 import getAllProductForThePackages from "../_actions/getAllProductForThePackages";

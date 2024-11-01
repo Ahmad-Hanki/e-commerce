@@ -5,7 +5,6 @@ import BandBar from "./BandBar";
 import CategoryBar from "./CategoryBar";
 import IsAuthenticated from "@/actions/isAuthenticated";
 import getKindeId from "@/actions/getKindeId";
-import getCategories from "@/actions/getCategories";
 import getCartLength from "@/actions/getCartLength";
 import { UpperCategory } from "@prisma/client";
 

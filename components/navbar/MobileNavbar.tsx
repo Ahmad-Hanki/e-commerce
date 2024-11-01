@@ -18,7 +18,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Cart from "../cart/Cart";
 import { LogIn, LogOut, User } from "lucide-react";
-import { Category } from "@prisma/client";
 import MobileCategories from "./MobileCategories";
 import DashboardIcon from "@/public/icons/DashboardIcon";
 import { UpperCategory } from "@prisma/client";
