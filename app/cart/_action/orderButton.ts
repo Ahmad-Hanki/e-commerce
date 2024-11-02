@@ -1,6 +1,7 @@
 "use server";
 import getKindeId from "@/actions/getKindeId";
 import prisma from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 const createOrder = async (shippingAddress: string) => {
   try {
@@ -46,20 +47,22 @@ const createOrder = async (shippingAddress: string) => {
 
     const user = await prisma.user.findUnique({
       where: { kindeId },
-      select: { id: true },
+      select: { id: true, phone: true, location: true },
     });
 
-    if (!user) {
+    if (!user || !user.id || !user.phone || !user.location) {
       console.error("User not found");
       return false;
     }
 
-    const order = await prisma.order.create({
+    await prisma.order.create({
       data: {
         userId: user.id,
-        total:+total.toFixed(2),
+        total: +total.toFixed(2),
         discount: totalDiscount,
-        shippingAddress,
+        shippingAddress: user.location,
+
+        phone: user.phone,
         orderItems: {
           create: cartWithItems.cartItems.map((item) => ({
             packageId: item.packageId,
@@ -75,6 +78,7 @@ const createOrder = async (shippingAddress: string) => {
       where: { cartId: cartWithItems.id },
     });
 
+    revalidatePath("/cart/" + kindeId);
     return true;
   } catch (error) {
     console.error("Error creating order:", error);

@@ -4,10 +4,8 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { OrderStatus } from "@prisma/client";
@@ -49,6 +47,9 @@ export function StatusRadio({
           <DropdownMenuRadioItem value="SHIPPED">SHIPPED</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="CANCELED">
             CANCELED
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="DELIVERED">
+            DELIVERED
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

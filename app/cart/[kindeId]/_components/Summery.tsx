@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import PaymentForm from "./PaymentForm";
 
 interface SummeryProps {
@@ -7,6 +7,7 @@ interface SummeryProps {
   products: {
     description: string;
     price: number;
+    quantity: number;
   }[];
 }
 const Summery = ({
@@ -17,6 +18,21 @@ const Summery = ({
   return (
     <div className="space-y-7 pt-10 md:pt-0">
       <h2 className="text-3xl font-semibold text-primary ">Summery</h2>
+      <div>
+        <h3 className="text-xl font-semibold text-primary">Products</h3>
+        <div className="space-y-3">
+          {products.map((product, index) => (
+            <div key={index} className="flex justify-between">
+              <p>{product.description}</p>
+              <p>x{product.quantity}</p>
+
+              <p>{product.price}TL</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Separator />
 
       <div className="space-y-4">
         <div className="flex justify-between">
@@ -28,6 +44,8 @@ const Summery = ({
           <p>{totalAmount} TL</p>
         </div>
       </div>
+
+      {/* Todo: */}
 
       <div>
         <PaymentForm />

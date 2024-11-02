@@ -127,5 +127,6 @@ model OrderItem {
 enum OrderStatus {
   PENDING
   SHIPPED
+  DELIVERED
   CANCELED
 }

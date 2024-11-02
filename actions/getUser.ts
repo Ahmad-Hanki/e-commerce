@@ -1,17 +1,18 @@
 import prisma from "@/lib/db";
+import { User } from "@prisma/client";
 
-const getUser = async (kindeId: string): Promise<boolean> => {
+const getUser = async (kindeId: string): Promise<User | null> => {
   try {
     const user = await prisma.user.findUnique({
       where: { kindeId },
     });
     if (user) {
-      return true;
+      return user;
     } else {
-      return false;
+      return null;
     }
   } catch (error) {
-    return false;
+    return null;
   }
 };
 

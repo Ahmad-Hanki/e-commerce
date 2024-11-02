@@ -11,6 +11,7 @@ const OrderNavbar = () => {
   const menuItems = [
     { name: "New Orders", href: "/dashboard/order/newOrder" },
     { name: "Sent to cargo", href: "/dashboard/order/cargo" },
+    { name: "Delivered", href: "/dashboard/order/delivered" },
     { name: "Canceled", href: "/dashboard/order/cancel" },
   ];
 
@@ -24,7 +25,9 @@ const OrderNavbar = () => {
                 <MenubarTrigger key={item.href}>
                   <Link
                     href={item.href}
-                    className={pathname === item.href ? "font-bold underline" : ""}
+                    className={
+                      pathname === item.href ? "font-bold underline" : ""
+                    }
                   >
                     {item.name}
                   </Link>

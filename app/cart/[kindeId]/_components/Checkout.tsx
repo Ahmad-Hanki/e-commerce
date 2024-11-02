@@ -22,6 +22,7 @@ interface CheckoutProps {
     products: {
       description: string;
       price: number;
+      quantity: number;
     }[];
   };
 }

@@ -14,7 +14,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-3">
           {data.orderItems.map((item, ix) => (
             <Image
               key={ix}
@@ -35,7 +35,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div className="flex flex-col gap-10">
+        <div>
           {data.orderItems.map((item, ix) => (
             <p key={ix}>{item.product.description}</p>
           ))}
@@ -50,7 +50,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-3">
           {data.orderItems.map((item, ix) => (
             <p key={ix}>{item.quantity}</p>
           ))}
