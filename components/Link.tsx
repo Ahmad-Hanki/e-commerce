@@ -18,7 +18,11 @@ const Links = ({
   const active = pathName.includes(item.href);
   return (
     <Link
-      href={item.href}
+      href={
+        item.href == "/dashboard/order"
+          ? "/dashboard/order/newOrder"
+          : item.href
+      }
       className={cn(
         "text-base text-muted-foreground hover:text-secondary transition-all duration-300",
         active && "text-lg text-primary",

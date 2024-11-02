@@ -3,7 +3,7 @@ import Links from "@/components/Link";
 const DashboardNavbar = () => {
   const linkes = [
     {
-      href: "/dashboard/main",
+      href: "/dashboard",
       name: "Dashboard",
     },
     {
@@ -19,7 +19,7 @@ const DashboardNavbar = () => {
       name: "Packages",
     },
     {
-      href: "/dashboard/order/newOrder",
+      href: "/dashboard/order",
       name: "Orders",
     },
   ];
