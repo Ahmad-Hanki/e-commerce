@@ -15,7 +15,7 @@ const Links = ({
 }) => {
   const pathName = usePathname();
 
-  const active = pathName == item.href;
+  const active = pathName.includes(item.href);
   return (
     <Link
       href={item.href}

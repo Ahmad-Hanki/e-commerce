@@ -28,7 +28,7 @@ const CartPage = async ({
         id: item.id,
         quantity: item.quantity,
         price: item.package.price,
-        oldPrice: item.package.oldPrice,
+        oldPrice: item.package.oldPrice || 0,
         discount: item.package.discount,
         Piece: item.package.Piece,
         inStock: item.package.inStock,
@@ -37,12 +37,13 @@ const CartPage = async ({
       };
     }) || [];
 
-  // const total = packageData?.reduce((acc, item) => {
-  //   const itemPrice = item.discount
-  //     ? item.price * ((100 - item.discount) / 100) // Apply discount if it exists
-  //     : item.price;
-  //   return acc + itemPrice * item.quantity;
-  // }, 0);
+  const totalAmount = packageData.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
+
+  const totalBeforeDiscount = packageData.reduce((acc, item) => {
+    return acc + item.oldPrice * item.quantity; // Use oldPrice for total before discount
+  }, 0);
 
   return (
     <div>
@@ -57,7 +58,18 @@ const CartPage = async ({
         <Suspense fallback={<Loading />}>
           <div className="mt-10 pb-20 ">
             {packageData?.length > 0 ? (
-              <Checkout items={packageData} />
+              <Checkout
+                items={packageData}
+
+                summery={{
+                  totalAmount,
+                  totalBeforeDiscount,
+                  products: packageData.map((item) => ({
+                    description: item.description,
+                    price: item.price,
+                  })),
+                }}
+              />
             ) : (
               <p>No items in the cart</p>
             )}

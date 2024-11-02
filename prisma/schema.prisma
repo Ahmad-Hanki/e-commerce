@@ -26,8 +26,8 @@ model Product {
   updatedAt    DateTime @updatedAt
 
   upperCategory UpperCategory
-  categoryId String
-  Category   Category @relation(fields: [categoryId], references: [id])
+  categoryId    String
+  Category      Category      @relation(fields: [categoryId], references: [id])
 
   Packages Package[]
 }
@@ -53,33 +53,76 @@ model Package {
 
   oldPrice  Float?
   discount  Float?
-  Piece     Int        @default(1)
+  Piece     Int         @default(1)
   productId String
-  products  Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  products  Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
   CartItem  CartItem[] // can refer to more than one cart item
+  OrderItem OrderItem[]
 }
 
 model User {
-  id      String @id @default(uuid())
-  kindeId String @unique
+  id      String  @id @default(uuid())
+  kindeId String  @unique
   Cart    Cart?
+  Order   Order[]
 }
 
 model Cart {
-  id        String   @id @default(uuid())
-  userId    String   @unique 
-  user      User     @relation(fields: [userId], references: [id])
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
 
   cartItems CartItem[]
 }
 
 model CartItem {
-  id       String   @id @default(uuid())
-  quantity Int      @default(1)
+  id       String @id @default(uuid())
+  quantity Int    @default(1)
 
   cartId String
   cart   Cart   @relation(fields: [cartId], references: [id])
 
   packageId String
   package   Package @relation(fields: [packageId], references: [id])
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  status          OrderStatus @default(PENDING)
+  total           Float
+  shippingFee     Float?      @default(0.0)
+  discount        Float?      @default(0.0)
+  freeShipping    Boolean     @default(false)
+  shippingAddress String
+  billingAddress  String?
+  paymentMethod   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId     String
+  user       User        @relation(fields: [userId], references: [id])
+  
+  orderItems OrderItem[]
+
+}
+
+model OrderItem {
+  id      String @id @default(uuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id])
+
+  packageId String
+  package   Package @relation(fields: [packageId], references: [id])
+
+  quantity Int    @default(1)
+  price    Float 
+  discount Float? 
+}
+
+enum OrderStatus {
+  PENDING
+  SHIPPED
+  CANCELED
+  RETURNED
 }

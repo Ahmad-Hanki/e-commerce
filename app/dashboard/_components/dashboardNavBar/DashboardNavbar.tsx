@@ -3,33 +3,33 @@ import Links from "@/components/Link";
 const DashboardNavbar = () => {
   const linkes = [
     {
-      href: "/dashboard",
+      href: "/dashboard/main",
       name: "Dashboard",
     },
     {
       href: "/dashboard/category",
-      name: "Category",
+      name: "Categories",
     },
     {
       href: "/dashboard/product",
-      name: "Product",
+      name: "Products",
     },
     {
       href: "/dashboard/package",
-      name: "Package",
+      name: "Packages",
+    },
+    {
+      href: "/dashboard/order",
+      name: "Orders",
     },
   ];
   return (
     <div>
-        
-    <div className="w-full flex justify-center gap-6 bg-primary-foreground">
-      {linkes.map((item) => (
-        <Links key={item.href} item={item}
-        
-        />
-      ))}
-    </div>
-    
+      <div className="w-full flex justify-center gap-6 bg-primary-foreground">
+        {linkes.map((item) => (
+          <Links key={item.href} item={item} />
+        ))}
+      </div>
     </div>
   );
 };

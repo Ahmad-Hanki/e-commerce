@@ -1,4 +1,5 @@
 import CartItemCard from "./CartItemCard";
+import Summery from "./Summery";
 
 interface CheckoutProps {
   items:
@@ -14,8 +15,17 @@ interface CheckoutProps {
         description: string;
       }[]
     | undefined;
+
+  summery: {
+    totalAmount: number;
+    totalBeforeDiscount?: number;
+    products: {
+      description: string;
+      price: number;
+    }[];
+  };
 }
-const Checkout = ({ items }: CheckoutProps) => {
+const Checkout = ({ items, summery }: CheckoutProps) => {
   if (!items && items == undefined) {
     return null;
   }
@@ -26,7 +36,14 @@ const Checkout = ({ items }: CheckoutProps) => {
           <CartItemCard key={item.id} item={item} />
         ))}
       </div>
-      <div className="w-full md:w-[30%]"></div>
+      <div className="w-full md:w-[30%]">
+        <Summery
+          totalAmount={summery.totalAmount}
+          totalBeforeDiscount={summery.totalBeforeDiscount}
+          products={summery.products}
+          
+        />
+      </div>
     </div>
   );
 };
