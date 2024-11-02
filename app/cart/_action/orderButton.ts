@@ -57,7 +57,7 @@ const createOrder = async (shippingAddress: string) => {
     const order = await prisma.order.create({
       data: {
         userId: user.id,
-        total,
+        total:+total.toFixed(2),
         discount: totalDiscount,
         shippingAddress,
         orderItems: {

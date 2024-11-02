@@ -19,7 +19,7 @@ const DashboardNavbar = () => {
       name: "Packages",
     },
     {
-      href: "/dashboard/order",
+      href: "/dashboard/order/newOrder",
       name: "Orders",
     },
   ];

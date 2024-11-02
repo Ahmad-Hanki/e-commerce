@@ -14,7 +14,13 @@ const CategoryBar = ({ categories }: CategoryBarProps) => {
   // console.log(pathname);
 
   return (
-    <div className=" py-3 hidden lg:block">
+    <div
+      className={cn(
+        " py-3 hidden lg:block",
+
+        pathname.includes("/dashboard") ? "!hidden" : ""
+      )}
+    >
       <Container>
         <div className="flex items-center w-full">
           <div className="flex gap-4 flex-nowrap w-fit">

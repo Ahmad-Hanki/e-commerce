@@ -63,6 +63,9 @@ model Package {
 model User {
   id      String  @id @default(uuid())
   kindeId String  @unique
+
+  phone   String?
+  location String?
   Cart    Cart?
   Order   Order[]
 }
@@ -94,6 +97,7 @@ model Order {
   discount        Float?      @default(0.0)
   freeShipping    Boolean     @default(false)
   shippingAddress String
+  phone           String
   billingAddress  String?
   paymentMethod   String?
 
@@ -124,5 +128,4 @@ enum OrderStatus {
   PENDING
   SHIPPED
   CANCELED
-  RETURNED
 }
