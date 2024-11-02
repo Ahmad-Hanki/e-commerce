@@ -3,7 +3,7 @@ import getKindeId from "@/actions/getKindeId";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-const createOrder = async (shippingAddress: string) => {
+const createOrder = async () => {
   try {
     const response = await getKindeId();
     const kindeId = response?.kindeId;

@@ -13,6 +13,7 @@ const OrderNavbar = () => {
     { name: "Sent to cargo", href: "/dashboard/order/cargo" },
     { name: "Delivered", href: "/dashboard/order/delivered" },
     { name: "Canceled", href: "/dashboard/order/cancel" },
+    
   ];
 
   return (
