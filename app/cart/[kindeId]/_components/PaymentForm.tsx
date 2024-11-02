@@ -6,8 +6,8 @@ import toast from "react-hot-toast";
 
 const PaymentForm = () => {
   const checkOutSubmit = async () => {
-    const res = await createOrder("an address");
-    
+    const res = await createOrder();
+
     if (res) {
       toast.success("Order created successfully");
     }
