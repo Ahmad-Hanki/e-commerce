@@ -16,7 +16,7 @@ const increaseQuantity = async (cartItemId: string) => {
         },
       },
     });
-    const kindeId = await getKindeId();
+    const kindeId = (await getKindeId()).kindeId;
     revalidatePath(`/cart/${kindeId}`);
 
     return true;
