@@ -34,13 +34,13 @@ const PcNavbar = ({
           <div className="flex items-center gap-4 ">
             {!isLoggedIn ? (
               <>
-                <LoginLink>
+                <LoginLink postLoginRedirectURL="/createUser">
                   <div className="flex justify-between gap-2 items-center transition-all duration-300 hover:text-yellow-500">
                     <LogIn className="w-9 h-9 lg:w-6 lg:h-6" />
                     <p>Oturum Aç</p>
                   </div>
                 </LoginLink>
-                <RegisterLink>
+                <RegisterLink postLoginRedirectURL="/createUser">
                   <div className="flex justify-between gap-2 items-center transition-all duration-300  hover:text-yellow-500">
                     <User className="w-9 h-9 lg:w-6 lg:h-6" />
                     <p>Kayıt Ol</p>
@@ -55,7 +55,7 @@ const PcNavbar = ({
                   </Link>
                 )}
                 <Cart cartLength={cartLength} kindeId={kindeId} />
-                <LogoutLink>
+                <LogoutLink >
                   <div className="flex justify-between gap-2 items-center transition-all duration-300  hover:text-yellow-500">
                     <LogOut className="w-9 h-9 lg:w-6 lg:h-6" />
                     <p>Çıkış Yap</p>

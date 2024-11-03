@@ -113,14 +113,14 @@ const MobileNavbar = ({
               <div className="flex items-center gap-6 mt-10">
                 {!isLoggedIn ? (
                   <>
-                    <LoginLink>
+                    <LoginLink postLoginRedirectURL="/createUser">
                       <div className="flex items-center gap-2 cursor-pointer">
                         <LogIn className="w-8 h-8 " />
                         <p className="text-3xl">Giriş Yap</p>
                       </div>
                     </LoginLink>
 
-                    <RegisterLink>
+                    <RegisterLink postLoginRedirectURL="/createUser">
                       <div className="flex items-center gap-2 cursor-pointer">
                         <User className="w-8 h-8" />
                         <p className="text-3xl">Kayıt Ol</p>

@@ -15,16 +15,15 @@ const CartPage = async ({
 }) => {
   const { kindeId } = await params;
 
-
   const userExists = await getUser(kindeId);
 
   if (!userExists) {
     notFound();
   }
 
-  if (!userExists.location || !userExists.phone) {
-    redirect(`/profile/${kindeId}`);
-  }
+  // if (!userExists.location || !userExists.phone) {
+  //   redirect(`/profile/${kindeId}`);
+  // }
 
   const cartItem = await getCartWithItems(kindeId);
 
@@ -66,7 +65,6 @@ const CartPage = async ({
             {packageData?.length > 0 ? (
               <Checkout
                 items={packageData}
-
                 summery={{
                   totalAmount,
                   totalBeforeDiscount,

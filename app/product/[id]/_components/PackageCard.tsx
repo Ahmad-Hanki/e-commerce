@@ -141,7 +141,7 @@ const PackageCard = ({
           )}
 
           {!isLoggedIn && (
-            <LoginLink>
+            <LoginLink postLoginRedirectURL="/createUser">
               <Button type="button" className=" rounded-2xl text-2xl p-5 ">
                 Sepete Ekle
               </Button>

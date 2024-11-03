@@ -60,9 +60,9 @@ const createOrder = async () => {
         userId: user.id,
         total: +total.toFixed(2),
         discount: totalDiscount,
-        shippingAddress: user.location,
+        shippingAddress: user.location ?? "",
 
-        phone: user.phone,
+        phone: user.phone ?? "",
         orderItems: {
           create: cartWithItems.cartItems.map((item) => ({
             packageId: item.packageId,
