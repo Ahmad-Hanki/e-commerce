@@ -24,6 +24,8 @@ const createOrder = async () => {
       },
     });
 
+    console.log("cartWithItems", cartWithItems);
+
     if (!cartWithItems || !cartWithItems.cartItems.length) {
       console.error("Cart is empty or not found");
       return false;
@@ -50,8 +52,8 @@ const createOrder = async () => {
       select: { id: true, phone: true, location: true },
     });
 
-    if (!user || !user.id || !user.phone || !user.location) {
-      console.error("User not found");
+    if (!user || !user.id) {
+      console.error("User not found"); // here the error is logged
       return false;
     }
 
