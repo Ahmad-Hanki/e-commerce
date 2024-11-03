@@ -7,7 +7,6 @@ import getRandomProducts from "@/actions/getRandomProducts";
 import CarouselComponent from "@/components/Carousel";
 import prisma from "@/lib/db";
 import { Product } from "@prisma/client";
-export const dynamic = "force-dynamic";
 
 const getMostSailedProducts = async (): Promise<Product[]> => {
   try {

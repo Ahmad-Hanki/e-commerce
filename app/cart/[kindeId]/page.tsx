@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import Checkout from "./_components/Checkout";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
-export const dynamic = "force-dynamic";
 
 const CartPage = async ({
   params,
