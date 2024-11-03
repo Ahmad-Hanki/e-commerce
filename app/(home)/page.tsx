@@ -7,6 +7,7 @@ import getRandomProducts from "@/actions/getRandomProducts";
 import CarouselComponent from "@/components/Carousel";
 import prisma from "@/lib/db";
 import { Product } from "@prisma/client";
+export const dynamic = "force-dynamic";
 
 const getMostSailedProducts = async (): Promise<Product[]> => {
   try {
@@ -23,9 +24,7 @@ const getMostSailedProducts = async (): Promise<Product[]> => {
   }
 };
 
-
 export default async function Home() {
-  
   const [mostSailed, randomProducts] = await Promise.all([
     getMostSailedProducts(),
     getRandomProducts(),
@@ -49,8 +48,6 @@ export default async function Home() {
       <CarouselComponent products={randomProducts} />
 
       <Blog />
-
-
     </div>
   );
 }
