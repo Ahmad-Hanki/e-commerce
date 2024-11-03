@@ -53,7 +53,7 @@ const createOrder = async () => {
     });
 
     if (!user || !user.id) {
-      console.error("User not found"); // here the error is logged
+      console.error("User not found"); 
       return false;
     }
 
