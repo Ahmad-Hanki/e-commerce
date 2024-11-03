@@ -1,4 +1,5 @@
 import Container from "@/components/Container";
+export const dynamic = "force-static";
 
 const HandlingOrder = () => {
   return (

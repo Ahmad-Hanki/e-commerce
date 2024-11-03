@@ -2,6 +2,7 @@ import React from "react";
 import FormContainer from "./_components/FormContainer";
 import ContactData from "./_components/Contactdata";
 import Location from "./_components/Location";
+export const dynamic = "force-static";
 
 const ContactPage = () => {
   return (

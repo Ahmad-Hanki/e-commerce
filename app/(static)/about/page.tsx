@@ -3,7 +3,10 @@ import Image from "next/image";
 import img from "@/public/images/aboutUs.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+export const dynamic = "force-static";
+
 const AboutUsPage = () => {
+
   return (
     <div className="bg-gray-50">
       <Container>

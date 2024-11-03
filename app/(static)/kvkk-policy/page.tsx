@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
 import React from "react";
+export const dynamic = "force-static";
 
 const KvkkPolicy = () => {
   return (
