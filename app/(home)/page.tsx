@@ -1,4 +1,3 @@
-import getMostSailedProducts from "@/actions/getMostSailedProducts";
 import Blog from "./_components/Blog";
 import MostSells from "./_components/MostSells";
 import Hero from "./_components/Hero";
@@ -6,8 +5,27 @@ import img1 from "@/public/images/watch.png";
 import img2 from "@/public/images/model.png";
 import getRandomProducts from "@/actions/getRandomProducts";
 import CarouselComponent from "@/components/Carousel";
+import prisma from "@/lib/db";
+import { Product } from "@prisma/client";
+
+const getMostSailedProducts = async (): Promise<Product[]> => {
+  try {
+    const mostSailed = await prisma.product.findMany({
+      where: {
+        mostSale: true,
+      },
+      take: 8,
+    });
+
+    return mostSailed;
+  } catch (error) {
+    return [];
+  }
+};
+
 
 export default async function Home() {
+  
   const [mostSailed, randomProducts] = await Promise.all([
     getMostSailedProducts(),
     getRandomProducts(),
