@@ -12,10 +12,8 @@ const EditPackagePage = async ({
   if (!id) {
     notFound();
   }
-  const [pkg, products] = await Promise.all([
-    getOnePackage(id),
-    getAllProductForThePackages(),
-  ]);
+  const pkg = await getOnePackage(id);
+  const products = await getAllProductForThePackages();
 
   if (!pkg) {
     notFound();

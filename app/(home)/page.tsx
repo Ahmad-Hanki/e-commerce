@@ -7,27 +7,11 @@ import getRandomProducts from "@/actions/getRandomProducts";
 import CarouselComponent from "@/components/Carousel";
 import prisma from "@/lib/db";
 import { Product } from "@prisma/client";
-
-const getMostSailedProducts = async (): Promise<Product[]> => {
-  try {
-    const mostSailed = await prisma.product.findMany({
-      where: {
-        mostSale: true,
-      },
-      take: 8,
-    });
-
-    return mostSailed;
-  } catch (error) {
-    return [];
-  }
-};
+import getMostSailedProducts from "@/actions/getMostSailedProducts";
 
 export default async function Home() {
-  const [mostSailed, randomProducts] = await Promise.all([
-    getMostSailedProducts(),
-    getRandomProducts(),
-  ]);
+  const mostSailed = await getMostSailedProducts();
+  const randomProducts = await getRandomProducts();
 
   return (
     <div>

@@ -16,10 +16,8 @@ type ProductWithPackages = PrismaProduct & {
 const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
-  const [isLoggedIn, product] = await Promise.all([
-    IsAuthenticated(),
-    getProductWithPackage(id),
-  ]);
+  const isLoggedIn = await IsAuthenticated();
+  const product = await getProductWithPackage(id);
 
   const extractPackages = (product: ProductWithPackages | null): Package[] => {
     return product?.Packages || [];
@@ -40,9 +38,9 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     extraInfo: product?.extraInfo ?? "",
   };
 
-  const productsCategory = product?.categoryId 
+  const productsCategory = product?.categoryId
     ? await getProductsCategory(product.categoryId)
-    : { products: [] }; // Fallback in case categoryId is undefined
+    : { products: [] }; 
 
   return (
     <div>
@@ -54,9 +52,12 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           isLoggedIn={isLoggedIn}
         />
       </Suspense>
-      
+
       <Suspense fallback={<Loading />}>
-        <CarouselComponent like={true} products={productsCategory.products ?? []} />
+        <CarouselComponent
+          like={true}
+          products={productsCategory.products ?? []}
+        />
       </Suspense>
     </div>
   );

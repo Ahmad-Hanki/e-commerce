@@ -12,10 +12,8 @@ const EditCategoryPage = async ({
   if (!id) {
     notFound();
   }
-  const [categories, product] = await Promise.all([
-    getCategories(),
-    getOneProduct(id),
-  ]);
+  const categories = await getCategories();
+  const product = await getOneProduct(id);
 
   if (!product) {
     notFound();
