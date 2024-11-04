@@ -8,8 +8,7 @@ import getKindeId from "@/actions/getKindeId";
 import getCartLength from "@/actions/getCartLength";
 import { UpperCategory } from "@prisma/client";
 
-export const admins = ["itxti909@gmail.com"];
-
+export const admins = ["itxti909@gmail.com", "kocticarettrendyol@gmail.com"];
 
 const Navbar = async () => {
   const isLoggedIn = await IsAuthenticated();
@@ -21,7 +20,7 @@ const Navbar = async () => {
     cartLength = await getCartLength(kindeId);
     email = (await getKindeId()).email;
   }
-  const categories:UpperCategory[] = [
+  const categories: UpperCategory[] = [
     "ELECTRONICS",
     "CLOTHING",
     "BEAUTY",
