@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { DataTable } from "../../_components/DataTable";
 import { ApiAlert } from "../../_components/ApiAlert";
 import getAllOrders from "../_actions/getAllOrders";
-import { OrdersColumns } from "./_components/table/columns";
+import { OrdersColumns } from "../_components/columns";
 
 const NewOrdersPage = async () => {
   const allOrders = await getAllOrders("PENDING");
@@ -25,7 +25,7 @@ const NewOrdersPage = async () => {
           <DataTable
             columns={OrdersColumns}
             data={allOrders}
-            filtered="shippingAddress"
+            filtered="total"
           />
           <Heading title="API" description="API calls for New Orders" />
           <Separator />

@@ -1,5 +1,3 @@
-"use server";
-
 import prisma from "@/lib/db";
 import { OrderStatus } from "@prisma/client";
 
@@ -12,8 +10,8 @@ export type OrderItemInfo = {
   packageId: string;
   quantity: number;
   price: number;
-  discount?: number | null; // Allow discount to be null
-  product: ProductInfo; // Changed to single ProductInfo instead of array
+  discount?: number | null;
+  product: ProductInfo;
 };
 
 export type OrderFormatType = {
@@ -28,6 +26,17 @@ export type OrderFormatType = {
   createdAt: Date;
   updatedAt: Date;
   orderItems: OrderItemInfo[];
+  userData: {
+    fullName: string;
+    phone: string;
+    email: string;
+    adress: string;
+    adressPlace: "individual" | "company";
+    firmaAdi?: string | null;
+    vkn?: string | null;
+    vergiDairesi?: string | null;
+    Efatura?: boolean | null;
+  };
 };
 
 const getAllOrders = async (
@@ -49,7 +58,6 @@ const getAllOrders = async (
             package: {
               include: {
                 products: {
-                  // Include product data through the package relation
                   select: {
                     description: true,
                     image: true,
@@ -59,10 +67,22 @@ const getAllOrders = async (
             },
           },
         },
+        address: { // Fetch userData (address)
+          select: {
+            fullName: true,
+            phone: true,
+            email: true,
+            adress: true,
+            adressPlace: true,
+            firmaAdi: true,
+            vkn: true,
+            vergiDairesi: true,
+            Efatura: true,
+          },
+        },
       },
     });
 
-    // Format the orders to match OrderFormatType
     const formattedOrders: OrderFormatType[] = orders.map((order) => ({
       id: order.id,
       status: order.status,
@@ -70,7 +90,6 @@ const getAllOrders = async (
       shippingFee: order.shippingFee,
       discount: order.discount,
       freeShipping: order.freeShipping,
-
       billingAddress: order.billingAddress,
       paymentMethod: order.paymentMethod,
       createdAt: order.createdAt,
@@ -81,10 +100,21 @@ const getAllOrders = async (
         price: orderItem.price,
         discount: orderItem.discount,
         product: {
-          description: orderItem.package.products.description, // Accessing product description
-          image: orderItem.package.products.image, // Accessing product image
+          description: orderItem.package.products.description,
+          image: orderItem.package.products.image,
         },
       })),
+      userData: {
+        fullName: order.address.fullName,
+        phone: order.address.phone,
+        email: order.address.email,
+        adress: order.address.adress,
+        adressPlace: order.address.adressPlace,
+        firmaAdi: order.address.firmaAdi,
+        vkn: order.address.vkn,
+        vergiDairesi: order.address.vergiDairesi,
+        Efatura: order.address.Efatura,
+      },
     }));
 
     return formattedOrders;
