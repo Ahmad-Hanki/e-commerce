@@ -1,7 +1,7 @@
 import getCartWithItems from "@/actions/getCartWithItem";
 import getUser from "@/actions/getUser";
 import Container from "@/components/Container";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import Checkout from "./_components/Checkout";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
