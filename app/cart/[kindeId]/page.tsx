@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import Checkout from "./_components/Checkout";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
+import IsAuthenticated from "@/actions/isAuthenticated";
+import createOrFindUser from "@/actions/createOrFindUser";
 
 const CartPage = async ({
   params,
@@ -14,7 +16,11 @@ const CartPage = async ({
   }>;
 }) => {
   const { kindeId } = await params;
+  const isLoggedIn = await IsAuthenticated();
 
+  if (isLoggedIn) {
+    await createOrFindUser();
+  }
   const userExists = await getUser(kindeId);
 
   if (!userExists) {

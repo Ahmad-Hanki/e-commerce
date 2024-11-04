@@ -15,7 +15,7 @@ const createOrFindUser = async () => {
       },
     });
 
-    let cart = await prisma.cart.findUnique({
+    let cart = await prisma.cart.findFirst({
       where: { userId: user.id },
     });
 

@@ -6,6 +6,7 @@ import Loading from "@/components/loading";
 import getProductWithPackage from "@/actions/getProductWithPackage";
 import CarouselComponent from "@/components/Carousel";
 import getProductsCategory from "@/actions/getProductCategory";
+import createOrFindUser from "@/actions/createOrFindUser";
 
 // Define a type for the product with packages
 type ProductWithPackages = PrismaProduct & {
@@ -17,6 +18,11 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
   const isLoggedIn = await IsAuthenticated();
+
+  if (isLoggedIn) {
+    await createOrFindUser();
+  }
+  
   const product = await getProductWithPackage(id);
 
   const extractPackages = (product: ProductWithPackages | null): Package[] => {
@@ -40,7 +46,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const productsCategory = product?.categoryId
     ? await getProductsCategory(product.categoryId)
-    : { products: [] }; 
+    : { products: [] };
 
   return (
     <div>
