@@ -5,8 +5,7 @@ import img1 from "@/public/images/watch.png";
 import img2 from "@/public/images/model.png";
 import getRandomProducts from "@/actions/getRandomProducts";
 import CarouselComponent from "@/components/Carousel";
-import prisma from "@/lib/db";
-import { Product } from "@prisma/client";
+
 import getMostSailedProducts from "@/actions/getMostSailedProducts";
 
 export default async function Home() {
