@@ -4,7 +4,6 @@ import prisma from "@/lib/db";
 import { OrderStatus } from "@prisma/client";
 type Order = {
   id: string;
-  name: string | null;
   total: number;
   status: OrderStatus;
   createdAt: Date;
@@ -20,7 +19,6 @@ const getUserOrders = async (userId: string): Promise<Order[]> => {
       },
       select: {
         id: true,
-        name: true,
         total: true,
         status: true,
         createdAt: true,

@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import PaymentForm from "./PaymentForm";
-import UserDataForm from "./UserDataForm";
+import { userData } from "@prisma/client";
 
 interface SummeryProps {
   totalAmount: number;
@@ -10,23 +10,18 @@ interface SummeryProps {
     price: number;
     quantity: number;
   }[];
-
-  userData: {
-    id: string;
-    name?: string;
-    phone?: string;
-    location?: string;
-  };
+  userData: userData[];
+  userId: string;
 }
 const Summery = ({
   totalAmount,
   totalBeforeDiscount,
   products,
+  userId,
   userData,
 }: SummeryProps) => {
   return (
     <div className="space-y-7 pt-10 md:pt-0">
-      <UserDataForm userData={userData} />
       <Separator />
 
       <h2 className="text-3xl font-semibold text-primary ">Summery</h2>
@@ -60,11 +55,7 @@ const Summery = ({
       {/* Todo: */}
 
       <div>
-        <PaymentForm
-          disabled={
-            userData.name && userData.phone && userData.location ? false : true
-          }
-        />
+        <PaymentForm userId={userId} userData={userData} />
       </div>
     </div>
   );

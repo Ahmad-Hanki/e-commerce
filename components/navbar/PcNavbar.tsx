@@ -1,14 +1,14 @@
 import {
   RegisterLink,
   LoginLink,
-  LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import Logo from "../Logo";
 import Cart from "../cart/Cart";
-import { LogIn, LogOut, User } from "lucide-react";
+import { LogIn, User } from "lucide-react";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
 import DashboardIcon from "@/public/icons/DashboardIcon";
+import AccountDropDownMenu from "./AccountDropDownMenu";
 
 interface PcNavbarProps {
   isLoggedIn: boolean;
@@ -55,12 +55,7 @@ const PcNavbar = ({
                   </Link>
                 )}
                 <Cart cartLength={cartLength} kindeId={kindeId} />
-                <LogoutLink >
-                  <div className="flex justify-between gap-2 items-center transition-all duration-300  hover:text-yellow-500">
-                    <LogOut className="w-9 h-9 lg:w-6 lg:h-6" />
-                    <p>Çıkış Yap</p>
-                  </div>
-                </LogoutLink>
+                <AccountDropDownMenu />
               </div>
             )}
           </div>

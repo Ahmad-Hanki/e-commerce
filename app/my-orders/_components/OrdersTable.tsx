@@ -15,7 +15,6 @@ import Link from "next/link";
 
 type Order = {
   id: string;
-  name: string | null;
   total: number;
   status: OrderStatus;
   createdAt: Date;
@@ -49,7 +48,6 @@ const OrdersTable = ({ orders, userId }: OrdersTableProps) => {
               <TableRow key={order.id}>
                 <TableCell className="font-medium ">{order.id}</TableCell>
                 <TableCell>{order.status}</TableCell>
-                <TableCell>{order.name || "N/A"}</TableCell>
                 <TableCell>${order.total.toFixed(2)}</TableCell>
                 <TableCell>{getCurrentYMD(order.createdAt)}</TableCell>
                 <TableCell className="cursor-pointer ">

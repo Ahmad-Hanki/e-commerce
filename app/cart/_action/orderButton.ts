@@ -3,12 +3,12 @@ import getKindeId from "@/actions/getKindeId";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-const createOrder = async () => {
+const createOrder = async (userDataId: string) => {
   try {
     const response = await getKindeId();
     const kindeId = response?.kindeId;
 
-    if (!kindeId) {
+    if (!kindeId || !userDataId) {
       console.error("No kindeId found");
       return false;
     }
@@ -49,10 +49,10 @@ const createOrder = async () => {
 
     const user = await prisma.user.findUnique({
       where: { kindeId },
-      select: { id: true, phone: true, location: true, fullName: true },
+      select: { id: true },
     });
 
-    if (!user || !user.id || !user.phone || !user.location || !user.fullName) {
+    if (!user || !user.id) {
       console.error("User not found");
       return false;
     }
@@ -60,11 +60,9 @@ const createOrder = async () => {
     await prisma.order.create({
       data: {
         userId: user.id,
+        addressId: userDataId,
         total: +total.toFixed(2),
         discount: totalDiscount,
-        shippingAddress: user.location!,
-        phone: user.phone!,
-        name: user.fullName!,
         orderItems: {
           create: cartWithItems.cartItems.map((item) => ({
             packageId: item.packageId,

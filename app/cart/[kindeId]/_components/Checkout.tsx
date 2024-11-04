@@ -1,13 +1,8 @@
+import { userData } from "@prisma/client";
 import CartItemCard from "./CartItemCard";
 import Summery from "./Summery";
 
 interface CheckoutProps {
-  userData: {
-    id: string;
-    name?: string;
-    phone?: string;
-    location?: string;
-  };
   items:
     | {
         id: string;
@@ -31,8 +26,10 @@ interface CheckoutProps {
       quantity: number;
     }[];
   };
+  userData: userData[];
+  userId: string;
 }
-const Checkout = ({ items, summery, userData }: CheckoutProps) => {
+const Checkout = ({ items, summery, userData, userId }: CheckoutProps) => {
   if (!items && items == undefined) {
     return null;
   }
@@ -45,10 +42,11 @@ const Checkout = ({ items, summery, userData }: CheckoutProps) => {
       </div>
       <div className="w-full md:w-[30%]">
         <Summery
-          userData={userData}
           totalAmount={summery.totalAmount}
           totalBeforeDiscount={summery.totalBeforeDiscount}
           products={summery.products}
+          userData={userData}
+          userId={userId}
         />
       </div>
     </div>

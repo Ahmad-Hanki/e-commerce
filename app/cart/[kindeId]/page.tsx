@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import Loading from "@/components/loading";
 import IsAuthenticated from "@/actions/isAuthenticated";
 import createOrFindUser from "@/actions/createOrFindUser";
+import getAddresses from "../_action/getAddresses";
 
 const CartPage = async ({
   params,
@@ -28,6 +29,8 @@ const CartPage = async ({
   }
 
   const cartItem = await getCartWithItems(kindeId);
+
+  const userData = await getAddresses(userExists.id);
 
   const packageData =
     cartItem?.cartItems?.map((item) => {
@@ -66,6 +69,7 @@ const CartPage = async ({
           <div className="mt-10 pb-20 ">
             {packageData?.length > 0 ? (
               <Checkout
+                userId={userExists.id}
                 items={packageData}
                 summery={{
                   totalAmount,
@@ -76,12 +80,7 @@ const CartPage = async ({
                     quantity: item.quantity,
                   })),
                 }}
-                userData={{
-                  id: userExists.id,
-                  name: userExists?.fullName ?? undefined,
-                  phone: userExists?.phone ?? undefined,
-                  location: userExists?.location ?? undefined,
-                }}
+                userData={userData}
               />
             ) : (
               <p>No items in the cart</p>

@@ -39,9 +39,7 @@ const OrderData = ({ order }: OrderDataProps) => {
             <p className="text-lg font-medium text-gray-600">
               Order ID: {order.id}
             </p>
-            <p className="text-lg font-medium text-gray-600">
-              Name: {order.name}
-            </p>
+         
             <p className="text-lg font-medium text-gray-600">
               Total: ${order.total.toFixed(2)}
             </p>
@@ -52,12 +50,8 @@ const OrderData = ({ order }: OrderDataProps) => {
               Created At: {new Date(order.createdAt).toLocaleString()}{" "}
               {/* Format date */}
             </p>
-            <p className="text-lg font-medium text-gray-600">
-              Shipping Address: {order.shippingAddress}
-            </p>
-            <p className="text-lg font-medium text-gray-600">
-              Phone: {order.phone}
-            </p>
+            
+            
           </div>
           <div></div>
         </div>

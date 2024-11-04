@@ -18,12 +18,9 @@ type OrderItem = {
 
 export type OrderResponse = {
   id: string;
-  name: string | null;
   total: number;
   status: OrderStatus; // Use specific status type if available
   createdAt: Date;
-  shippingAddress: string;
-  phone: string;
   orderItems: OrderItem[];
 };
 
@@ -39,12 +36,9 @@ const getSpecificOrder = async (
       },
       select: {
         id: true,
-        name: true,
         total: true,
         status: true,
         createdAt: true,
-        shippingAddress: true,
-        phone: true,
         orderItems: {
           select: {
             quantity: true,
@@ -68,12 +62,10 @@ const getSpecificOrder = async (
     // Format the data into the OrderResponse structure
     const formattedOrder: OrderResponse = {
       id: order.id,
-      name: order.name,
       total: order.total,
       status: order.status,
       createdAt: order.createdAt,
-      shippingAddress: order.shippingAddress,
-      phone: order.phone,
+   
       orderItems: order.orderItems.map(item => ({
         quantity: item.quantity,
         package: {

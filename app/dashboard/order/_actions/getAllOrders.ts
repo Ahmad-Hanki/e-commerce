@@ -21,11 +21,8 @@ export type OrderFormatType = {
   status: OrderStatus;
   total: number;
   shippingFee: number | null;
-  phone: string;
-  name: string;
   discount: number | null;
   freeShipping: boolean;
-  shippingAddress: string;
   billingAddress?: string | null;
   paymentMethod?: string | null;
   createdAt: Date;
@@ -73,9 +70,7 @@ const getAllOrders = async (
       shippingFee: order.shippingFee,
       discount: order.discount,
       freeShipping: order.freeShipping,
-      phone: order.phone,
-      name: order.name!,
-      shippingAddress: order.shippingAddress,
+
       billingAddress: order.billingAddress,
       paymentMethod: order.paymentMethod,
       createdAt: order.createdAt,
