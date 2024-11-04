@@ -21,6 +21,8 @@ export type OrderFormatType = {
   status: OrderStatus;
   total: number;
   shippingFee: number | null;
+  phone: string;
+  name: string;
   discount: number | null;
   freeShipping: boolean;
   shippingAddress: string;
@@ -31,22 +33,26 @@ export type OrderFormatType = {
   orderItems: OrderItemInfo[];
 };
 
-const getAllOrders = async (status:OrderStatus, userId?:string): Promise<OrderFormatType[]> => {
+const getAllOrders = async (
+  status: OrderStatus,
+  userId?: string
+): Promise<OrderFormatType[]> => {
   try {
     const orders = await prisma.order.findMany({
       orderBy: {
         createdAt: "desc",
       },
-        where: {
-            status,
-            userId,
-        },
+      where: {
+        status,
+        userId,
+      },
       include: {
         orderItems: {
           include: {
             package: {
               include: {
-                products: { // Include product data through the package relation
+                products: {
+                  // Include product data through the package relation
                   select: {
                     description: true,
                     image: true,
@@ -60,19 +66,21 @@ const getAllOrders = async (status:OrderStatus, userId?:string): Promise<OrderFo
     });
 
     // Format the orders to match OrderFormatType
-    const formattedOrders: OrderFormatType[] = orders.map(order => ({
+    const formattedOrders: OrderFormatType[] = orders.map((order) => ({
       id: order.id,
       status: order.status,
       total: order.total,
       shippingFee: order.shippingFee,
       discount: order.discount,
       freeShipping: order.freeShipping,
+      phone: order.phone,
+      name: order.name!,
       shippingAddress: order.shippingAddress,
       billingAddress: order.billingAddress,
       paymentMethod: order.paymentMethod,
       createdAt: order.createdAt,
       updatedAt: order.updatedAt,
-      orderItems: order.orderItems.map(orderItem => ({
+      orderItems: order.orderItems.map((orderItem) => ({
         packageId: orderItem.packageId,
         quantity: orderItem.quantity,
         price: orderItem.price,

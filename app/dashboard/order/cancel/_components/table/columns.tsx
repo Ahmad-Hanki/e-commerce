@@ -81,9 +81,14 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     header: () => <div className="text-start w-full ">Shiping to</div>,
   },
   {
-    accessorKey: "phone",
-    header: () => <div className="text-start w-full">phone</div>,
+    accessorKey: "name",
+    header: () => <div className="text-start w-full ">Name</div>,
   },
+  {
+    accessorKey: "phone",
+    header: () => <div className="text-start w-full ">Phone</div>,
+  },
+  
 
   {
     id: "actions",

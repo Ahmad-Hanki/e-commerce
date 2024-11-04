@@ -1,7 +1,7 @@
 import getCartWithItems from "@/actions/getCartWithItem";
 import getUser from "@/actions/getUser";
 import Container from "@/components/Container";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Checkout from "./_components/Checkout";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
@@ -26,10 +26,6 @@ const CartPage = async ({
   if (!userExists) {
     notFound();
   }
-
-  // if (!userExists.location || !userExists.phone) {
-  //   redirect(`/profile/${kindeId}`);
-  // }
 
   const cartItem = await getCartWithItems(kindeId);
 
@@ -79,6 +75,12 @@ const CartPage = async ({
                     price: item.price,
                     quantity: item.quantity,
                   })),
+                }}
+                userData={{
+                  id: userExists.id,
+                  name: userExists?.fullName ?? undefined,
+                  phone: userExists?.phone ?? undefined,
+                  location: userExists?.location ?? undefined,
                 }}
               />
             ) : (

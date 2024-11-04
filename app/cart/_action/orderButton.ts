@@ -49,11 +49,11 @@ const createOrder = async () => {
 
     const user = await prisma.user.findUnique({
       where: { kindeId },
-      select: { id: true, phone: true, location: true },
+      select: { id: true, phone: true, location: true, fullName: true },
     });
 
-    if (!user || !user.id) {
-      console.error("User not found"); 
+    if (!user || !user.id || !user.phone || !user.location || !user.fullName) {
+      console.error("User not found");
       return false;
     }
 
@@ -62,9 +62,9 @@ const createOrder = async () => {
         userId: user.id,
         total: +total.toFixed(2),
         discount: totalDiscount,
-        shippingAddress: user.location ?? "",
-
-        phone: user.phone ?? "",
+        shippingAddress: user.location!,
+        phone: user.phone!,
+        name: user.fullName!,
         orderItems: {
           create: cartWithItems.cartItems.map((item) => ({
             packageId: item.packageId,

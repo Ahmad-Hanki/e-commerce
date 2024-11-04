@@ -66,6 +66,7 @@ model User {
 
   phone   String?
   location String?
+  fullName String?
   Cart    Cart?
   Order   Order[]
 }
@@ -98,6 +99,7 @@ model Order {
   freeShipping    Boolean     @default(false)
   shippingAddress String
   phone           String
+  name            String?
   billingAddress  String?
   paymentMethod   String?
 

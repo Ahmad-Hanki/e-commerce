@@ -4,7 +4,7 @@ import SubmitButton from "@/components/SubmitButton";
 import createOrder from "../../_action/orderButton";
 import toast from "react-hot-toast";
 
-const PaymentForm = () => {
+const PaymentForm = ({ disabled }: { disabled: boolean }) => {
   const checkOutSubmit = async () => {
     const res = await createOrder();
 
@@ -16,8 +16,9 @@ const PaymentForm = () => {
     <form action={checkOutSubmit}>
       <SubmitButton
         submitting="Checking Out..."
-        submit="Checkout"
+        submit={disabled ? "Please fill the form" : "Check Out"}
         className="w-full"
+        disabled={disabled}
       />
     </form>
   );
