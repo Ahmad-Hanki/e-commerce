@@ -30,7 +30,7 @@ const Footer = () => {
   const hizmet = [
     {
       name: "Siparişlerim",
-      href: "/orders",
+      href: "/my-orders",
     },
     {
       name: "İade",
@@ -92,7 +92,7 @@ const Footer = () => {
               </h1>
               <div className="flex flex-col gap-2 ">
                 {navItems.map((item) => (
-                  <Links key={item.href} item={item}/>
+                  <Links key={item.href} item={item} />
                 ))}
               </div>
             </div>

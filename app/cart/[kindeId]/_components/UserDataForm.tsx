@@ -21,7 +21,7 @@ const UserDataForm = ({ userData }: UserDataFormProps) => {
   const {
     register,
     handleSubmit,
-    reset,
+
     formState: { errors },
   } = useForm<ZodTypeProp>({
     resolver: zodResolver(Schame()),
@@ -41,7 +41,6 @@ const UserDataForm = ({ userData }: UserDataFormProps) => {
     );
     if (res) {
       toast.success("Data Updated Successfully");
-      reset();
     } else {
       toast.error("Something went wrong with saving user data");
     }
