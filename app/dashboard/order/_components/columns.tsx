@@ -8,8 +8,15 @@ import { StatusRadio } from "./StatusRadio";
 
 export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
+    accessorKey: "id",
+    header: () => <div className="text-start w-full  min-w-[120px]">Id</div>,
+  },
+
+  {
     id: "Image",
-    header: () => <div className="text-start max-w-[250px] min-w-[120px]">Image</div>,
+    header: () => (
+      <div className="text-start max-w-[250px] min-w-[120px]">Image</div>
+    ),
 
     cell: ({ row }) => {
       const data = row.original;
@@ -30,7 +37,9 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   },
   {
     id: "description",
-    header: () => <div className="text-start max-w-[250px] min-w-[120px] ">Description</div>,
+    header: () => (
+      <div className="text-start max-w-[250px] min-w-[120px] ">Description</div>
+    ),
 
     cell: ({ row }) => {
       const data = row.original;
@@ -45,7 +54,9 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   },
   {
     id: "quantity",
-    header: () => <div className="text-start max-w-[250px] min-w-[120px]">How Many</div>,
+    header: () => (
+      <div className="text-start max-w-[250px] min-w-[120px]">How Many</div>
+    ),
 
     cell: ({ row }) => {
       const data = row.original;
@@ -64,11 +75,15 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   },
   {
     accessorKey: "status",
-    header: () => <div className="text-start w-full  min-w-[120px]">Status</div>,
+    header: () => (
+      <div className="text-start w-full  min-w-[120px]">Status</div>
+    ),
   },
   {
     id: "date",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">Date</div>,
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">Date</div>
+    ),
 
     cell: ({ row }) => {
       const data = row.original;
@@ -78,7 +93,9 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "address",
     accessorKey: "address",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">Address</div>,
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">Address</div>
+    ),
 
     cell: ({ row }) => {
       const data = row.original;
@@ -87,7 +104,9 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   },
   {
     id: "phone",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">Phone</div>,
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">Phone</div>
+    ),
 
     cell: ({ row }) => {
       const data = row.original;
@@ -96,7 +115,9 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   },
   {
     id: "name",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">Name</div>,
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">Name</div>
+    ),
 
     cell: ({ row }) => {
       const data = row.original;
@@ -104,54 +125,10 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     },
   },
   {
-    id: "placeName",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">Place name</div>,
-
-    cell: ({ row }) => {
-      const data = row.original;
-      return <div>{data.userData.adressPlace}</div>;
-    },
-  },
-  {
-    id: "companyName",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">Company name</div>,
-
-    cell: ({ row }) => {
-      const data = row.original;
-      return <div>{data.userData.firmaAdi}</div>;
-    },
-  },
-  {
-    id: "vkn",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">VKN</div>,
-
-    cell: ({ row }) => {
-      const data = row.original;
-      return <div>{data.userData.vkn}</div>;
-    },
-  },
-  {
-    id: "vergiDairesi",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">Vergi Dairesi</div>,
-
-    cell: ({ row }) => {
-      const data = row.original;
-      return <div>{data.userData.vergiDairesi}</div>;
-    },
-  },
-  {
-    id: "Efatura",
-    header: () => <div className="text-start max-w-[250px]  min-w-[120px]">E Fatura</div>,
-
-    cell: ({ row }) => {
-      const data = row.original;
-      return <div>{data.userData.Efatura}</div>;
-    },
-  },
-
-  {
     id: "actions",
-    header: () => <div className="text-start w-full  min-w-[120px]">Manage Data</div>,
+    header: () => (
+      <div className="text-start w-full  min-w-[120px]">Manage Data</div>
+    ),
 
     cell: ({ row }) => {
       const data = row.original;
@@ -160,6 +137,65 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
           <StatusRadio orderId={data.id} statusOrder={data.status} />
         </div>
       );
+    },
+  },
+  {
+    id: "placeName",
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">Place name</div>
+    ),
+
+    cell: ({ row }) => {
+      const data = row.original;
+      return <div>{data.userData.adressPlace}</div>;
+    },
+  },
+  {
+    id: "companyName",
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">
+        Company name
+      </div>
+    ),
+
+    cell: ({ row }) => {
+      const data = row.original;
+      return <div>{data.userData.firmaAdi}</div>;
+    },
+  },
+  {
+    id: "vkn",
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">VKN</div>
+    ),
+
+    cell: ({ row }) => {
+      const data = row.original;
+      return <div>{data.userData.vkn}</div>;
+    },
+  },
+  {
+    id: "vergiDairesi",
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">
+        Vergi Dairesi
+      </div>
+    ),
+
+    cell: ({ row }) => {
+      const data = row.original;
+      return <div>{data.userData.vergiDairesi}</div>;
+    },
+  },
+  {
+    id: "Efatura",
+    header: () => (
+      <div className="text-start max-w-[250px]  min-w-[120px]">E Fatura</div>
+    ),
+
+    cell: ({ row }) => {
+      const data = row.original;
+      return <div>{data.userData.Efatura}</div>;
     },
   },
 ];

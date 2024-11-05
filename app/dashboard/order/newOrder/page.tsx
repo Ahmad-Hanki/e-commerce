@@ -22,11 +22,7 @@ const NewOrdersPage = async () => {
 
           <Separator className="mt-5 mb-10" />
 
-          <DataTable
-            columns={OrdersColumns}
-            data={allOrders}
-            filtered="total"
-          />
+          <DataTable columns={OrdersColumns} data={allOrders} filtered="id" />
           <Heading title="API" description="API calls for New Orders" />
           <Separator />
           <ApiAlert />

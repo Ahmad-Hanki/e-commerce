@@ -25,7 +25,7 @@ const NewOrdersPage = async () => {
           <DataTable
             columns={OrdersColumns}
             data={allOrders}
-            filtered="total"
+            filtered="id"
           />
           <Heading title="API" description="API calls for Delivered Orders" />
           <Separator />
