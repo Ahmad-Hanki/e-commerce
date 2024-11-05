@@ -3,7 +3,11 @@ import getKindeId from "@/actions/getKindeId";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-const createOrder = async (userDataId: string) => {
+const createOrder = async (
+  userDataId: string,
+  totalAmount: number,
+  totalBeforeDiscount: number | undefined
+) => {
   try {
     const response = await getKindeId();
     const kindeId = response?.kindeId;
@@ -31,22 +35,6 @@ const createOrder = async (userDataId: string) => {
       return false;
     }
 
-    const { total, totalDiscount } = cartWithItems.cartItems.reduce(
-      (acc, item) => {
-        const originalPrice = item.package.price * item.quantity;
-        const discountedPrice = item.package.discount
-          ? item.package.price *
-            ((100 - item.package.discount) / 100) *
-            item.quantity
-          : originalPrice;
-
-        acc.total += discountedPrice;
-        acc.totalDiscount += originalPrice - discountedPrice;
-        return acc;
-      },
-      { total: 0, totalDiscount: 0 }
-    );
-
     const user = await prisma.user.findUnique({
       where: { kindeId },
       select: { id: true },
@@ -61,8 +49,10 @@ const createOrder = async (userDataId: string) => {
       data: {
         userId: user.id,
         addressId: userDataId,
-        total: +total.toFixed(2),
-        discount: totalDiscount,
+        total: +totalAmount.toFixed(2),
+        discount: totalBeforeDiscount
+          ? +totalBeforeDiscount.toFixed(2) - +totalAmount.toFixed(2)
+          : 0,
         orderItems: {
           create: cartWithItems.cartItems.map((item) => ({
             packageId: item.packageId,

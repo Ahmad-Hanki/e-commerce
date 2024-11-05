@@ -10,13 +10,15 @@ import UserDataRadio from "./UserDataRadio";
 interface PaymentFormProps {
   userData: userData[];
   userId: string;
+  totalAmount: number;
+  totalBeforeDiscount?: number;
 }
 
-const PaymentForm = ({ userData, userId }: PaymentFormProps) => {
+const PaymentForm = ({ userData, userId, totalAmount, totalBeforeDiscount }: PaymentFormProps) => {
   const [userDataId, setUserDataId] = useState<string>(userData[0]?.id ?? "");
 
   const checkOutSubmit = async () => {
-    const res = await createOrder(userDataId);
+    const res = await createOrder(userDataId, totalAmount, totalBeforeDiscount);
 
     if (res) {
       toast.success("Order created successfully");
@@ -34,6 +36,7 @@ const PaymentForm = ({ userData, userId }: PaymentFormProps) => {
         submitting="Checking Out..."
         submit={userDataId ? "Submit" : "Please select address"}
         className="w-full"
+        disabled={!userDataId}
       />
     </form>
   );

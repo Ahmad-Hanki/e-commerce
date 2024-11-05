@@ -55,7 +55,7 @@ const Summery = ({
       {/* Todo: */}
 
       <div>
-        <PaymentForm userId={userId} userData={userData} />
+        <PaymentForm totalBeforeDiscount={totalBeforeDiscount} totalAmount={totalAmount} userId={userId} userData={userData} />
       </div>
     </div>
   );
