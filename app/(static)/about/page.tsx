@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 export const dynamic = "force-static";
 
+
 const AboutUsPage = () => {
 
   return (
