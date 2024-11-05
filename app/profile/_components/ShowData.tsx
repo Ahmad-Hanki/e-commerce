@@ -1,7 +1,6 @@
 import Container from "@/components/Container";
 import { Card } from "@/components/ui/card";
 import { userData } from "@prisma/client";
-import { Trash2 } from "lucide-react";
 import DeleteUserDataComponent from "./DeleteUserDataComponent";
 
 interface ShowDataProps {

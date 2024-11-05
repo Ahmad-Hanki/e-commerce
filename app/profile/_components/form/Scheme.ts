@@ -1,5 +1,4 @@
 "use client";
-import { AdressPlace } from "@prisma/client";
 import { ZodType, z } from "zod";
 
 export interface ZodTypeProp {

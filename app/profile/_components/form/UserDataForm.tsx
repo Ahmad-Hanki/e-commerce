@@ -24,7 +24,6 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<ZodTypeProp>({
     resolver: zodResolver(UserDataScheme()),
