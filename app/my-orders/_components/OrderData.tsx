@@ -23,11 +23,10 @@ const OrderData = ({ order }: OrderDataProps) => {
             {order.orderItems.map((item, index) => (
               <div key={index}>
                 <p className="text-lg font-medium text-gray-600">
-                  How many: {item.quantity}
+                  Adet: {item.quantity}
                 </p>
-
                 <p className="text-lg font-medium text-gray-600">
-                  Product: {item.package.products.description}{" "}
+                  Product: {item.package.products.description}
                 </p>
               </div>
             ))}
@@ -39,7 +38,6 @@ const OrderData = ({ order }: OrderDataProps) => {
             <p className="text-lg font-medium text-gray-600">
               Order ID: {order.id}
             </p>
-         
             <p className="text-lg font-medium text-gray-600">
               Total: ${order.total.toFixed(2)}
             </p>
@@ -47,13 +45,48 @@ const OrderData = ({ order }: OrderDataProps) => {
               Status: {order.status}
             </p>
             <p className="text-lg font-medium text-gray-600">
-              Created At: {new Date(order.createdAt).toLocaleString()}{" "}
-              {/* Format date */}
+              Created At: {new Date(order.createdAt).toLocaleString()}
             </p>
-            
-            
           </div>
-          <div></div>
+
+          <div>
+            <h1 className="text-3xl font-semibold text-primary">
+              Customer Details
+            </h1>
+            <p className="text-lg font-medium text-gray-600">
+              Full Name: {order.userData.fullName}
+            </p>
+            <p className="text-lg font-medium text-gray-600">
+              Phone: {order.userData.phone}
+            </p>
+            <p className="text-lg font-medium text-gray-600">
+              Email: {order.userData.email}
+            </p>
+            <p className="text-lg font-medium text-gray-600">
+              Address: {order.userData.adress}
+            </p>
+            <p className="text-lg font-medium text-gray-600">
+              Address Type: {order.userData.adressPlace}
+            </p>
+            {order.userData.firmaAdi && (
+              <p className="text-lg font-medium text-gray-600">
+                Company Name: {order.userData.firmaAdi}
+              </p>
+            )}
+            {order.userData.vkn && (
+              <p className="text-lg font-medium text-gray-600">
+                VKN: {order.userData.vkn}
+              </p>
+            )}
+            {order.userData.vergiDairesi && (
+              <p className="text-lg font-medium text-gray-600">
+                Tax Office: {order.userData.vergiDairesi}
+              </p>
+            )}
+            <p className="text-lg font-medium text-gray-600">
+              E-Invoice: {order.userData.Efatura ? "Yes" : "No"}
+            </p>
+          </div>
         </div>
       </Container>
     </div>

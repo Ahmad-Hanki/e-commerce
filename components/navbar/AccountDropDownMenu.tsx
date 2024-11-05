@@ -21,7 +21,7 @@ const AccountDropDownMenu = () => {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/account">Profile</Link>
+            <Link href="/profile">Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Link href="/my-orders">My Orders</Link>

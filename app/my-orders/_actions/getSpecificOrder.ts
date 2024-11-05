@@ -13,23 +13,37 @@ type Package = {
 
 type OrderItem = {
   quantity: number;
-  package: Package; // Make sure this aligns with your returned structure
+  package: Package; // Ensure this aligns with your returned structure
+};
+
+// Define userData type within the OrderResponse structure
+type UserData = {
+  fullName: string;
+  phone: string;
+  email: string;
+  adress: string;
+  adressPlace: string; // "individual" or "company"
+  vkn?: string;
+  vergiDairesi?: string;
+  firmaAdi?: string;
+  Efatura?: boolean;
 };
 
 export type OrderResponse = {
   id: string;
   total: number;
-  status: OrderStatus; // Use specific status type if available
+  status: OrderStatus;
   createdAt: Date;
   orderItems: OrderItem[];
+  userData: UserData; 
 };
 
 const getSpecificOrder = async (
   userId: string,
   orderId: string
-): Promise<OrderResponse | null> => { // Change return type to OrderResponse or null
+): Promise<OrderResponse | null> => {
   try {
-    const order = await prisma.order.findFirst({ // Changed from findMany to findFirst
+    const order = await prisma.order.findFirst({
       where: {
         userId,
         id: orderId,
@@ -39,6 +53,7 @@ const getSpecificOrder = async (
         total: true,
         status: true,
         createdAt: true,
+
         orderItems: {
           select: {
             quantity: true,
@@ -53,10 +68,24 @@ const getSpecificOrder = async (
             },
           },
         },
+
+        // Include the userData related to the order
+        address: {
+          select: {
+            fullName: true,
+            phone: true,
+            email: true,
+            adress: true,
+            adressPlace: true,
+            vkn: true,
+            vergiDairesi: true,
+            firmaAdi: true,
+            Efatura: true,
+          },
+        },
       },
     });
 
-    // Return null if order is not found
     if (!order) return null;
 
     // Format the data into the OrderResponse structure
@@ -65,19 +94,31 @@ const getSpecificOrder = async (
       total: order.total,
       status: order.status,
       createdAt: order.createdAt,
-   
+
       orderItems: order.orderItems.map(item => ({
         quantity: item.quantity,
         package: {
-          products: item.package.products, // Directly accessing the product object
+          products: item.package.products,
         },
       })),
+
+      userData: {
+        fullName: order.address.fullName,
+        phone: order.address.phone,
+        email: order.address.email,
+        adress: order.address.adress,
+        adressPlace: order.address.adressPlace,
+        vkn: order.address.vkn || undefined,
+        vergiDairesi: order.address.vergiDairesi || undefined,
+        firmaAdi: order.address.firmaAdi || undefined,
+        Efatura: order.address.Efatura || false,
+      },
     };
 
-    return formattedOrder; 
+    return formattedOrder;
   } catch (err) {
     console.error("Error getting specific order:", err);
-    return null; 
+    return null;
   }
 };
 

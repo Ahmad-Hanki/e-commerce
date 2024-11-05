@@ -7,7 +7,12 @@ const getAddresses = async (userId: string): Promise<userData[]> => {
     const data = await prisma.userData.findMany({
       where: {
         userId,
+        NOT: {
+          softDelete: true,
+        }
       },
+
+      
     });
     return data;
 

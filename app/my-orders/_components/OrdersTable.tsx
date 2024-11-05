@@ -37,7 +37,6 @@ const OrdersTable = ({ orders, userId }: OrdersTableProps) => {
             <TableRow>
               <TableHead>Invoice</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
               <TableHead>Amount</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>Details</TableHead>
