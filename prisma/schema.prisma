@@ -80,7 +80,7 @@ model userData {
   vkn          String?
   vergiDairesi String?
   firmaAdi     String?
-  Efatura      Boolean? @default(false)
+  Efatura      Boolean
 
   softDelete Boolean @default(false)
 

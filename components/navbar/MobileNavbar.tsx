@@ -44,6 +44,19 @@ const MobileNavbar = ({
     setOpen(false);
   }, [pathname]);
 
+  const loginNavLinks = [
+    {
+      title: "Profile",
+      url: "/profile",
+      active: pathname.includes("/profile"),
+    },
+    {
+      title: "My Orders",
+      url: "/my-orders",
+      active: pathname.includes("/my-orders"),
+    },
+  ];
+
   const navLinks = [
     {
       title: "Ana Sayfa",
@@ -128,12 +141,25 @@ const MobileNavbar = ({
                     </RegisterLink>
                   </>
                 ) : (
-                  <LogoutLink>
-                    <div className="flex items-center gap-2 cursor-pointer">
-                      <LogOut className="w-8 h-8 " />
-                      <p className="text-3xl">Çıkış Yap</p>
-                    </div>
-                  </LogoutLink>
+                  <div className="flex flex-col gap-6">
+                    {loginNavLinks.map((link, index) => (
+                      <Link
+                        key={index}
+                        href={link.url}
+                        className={`text-4xl ${
+                          link.active ? "text-primary" : ""
+                        }`}
+                      >
+                        {link.title}
+                      </Link>
+                    ))}
+                    <LogoutLink>
+                      <div className="flex items-center gap-2 cursor-pointer">
+                        <LogOut className="w-8 h-8 " />
+                        <p className="text-3xl">Çıkış Yap</p>
+                      </div>
+                    </LogoutLink>
+                  </div>
                 )}
               </div>
 

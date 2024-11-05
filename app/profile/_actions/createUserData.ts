@@ -14,7 +14,7 @@ const createUserData = async (
     vkn?: string;
     vergiDairesi?: string;
     firmaAdi?: string;
-    Efatura?: boolean;
+    Efatura: boolean;
   }
 ) => {
   try {
