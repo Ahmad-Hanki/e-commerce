@@ -33,11 +33,9 @@ model Product {
 }
 
 enum UpperCategory {
-  ELECTRONICS
-  CLOTHING
-  BEAUTY
-  HOME
-  SPORTS
+  Kozmetik
+  Elektronik
+  KisiselBakim
 }
 
 model Category {

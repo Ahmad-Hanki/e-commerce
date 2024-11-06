@@ -21,11 +21,10 @@ const Navbar = async () => {
     email = (await getKindeId()).email;
   }
   const categories: UpperCategory[] = [
-    "ELECTRONICS",
-    "CLOTHING",
-    "BEAUTY",
-    "HOME",
-    "SPORTS",
+    "Kozmetik",
+    "Elektronik",
+    "KisiselBakim",
+    
   ];
   const admin = admins.includes(email);
 

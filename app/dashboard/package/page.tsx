@@ -39,7 +39,7 @@ const PackagePage = async () => {
         <DataTable
           columns={PackageColumns}
           data={packages}
-          filtered="description"
+          filtered="productDescription" // this is the column that will be filtered
         />
         <Heading title="API" description="API calls for entered Package" />
         <Separator />

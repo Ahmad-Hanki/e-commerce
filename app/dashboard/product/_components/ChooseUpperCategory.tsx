@@ -24,11 +24,10 @@ export function ChooseUpperCategory({
   setChosenUpperCategory,
 }: ChooseUpperCategoryProps) {
   const upperCategoryData: UpperCategory[] = [
-    "ELECTRONICS",
-    "CLOTHING",
-    "BEAUTY",
-    "HOME",
-    "SPORTS",
+    "Kozmetik",
+    "Elektronik",
+    "KisiselBakim",
+
   ];
 
   return (
@@ -57,7 +56,7 @@ export function ChooseUpperCategory({
               key={category}
               value={category}
             >
-              {category}
+              {category == "KisiselBakim" ? "Kişisel Bakım" : category}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>

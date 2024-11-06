@@ -35,7 +35,7 @@ const CategoryBar = ({ categories }: CategoryBarProps) => {
                     : "text-gray-600"
                 )}
               >
-                {category}
+                {category == "KisiselBakim" ? "Kişisel Bakım" : category}
               </Link>
             ))}
           </div>

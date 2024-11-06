@@ -24,7 +24,7 @@ const CategoryNamePage = async ({
         <CategoryName
           categories={products.categories}
           products={products.products}
-          categoryName={categoryName}
+          categoryName={categoryName }
         />
       </Suspense>
     </div>
