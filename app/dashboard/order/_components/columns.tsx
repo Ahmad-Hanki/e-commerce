@@ -55,7 +55,9 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "quantity",
     header: () => (
-      <div className="text-start max-w-[250px] min-w-[120px]">Kaç tane</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">
+        Kaç tane Paket
+      </div>
     ),
 
     cell: ({ row }) => {
@@ -70,14 +72,53 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     },
   },
   {
+    id: "Pieace",
+    header: () => (
+      <div className="text-start max-w-[250px] min-w-[120px]">
+        Pakette Parça sayısı:
+      </div>
+    ),
+
+    cell: ({ row }) => {
+      const data = row.original;
+      return (
+        <div className="flex flex-col gap-3">
+          {data.orderItems.map((item, ix) => (
+            <p key={ix}>{item.piece}</p>
+          ))}
+        </div>
+      );
+    },
+  },
+  {
+    id: "Price",
+    header: () => (
+      <div className="text-start max-w-[250px] min-w-[120px]">Fiyat</div>
+    ),
+
+    cell: ({ row }) => {
+      const data = row.original;
+      return (
+        <div className="flex flex-col gap-3">
+          {data.orderItems.map((item, ix) => (
+            <p key={ix}>
+              {item.price} x {item.quantity}
+            </p>
+          ))}
+        </div>
+      );
+    },
+  },
+
+  {
     accessorKey: "total",
-    header: () => <div className="text-start w-full  min-w-[120px]">Fiyat</div>,
+    header: () => (
+      <div className="text-start w-full  min-w-[120px]">Toplam Fiyat</div>
+    ),
   },
   {
     accessorKey: "status",
-    header: () => (
-      <div className="text-start w-full  min-w-[120px]">Durum</div>
-    ),
+    header: () => <div className="text-start w-full  min-w-[120px]">Durum</div>,
   },
   {
     id: "date",
@@ -153,9 +194,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "companyName",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">
-        Firma Adı
-      </div>
+      <div className="text-start max-w-[250px]  min-w-[120px]">Firma Adı</div>
     ),
 
     cell: ({ row }) => {

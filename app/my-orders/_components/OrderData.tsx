@@ -25,13 +25,18 @@ const OrderData = ({ order }: OrderDataProps) => {
           </h1>
           <ul className="list-disc list-inside">
             {order.orderItems.map((item, index) => (
-              <div key={index}>
+              <div className="pb-4" key={index}>
                 <p className="text-lg font-medium text-gray-600">
                   Adet: {item.quantity}
                 </p>
                 <p className="text-lg font-medium text-gray-600">
                   Ürün: {item.package.products.description}
                 </p>
+                <p className="text-lg font-medium text-gray-600">
+                  Pakette kac adet: {item.package.Piece}{" "}
+                  {/* Display Piece value */}
+                </p>
+                
               </div>
             ))}
           </ul>

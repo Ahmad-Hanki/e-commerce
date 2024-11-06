@@ -10,6 +10,8 @@ export type OrderItemInfo = {
   packageId: string;
   quantity: number;
   price: number;
+  piece: number; 
+
   discount?: number | null;
   product: ProductInfo;
 };
@@ -99,6 +101,7 @@ const getAllOrders = async (
         quantity: orderItem.quantity,
         price: orderItem.price,
         discount: orderItem.discount,
+        piece: orderItem.package.Piece, 
         product: {
           description: orderItem.package.products.description,
           image: orderItem.package.products.image,

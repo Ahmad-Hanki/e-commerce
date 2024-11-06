@@ -9,6 +9,7 @@ type Product = {
 
 type Package = {
   products: Product; // Change this to a single product
+  Piece: number; // Add this to capture the Piece value
 };
 
 type OrderItem = {
@@ -35,7 +36,7 @@ export type OrderResponse = {
   status: OrderStatus;
   createdAt: Date;
   orderItems: OrderItem[];
-  userData: UserData; 
+  userData: UserData;
 };
 
 const getSpecificOrder = async (
@@ -59,6 +60,7 @@ const getSpecificOrder = async (
             quantity: true,
             package: {
               select: {
+                Piece: true,
                 products: {
                   select: {
                     description: true,
@@ -95,9 +97,12 @@ const getSpecificOrder = async (
       status: order.status,
       createdAt: order.createdAt,
 
-      orderItems: order.orderItems.map(item => ({
+      orderItems: order.orderItems.map((item) => ({
         quantity: item.quantity,
+
         package: {
+          Piece: item.package.Piece, // Include Piece here
+
           products: item.package.products,
         },
       })),

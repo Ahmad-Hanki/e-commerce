@@ -9,6 +9,7 @@ interface SummeryProps {
     description: string;
     price: number;
     quantity: number;
+    piece: number;
   }[];
   userData: userData[];
   userId: string;
@@ -31,6 +32,7 @@ const Summery = ({
           {products.map((product, index) => (
             <div key={index} className="flex justify-between">
               <p>{product.description}</p>
+              <p>{product.piece} Parça</p>
               <p>x{product.quantity}</p>
 
               <p>{product.price}TL</p>

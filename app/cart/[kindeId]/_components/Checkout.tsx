@@ -24,6 +24,7 @@ interface CheckoutProps {
       description: string;
       price: number;
       quantity: number;
+      piece: number;
     }[];
   };
   userData: userData[];
