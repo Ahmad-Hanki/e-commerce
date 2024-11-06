@@ -17,7 +17,7 @@ const CategoryForm = ({ initialData }: CategoryFormProps) => {
   const CategorySumption = async (formData: FormData) => {
     const name = formData.get("name") as string;
     if (!name) {
-      toast.error("Name is required");
+      toast.error("İsim gerekli");
       return;
     }
 
@@ -25,33 +25,33 @@ const CategoryForm = ({ initialData }: CategoryFormProps) => {
       // Update
       const response = await updateCategory(initialData.id, name);
       if (response) {
-        toast.success("Updated Successfully");
+        toast.success("Başarıyla Güncellendi");
         router.push("/dashboard/category");
         return;
       }
-      toast.error("Something went wrong");
+      toast.error("Bir şeyler ters gitti");
       return;
     }
 
     // Add
     const response = await addCategory(name);
     if (response) {
-      toast.success("Added Successfully");
+      toast.success("Başarıyla Eklendi");
       router.push("/dashboard/category");
       return;
     }
-    toast.error("Something went wrong");
+    toast.error("Bir şeyler ters gitti");
     return;
   };
 
   return (
     <form action={CategorySumption} className="space-y-6 max-w-sm mx-auto w-full">
-      <h1 className="text-primary text-2xl text-center">Add Category</h1>
+      <h1 className="text-primary text-3xl text-center font-semibold">Kategori Ekle</h1>
 
       <div className="space-y-4">
         <Input
           name={`name`}
-          placeholder={"Category Name"}
+          placeholder={"Kategori Adı"}
           defaultValue={initialData?.name}
           required
           type="text"
@@ -60,7 +60,7 @@ const CategoryForm = ({ initialData }: CategoryFormProps) => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <SubmitButton submitting="Adding" submit="Add" className="p-3" />
+        <SubmitButton submitting="Ekleniyor" submit="Ekle" className="p-3" />
       </div>
     </form>
   );

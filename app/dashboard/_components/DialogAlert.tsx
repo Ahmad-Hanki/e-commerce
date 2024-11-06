@@ -25,12 +25,12 @@ const DialogAlert = ({ onSubmit, open, setOpen, title }: DialogAlertProps) => {
       <AlertDialogContent className="sm:max-w-md">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-3xl font-bold">
-            Confirm Deletion
+            Silmeyi Onayla{" "}
           </AlertDialogTitle>
           <AlertDialogDescription className="space-y-1">
             <span>
-              Are you sure you want to permanently delete this data? This action
-              cannot be undone.
+            Bu verileri kalıcı olarak silmek istediğinizden emin misiniz? Bu eylem
+            geri alınamaz.
             </span>
             <span className="font-bold text-primary"> {title}</span>
           </AlertDialogDescription>
@@ -41,8 +41,8 @@ const DialogAlert = ({ onSubmit, open, setOpen, title }: DialogAlertProps) => {
             className="flex justify-between gap-2 items-center "
           >
             <SubmitButton
-              submitting={"Deleting"}
-              submit={"Delete"}
+              submitting={"Siliniyor..."}
+              submit={"Sil"}
               variant="destructive"
               className="flex-1 py-5"
             />
@@ -55,7 +55,7 @@ const DialogAlert = ({ onSubmit, open, setOpen, title }: DialogAlertProps) => {
                 setOpen((prev) => !prev);
               }}
             >
-              Cancel
+              İptal
             </Button>
           </form>
         </AlertDialogFooter>

@@ -11,7 +11,7 @@ const OrderId = async ({
   const specificOrder = await getSpecificOrder(userId, orderId);
 
     if (!specificOrder) {
-        return <div>No order found</div>;
+        return <div>Sipariş bulunamadı</div>;
     }
 
 

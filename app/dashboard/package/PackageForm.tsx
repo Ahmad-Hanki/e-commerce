@@ -42,7 +42,7 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
     const piece = formData.get("piece");
 
     if (!price || !piece || !chosenProduct?.id) {
-      toast.error("Price and piece are and chose product required");
+      toast.error("Fiyat ve adettir ve istenilen ürün seçilir");
       return;
     }
 
@@ -57,11 +57,11 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
         inStock,
       });
       if (response) {
-        toast.success("Updated Successfully");
+        toast.success("Başarıyla Güncellendi");
         router.push("/dashboard/package");
         return;
       }
-      toast.error("Something went wrong");
+      toast.error("Bir şeyler ters gitti");
       return;
     }
     // Add
@@ -73,11 +73,11 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
       inStock,
     });
     if (response) {
-      toast.success("Added Successfully");
+      toast.success("Başarıyla Eklendi");
       router.push("/dashboard/package");
       return;
     }
-    toast.error("Something went wrong");
+    toast.error("Bir şeyler ters gitti");
     return;
   };
 
@@ -86,13 +86,13 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
       action={PackageSumption}
       className="space-y-6 max-w-sm mx-auto w-full"
     >
-      <h1 className="text-primary text-2xl text-center">Add Package</h1>
+      <h1 className="text-primary text-3xl text-center font-semibold">Paket Ekle</h1>
 
       <div className="space-y-4">
         <Input
           name={`price`}
           step="0.01"
-          placeholder={"Package Price  (Required)"}
+          placeholder={"Paket Fiyatı (Gerekli)"}
           defaultValue={initialData?.price}
           required
           type="number"
@@ -105,7 +105,7 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
         <Input
           step="0.01"
           name={`oldPrice`}
-          placeholder={"Old Price"}
+          placeholder={"Eski Fiyat"}
           defaultValue={initialData.oldPrice}
           type="number"
           max={100000}
@@ -116,7 +116,7 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
         <Input
           step="0.01"
           name={`oldPrice`}
-          placeholder={"Old Price"}
+          placeholder={"Eski Fiyat"}
           type="number"
           max={100000}
           min={1}
@@ -127,7 +127,7 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
       <div className="space-y-4">
         <Input
           name={`piece`}
-          placeholder={"Package piece  (Required)"}
+          placeholder={"Paket adet (Gerekli)"}
           defaultValue={initialData?.price}
           required
           type="number"
@@ -161,7 +161,7 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <SubmitButton submitting="Adding" submit="Add" className="p-3" />
+        <SubmitButton submitting="Ekleniyor.." submit="Ekle" className="p-3" />
       </div>
     </form>
   );

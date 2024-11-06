@@ -15,7 +15,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "Image",
     header: () => (
-      <div className="text-start max-w-[250px] min-w-[120px]">Image</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Resim</div>
     ),
 
     cell: ({ row }) => {
@@ -38,7 +38,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "description",
     header: () => (
-      <div className="text-start max-w-[250px] min-w-[120px] ">Description</div>
+      <div className="text-start max-w-[250px] min-w-[120px] ">Tanım</div>
     ),
 
     cell: ({ row }) => {
@@ -55,7 +55,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "quantity",
     header: () => (
-      <div className="text-start max-w-[250px] min-w-[120px]">How Many</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Kaç tane</div>
     ),
 
     cell: ({ row }) => {
@@ -71,18 +71,18 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   },
   {
     accessorKey: "total",
-    header: () => <div className="text-start w-full  min-w-[120px]">Price</div>,
+    header: () => <div className="text-start w-full  min-w-[120px]">Fiyat</div>,
   },
   {
     accessorKey: "status",
     header: () => (
-      <div className="text-start w-full  min-w-[120px]">Status</div>
+      <div className="text-start w-full  min-w-[120px]">Durum</div>
     ),
   },
   {
     id: "date",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Date</div>
+      <div className="text-start max-w-[250px]  min-w-[120px]">Tarih</div>
     ),
 
     cell: ({ row }) => {
@@ -94,7 +94,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     id: "address",
     accessorKey: "address",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Address</div>
+      <div className="text-start max-w-[250px]  min-w-[120px]">Adres</div>
     ),
 
     cell: ({ row }) => {
@@ -105,7 +105,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "phone",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Phone</div>
+      <div className="text-start max-w-[250px]  min-w-[120px]">Telefon</div>
     ),
 
     cell: ({ row }) => {
@@ -116,7 +116,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "name",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Name</div>
+      <div className="text-start max-w-[250px]  min-w-[120px]">İsim</div>
     ),
 
     cell: ({ row }) => {
@@ -127,7 +127,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "actions",
     header: () => (
-      <div className="text-start w-full  min-w-[120px]">Manage Data</div>
+      <div className="text-start w-full  min-w-[120px]">Verileri Yönet</div>
     ),
 
     cell: ({ row }) => {
@@ -142,7 +142,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     id: "placeName",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Place name</div>
+      <div className="text-start max-w-[250px]  min-w-[120px]">Yer adı</div>
     ),
 
     cell: ({ row }) => {
@@ -154,7 +154,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     id: "companyName",
     header: () => (
       <div className="text-start max-w-[250px]  min-w-[120px]">
-        Company name
+        Firma Adı
       </div>
     ),
 

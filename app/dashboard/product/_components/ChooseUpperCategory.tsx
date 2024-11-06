@@ -35,12 +35,14 @@ export function ChooseUpperCategory({
     <DropdownMenu>
       <DropdownMenuTrigger className="w-[300px]" asChild>
         <Button variant="outline">
-          {chosenUpperCategory ? chosenUpperCategory : "Select Upper Category (Required)"}
+          {chosenUpperCategory
+            ? chosenUpperCategory
+            : "Üst Kategoriyi Seçin (Gerekli)"}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[300px]">
         <DropdownMenuLabel className="w-[300px]">
-          Choose Upper Category
+          Üst Kategoriyi Seçin{" "}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup

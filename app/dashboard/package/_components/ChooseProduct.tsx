@@ -38,7 +38,7 @@ export function ChooseProduct({
           <p>
             {chosenProduct?.id
               ? chosenProduct?.description
-              : "Select Product (Required)"}
+              : "Ürün Seçin (Gerekli)"}
           </p>
           {chosenProduct?.image && (
             <Image
@@ -52,7 +52,7 @@ export function ChooseProduct({
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[300px]">
         <DropdownMenuLabel className="w-[300px]">
-          Choose Product{" "}
+        Ürün Seçin
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup

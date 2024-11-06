@@ -29,17 +29,17 @@ const OrdersTable = ({ orders, userId }: OrdersTableProps) => {
   return (
     <div>
       <Container>
-        <h1 className="text-3xl font-semibold text-primary ">My Orders</h1>
+        <h1 className="text-3xl font-semibold text-primary">Siparişlerim</h1>
 
         <Table>
-          <TableCaption>A list of your recent orders.</TableCaption>
+          <TableCaption>Son siparişlerinizin listesi.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Amount</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Details</TableHead>
+              <TableHead>Fatura</TableHead>
+              <TableHead>Durum</TableHead>
+              <TableHead>Toplam</TableHead>
+              <TableHead>Tarih</TableHead>
+              <TableHead>Detaylar</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

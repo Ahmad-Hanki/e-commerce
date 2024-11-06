@@ -15,8 +15,8 @@ const NewOrdersPage = async () => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-5 gap-12 sm:gap-2">
             <Heading
               total={allOrders.length}
-              description={"Total Delivered Orders"}
-              title={"shipped orders"}
+              description={"Toplam Teslim Edilen Siparişler"}
+              title={"Teslim edilan siparişler"}
             />
           </div>
 

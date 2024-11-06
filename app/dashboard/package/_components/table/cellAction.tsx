@@ -29,12 +29,12 @@ const CellAction = ({ data }: cellActionProps) => {
   const onDelete = async () => {
     const response = await deletePackage(id);
     if (response) {
-      toast.success("Deleted Successfully");
+      toast.success("Başarıyla Silindi");
       setOpen(false);
       router.push("/dashboard/package");
       return;
     }
-    toast.error("Something went wrong.");
+    toast.error("Bir şeyler ters gitti.");
 
     setOpen(false);
   };
@@ -54,14 +54,14 @@ const CellAction = ({ data }: cellActionProps) => {
           <MoreVertical className="text-secondary-foreground w-6 h-6" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>{"Manage Your data"}</DropdownMenuLabel>
+          <DropdownMenuLabel>Verilerinizi Yönetin</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link
               href={"/dashboard/package/" + id}
               className="flex items-center justify-between gap-2 w-full cursor-pointer"
             >
-              <Label>{"Edit"}</Label>
+              <Label>Düzenlemek</Label>
               <Edit className="text-secondary-foreground h-4 w-4 cursor-pointer" />
             </Link>
           </DropdownMenuItem>
@@ -69,7 +69,7 @@ const CellAction = ({ data }: cellActionProps) => {
             className="flex items-center justify-between gap-2 text-primary cursor-pointer "
             onClick={() => setOpen((prev) => !prev)}
           >
-            <Label>{"Delete"}</Label>
+            <Label>Silmek</Label>
 
             <Trash2 className="text-primary h-4 w-4 " />
           </DropdownMenuItem>

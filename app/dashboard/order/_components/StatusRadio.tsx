@@ -43,13 +43,17 @@ export function StatusRadio({
             await StatusSumption(value);
           }}
         >
-          <DropdownMenuRadioItem value="PENDING">PENDING</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="SHIPPED">SHIPPED</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="PENDING">
+            Beklemede
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="SHIPPED">
+            Gönderildi
+          </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="CANCELED">
-            CANCELED
+            İptal Edildi
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="DELIVERED">
-            DELIVERED
+            Teslim Edilmiş
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

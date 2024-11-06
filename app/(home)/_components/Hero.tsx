@@ -24,15 +24,11 @@ const Hero = ({
         >
           <div className="flex-1 space-y-5 sm:py-10 py-20">
             <div className="space-y-2 ">
-              <h1 className="text-4xl font-semibold text-primary">
-                {title}
-              </h1>
-              <p className="text-lg ">
-                {desc}
-              </p>
+              <h1 className="text-4xl font-semibold text-primary">{title}</h1>
+              <p className="text-lg ">{desc}</p>
             </div>
             <div>
-              <Button className="px-4 py-2">Shop Now</Button>
+              <Button className="px-4 py-2">Şimdi Alışveriş Yap</Button>
             </div>
           </div>
           <div className="flex-1 w-full hidden sm:block">

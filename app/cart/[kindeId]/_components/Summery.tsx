@@ -24,9 +24,9 @@ const Summery = ({
     <div className="space-y-7 pt-10 md:pt-0">
       <Separator />
 
-      <h2 className="text-3xl font-semibold text-primary ">Summery</h2>
+      <h2 className="text-3xl font-semibold text-primary ">Özet</h2>
       <div>
-        <h3 className="text-xl font-semibold text-primary">Products</h3>
+        <h3 className="text-xl font-semibold text-primary">Ürünler</h3>
         <div className="space-y-3">
           {products.map((product, index) => (
             <div key={index} className="flex justify-between">
@@ -43,11 +43,11 @@ const Summery = ({
 
       <div className="space-y-4">
         <div className="flex justify-between">
-          <p>Total Before Discount</p>
+          <p>İndirimden Önce Toplam</p>
           <p className="line-through">{totalBeforeDiscount} TL</p>
         </div>
         <div className="flex justify-between">
-          <p>Total</p>
+          <p>Toplam</p>
           <p>{totalAmount} TL</p>
         </div>
       </div>
@@ -55,7 +55,12 @@ const Summery = ({
       {/* Todo: */}
 
       <div>
-        <PaymentForm totalBeforeDiscount={totalBeforeDiscount} totalAmount={totalAmount} userId={userId} userData={userData} />
+        <PaymentForm
+          totalBeforeDiscount={totalBeforeDiscount}
+          totalAmount={totalAmount}
+          userId={userId}
+          userData={userData}
+        />
       </div>
     </div>
   );

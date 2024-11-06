@@ -164,9 +164,9 @@ const MobileNavbar = ({
               </div>
 
               <p className="mt-5 text-2xl">
-                {/* Random location information */}
-                Random Location within a City or Radius: Specify a central point
-                and radius to limit random locations within that area.
+                Fıstıklık Mahallesi 152080 Nolu Sokak No:4 Günsev Baran Apt.
+                Altı Beykent Mahallesi 85016 Nolu Sokak Beykent Ünite Merkezi
+                No:13 İç Kapı:5
               </p>
 
               <div className="mt-5 flex gap-3">

@@ -7,10 +7,10 @@ const ProfileContainer = ({ userId }: { userId: string }) => {
     <div>
       <Container>
         <div className="py-6 flex flex-col  md:flex-row md:justify-between md:items-center gap-4 ">
-          <h1 className="text-3xl font-bold">Profile Page</h1>
+          <h1 className="text-3xl font-bold">Profil Sayfası</h1>
 
           <Link href={`/profile/${userId}/add`}>
-            <Button className="text-lg">Add New Data</Button>
+            <Button className="text-lg">Yeni Adres Ekle</Button>
           </Link>
         </div>
       </Container>

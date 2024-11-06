@@ -7,32 +7,32 @@ import { FormattedPackage } from "../../_actions/getAllPackages";
 export const PackageColumns: ColumnDef<FormattedPackage>[] = [
   {
     accessorKey: "productDescription",
-    header: () => <div className="text-start w-full">Which Product</div>,
+    header: () => <div className="text-start w-full">Hangi Ürün</div>,
   },
   {
     accessorKey: "piece",
-    header: () => <div className="text-start w-full">Pieces</div>,
+    header: () => <div className="text-start w-full">Parçalar</div>,
   },
   {
     accessorKey: "price",
-    header: () => <div className="text-start w-full">Price</div>,
+    header: () => <div className="text-start w-full">Fiyat</div>,
   },
   {
     accessorKey: "oldPrice",
-    header: () => <div className="text-start w-full">Old Price</div>,
+    header: () => <div className="text-start w-full">Eski Fiyat</div>,
   },
   {
     accessorKey: "discount",
-    header: () => <div className="text-start w-full">Discount</div>,
+    header: () => <div className="text-start w-full">İndirim</div>,
   },
   {
     accessorKey: "inStock",
-    header: () => <div className="text-start w-full">In Stock</div>,
+    header: () => <div className="text-start w-full">Stokta</div>,
   },
 
   {
     id: "actions",
-    header: () => <div className="text-start w-full">Manage Data</div>,
+    header: () => <div className="text-start w-full">Verileri Yönet</div>,
 
     cell: ({ row }) => {
       const data = row.original;

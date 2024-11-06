@@ -18,13 +18,21 @@ const AccountDropDownMenu = () => {
           Account 
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>
+            Hesabım
+
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/profile">Profile</Link>
+            <Link href="/profile">
+            
+              Profil
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/my-orders">My Orders</Link>
+            <Link href="/my-orders">
+              Siparişlerim
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <LogoutLink>

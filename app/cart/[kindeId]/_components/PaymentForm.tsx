@@ -21,8 +21,13 @@ const PaymentForm = ({ userData, userId, totalAmount, totalBeforeDiscount }: Pay
     const res = await createOrder(userDataId, totalAmount, totalBeforeDiscount);
 
     if (res) {
-      toast.success("Order created successfully");
+      toast.success("Sipariş başarıyla oluşturuldu");
+      return
     }
+
+    toast.error("Sipariş oluşturulamadı");
+
+
   };
   return (
     <form action={checkOutSubmit}>
@@ -33,8 +38,8 @@ const PaymentForm = ({ userData, userId, totalAmount, totalBeforeDiscount }: Pay
         userId={userId}
       />
       <SubmitButton
-        submitting="Checking Out..."
-        submit={userDataId ? "Submit" : "Please select address"}
+        submitting="Odemeye devam ediliyor"
+        submit={userDataId ? "Odeme" : "Lütfen adresi seçin"}
         className="w-full"
         disabled={!userDataId}
       />

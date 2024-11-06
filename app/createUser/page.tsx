@@ -8,3 +8,4 @@ const CreateUser = async () => {
 };
 
 export default CreateUser;
+

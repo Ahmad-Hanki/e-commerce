@@ -8,10 +8,10 @@ const DeleteUserDataComponent = ({ userDataId }: { userDataId: string }) => {
     const res = await deleteUserData(userDataId);
 
     if (res) {
-      toast.success("Data deleted successfully");
+      toast.success("Veriler başarıyla silindi");
       return;
     } else {
-      toast.error("Error deleting data");
+      toast.error("Veriler silinirken hata oluştu");
     }
   };
   return (

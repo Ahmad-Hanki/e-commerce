@@ -24,11 +24,11 @@ const ContactForm = () => {
       <form onSubmit={handleSubmit(isSubmitting)}>
         <div className="grid grid-cols-1 gap-7">
           <div className="space-y-5">
-            <h2 className="text-3xl">{"Send us a message"}</h2>
+            <h2 className="text-3xl">Bize bir mesaj gönderin</h2>
             <p className="text-xl">
-              {
-                "If you have any questions or need help, please contact us using the form below or you can directly email pr phone us. "
-              }
+              Herhangi bir sorunuz varsa veya yardıma ihtiyacınız varsa lütfen
+              aşağıdaki formu kullanarak bizimle iletişime geçin veya doğrudan
+              bize e-posta veya telefon yoluyla ulaşabilirsiniz.
             </p>
           </div>
           <div className="w-full space-y-2">
@@ -41,12 +41,12 @@ const ContactForm = () => {
               />
               {errors.name && (
                 <p className="text-red-400 font-light ">
-                  {"Name should be between 3 and 30 characters"}
+                  Ad 3 ile 30 karakter arasında olmalıdır{" "}
                 </p>
               )}
             </div>
             <div className="space-y-6">
-              <label className="text-xl font-bold">{"Email"}</label>
+              <label className="text-xl font-bold">E-posta</label>
               <Input
                 type="email"
                 className="border-zinc-950 focus:border-none border-b-secondary py-4"
@@ -54,13 +54,13 @@ const ContactForm = () => {
               />
               {errors.email && (
                 <p className="text-red-400 font-light ">
-                  Please enter a valid email address
+                  Lütfen geçerli bir e-posta adresi girin{" "}
                 </p>
               )}
             </div>
 
             <div className="space-y-6 ">
-              <label className="text-xl font-bold">{"Message"}</label>
+              <label className="text-xl font-bold">Mesaj</label>
               <Textarea
                 rows={5}
                 className="border-zinc-950 focus:border-none border-b-secondary py-4 "
@@ -68,12 +68,16 @@ const ContactForm = () => {
               />
               {errors.message && (
                 <p className="text-red-400 font-light ">
-                  Message should be between 20 and 200 characters
+                  Mesaj 20 ile 200 karakter arasında olmalıdır
                 </p>
               )}
             </div>
             <div className="pt-4">
-              <SubmitButton className="text-xl font-semibold px-5 py-3" submitting={"gonderiliyor"} submit={"gonder"} />
+              <SubmitButton
+                className="text-xl font-semibold px-5 py-3"
+                submitting={"gonderiliyor"}
+                submit={"gonder"}
+              />
             </div>
           </div>
         </div>

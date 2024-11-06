@@ -16,14 +16,14 @@ export default async function Home() {
     <div>
       <Hero
         img={img1}
-        title="Discover the Best Deals on Your Favorite Products!"
+        title="En Sevdiğiniz Ürünlerde En İyi Fırsatları Keşfedin!"
         desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ducimus cupiditate natus inventore laudantium adipisci temporibus qui quis sint minus! Natus, assumenda vitae ut dignissimos mollitia culpa. Officiis, ad voluptas?"
       />
       <MostSells products={mostSailed} />
       <Hero
         img={img2}
         reverse
-        title="Quality You Can Trust, Prices You’ll Love"
+        title="Güvenebileceğiniz Kalite, Bayılacağınız Fiyatlar"
         desc="      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ducimus cupiditate natus inventore laudantium adipisci temporibus qui quis sint minus! Natus, assumenda vitae ut dignissimos mollitia culpa. Officiis, ad voluptas?"
       />
 

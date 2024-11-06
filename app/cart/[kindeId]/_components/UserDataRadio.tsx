@@ -29,7 +29,7 @@ const UserDataRadio = ({
 
   return (
     <div className="pb-10 w-full">
-      <h2 className="text-primary mb-3">Please Choose your address data</h2>
+      <h2 className="text-primary mb-3">Lütfen adres verilerinizi seçin</h2>
       <DropdownMenu>
         <DropdownMenuTrigger className="w-full bg-gray-200" asChild>
           <Button variant="outline" className="w-full">
@@ -37,7 +37,7 @@ const UserDataRadio = ({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-full bg-gray-200">
-          <DropdownMenuLabel>Select Your Data</DropdownMenuLabel>
+          <DropdownMenuLabel>Verilerinizi Seçin</DropdownMenuLabel>
           <DropdownMenuRadioGroup
             value={userDataId}
             onValueChange={(value) => setUserDataId(value)}
@@ -50,42 +50,41 @@ const UserDataRadio = ({
               >
                 {user.id === userDataId && <CheckCircle />}
                 <div>
-                  <strong>Name:</strong> {user.fullName}
+                  <strong>İsim:</strong> {user.fullName}
                 </div>
                 <div>
-                  <strong>Address:</strong> {user.adress}
+                  <strong>Adres:</strong> {user.adress}
                 </div>
                 <div>
-                  <strong>Phone:</strong> {user.phone}
+                  <strong>Telefon:</strong> {user.phone}
                 </div>
                 <div>
-                  <strong>Email:</strong> {user.email}
+                  <strong>E-posta:</strong> {user.email}
                 </div>
                 <div>
-                  <strong>Address Type:</strong>{" "}
+                  <strong>Adres Türü:</strong>{" "}
                   {user.adressPlace === "individual" ? "Individual" : "Company"}
                 </div>
                 {user.adressPlace === "company" && (
                   <>
                     <div>
-                      <strong>Company Name:</strong> {user.firmaAdi}
+                      <strong>Firma Adı:</strong> {user.firmaAdi}
                     </div>
                     <div>
-                      <strong>Tax ID (VKN):</strong> {user.vkn}
+                      <strong>VKN:</strong> {user.vkn}
                     </div>
                     <div>
-                      <strong>Tax Office:</strong> {user.vergiDairesi}
+                      <strong>Vergi Dairesi:</strong> {user.vergiDairesi}
                     </div>
                     <div>
-                      <strong>E-Invoice:</strong>{" "}
-                      {user.Efatura ? "Enabled" : "Disabled"}
+                      <strong>E-Fatura:</strong> {user.Efatura ? "Yes" : "No"}
                     </div>
                   </>
                 )}
               </DropdownMenuRadioItem>
             ))}
-            <Link href={`/profile/${userId}`}>
-              I want to use another address data
+            <Link className="my-4" href={`/profile/${userId}`}>
+              <Button>Başka bir adres verisi kullanmak istiyorum </Button>
             </Link>
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>

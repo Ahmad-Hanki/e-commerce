@@ -27,12 +27,12 @@ export function ChooseCategory({
     <DropdownMenu>
       <DropdownMenuTrigger className="w-[300px]" asChild>
         <Button variant="outline">
-          {chosenCategory ? chosenCategory.name : "Select Category (Required)"}
+          {chosenCategory ? chosenCategory.name : "Kategori Seçin (Gerekli)"}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[300px]">
         <DropdownMenuLabel className="w-[300px]">
-          Choose Category{" "}
+          Kategori Seçin
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup

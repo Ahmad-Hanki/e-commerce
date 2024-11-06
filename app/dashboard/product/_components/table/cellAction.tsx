@@ -18,22 +18,20 @@ import { useRouter } from "next/navigation";
 import { FormattedProduct } from "../../_actions/getAllProducts";
 import deleteProduct from "../../_actions/deleteProduct";
 
-
-
-const CellAction = ({ data }: {data: FormattedProduct}) => {
+const CellAction = ({ data }: { data: FormattedProduct }) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const { id, description } = data;
   const onDelete = async () => {
     const response = await deleteProduct(id);
     if (response) {
-      toast.success("Deleted Successfully");
+      toast.success("Başarıyla Silindi");
       setOpen(false);
       router.push("/dashboard/product");
       return;
     }
     toast.error(
-      "Category is connected with at least one product. please delete the product first."
+      "Kategori en az bir ürünle bağlantılı. Lütfen önce ürünü silin."
     );
 
     setOpen(false);
@@ -52,14 +50,14 @@ const CellAction = ({ data }: {data: FormattedProduct}) => {
           <MoreVertical className="text-secondary-foreground w-6 h-6" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>{"Manage Your data"}</DropdownMenuLabel>
+          <DropdownMenuLabel>Verilerinizi yönetin</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link
               href={"/dashboard/product/" + id}
               className="flex items-center justify-between gap-2 w-full cursor-pointer"
             >
-              <Label>{"Edit"}</Label>
+              <Label>Düzenlemek</Label>
               <Edit className="text-secondary-foreground h-4 w-4 cursor-pointer" />
             </Link>
           </DropdownMenuItem>
@@ -67,7 +65,7 @@ const CellAction = ({ data }: {data: FormattedProduct}) => {
             className="flex items-center justify-between gap-2 text-primary cursor-pointer "
             onClick={() => setOpen((prev) => !prev)}
           >
-            <Label>{"Delete"}</Label>
+            <Label>Silmek</Label>
 
             <Trash2 className="text-primary h-4 w-4 " />
           </DropdownMenuItem>

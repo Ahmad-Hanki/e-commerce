@@ -5,9 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 export const dynamic = "force-static";
 
-
 const AboutUsPage = () => {
-
   return (
     <div className="bg-gray-50">
       <Container>
@@ -18,22 +16,21 @@ const AboutUsPage = () => {
                 Hakkımızda
               </p>
               <h1 className="text-6xl text-primary font-semibold">
-                Elevate Your Shopping Experience with Us!
+                Alışveriş Deneyiminizi Bizimle Bir Üst Seviyeye Taşıyın!{" "}
               </h1>
               <p className="text-lg mt-4 text-gray-600">
-                At [Your Brand Name], we believe that every shopping journey
-                should be exceptional. Our e-commerce platform is designed to
-                bring you the latest products and unbeatable deals, all while
-                providing a seamless, personalized experience. With easy
-                navigation, secure checkout, and dedicated customer support, we
-                empower you to shop with confidence. Join thousands of satisfied
-                customers who trust us for quality, value, and convenience.
-                Explore our diverse range of products today and discover the
-                difference!
+                [Marka Adınız] olarak, her alışveriş yolculuğunun olağanüstü
+                olması gerektiğine inanıyoruz. E-ticaret platformumuz, size en
+                son ürünleri ve rakipsiz fırsatları sunarken, kusursuz ve
+                kişiselleştirilmiş bir deneyim sağlamak için tasarlanmıştır.
+                Kolay gezinme, güvenli ödeme ve özel müşteri desteğiyle, güvenle
+                alışveriş yapmanızı sağlıyoruz. Kalite, değer ve rahatlık için
+                bize güvenen binlerce memnun müşteriye katılın. Bugün çeşitli
+                ürün yelpazemizi keşfedin ve farkı keşfedin!
               </p>
 
               <Link href="/">
-                <Button className="h-[40px] px-5 py-2 w-fit">Shop Now</Button>
+                <Button className="h-[40px] px-5 py-2 w-fit">Şimdi Alışveriş Yap</Button>
               </Link>
             </div>
           </div>

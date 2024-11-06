@@ -4,23 +4,23 @@ const DashboardNavbar = () => {
   const linkes = [
     {
       href: "/dashboard",
-      name: "Dashboard",
+      name: "Yönetim Paneli",
     },
     {
       href: "/dashboard/category",
-      name: "Categories",
+      name: "Kategoriler",
     },
     {
       href: "/dashboard/product",
-      name: "Products",
+      name: "Ürünler",
     },
     {
       href: "/dashboard/package",
-      name: "Packages",
+      name: "Paketler",
     },
     {
       href: "/dashboard/order",
-      name: "Orders",
+      name: "Siparişler",
     },
   ];
   return (

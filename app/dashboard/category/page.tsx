@@ -19,8 +19,8 @@ const CategoryPage = async () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-5 gap-12 sm:gap-2">
           <Heading
             total={catagories?.length}
-            description={"Total Categories"}
-            title={"Category Data Data"}
+            description={"Toplam Kategoriler"}
+            title={"Kategori Veri Veri"}
           />
 
           <Link href={"/dashboard/category/add"}>

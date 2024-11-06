@@ -68,7 +68,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       !image ||
       !chosenUpperCategory
     ) {
-      toast.error("Please fill all fields");
+      toast.error("Lütfen tüm alanları doldurun");
       return;
     }
 
@@ -92,11 +92,11 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
         image,
       });
       if (response) {
-        toast.success("Updated Successfully");
+        toast.success("Başarıyla Güncellendi");
         router.push("/dashboard/product");
         return;
       }
-      toast.error("Something went wrong");
+      toast.error("Bir şeyler ters gitti");
       return;
     }
     // Add
@@ -117,11 +117,11 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       extraInfo,
     });
     if (response) {
-      toast.success("Added Successfully");
+      toast.success("Başarıyla Eklendi");
       router.push("/dashboard/product");
       return;
     }
-    toast.error("Something went wrong rr");
+    toast.error("Bir şeyler ters gitti");
     return;
   };
 
@@ -130,12 +130,12 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       action={ProductSumption}
       className="space-y-6 max-w-sm mx-auto w-full"
     >
-      <h1 className="text-primary text-2xl text-center">Add Product</h1>
+      <h1 className="text-primary text-3xl text-center font-semibold">Ürün Ekle</h1>
 
       <div className="space-y-4">
         <Textarea
           name={`description`}
-          placeholder={"Product Description (Required)"}
+          placeholder={"Ürün Açıklaması (Gerekli)"}
           defaultValue={initialData?.description ?? ""}
           required
           className="w-[300px]"
@@ -146,7 +146,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
         <Input
           name={`price`}
           step="0.01"
-          placeholder={"Product Price  (Required)"}
+          placeholder={"Ürün Fiyatı (Tek) (Gerekli)"}
           defaultValue={initialData?.price}
           required
           type="number"
@@ -160,7 +160,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
           <Input
             step="0.01"
             name={`oldPrice`}
-            placeholder={"Old Price"}
+            placeholder={"Eski Fiyat (tek)"}
             defaultValue={initialData.oldPrice}
             type="number"
             max={100000}
@@ -171,7 +171,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
           <Input
             step="0.01"
             name={`oldPrice`}
-            placeholder={"Old Price"}
+            placeholder={"Eski Fiyat (tek)"}
             type="number"
             max={100000}
             min={1}
@@ -182,7 +182,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       <div className="space-y-4 flex gap-3">
         <Input
           name={`rating`}
-          placeholder={"Product Rating"}
+          placeholder={"Ürün Derecelendirmesi"}
           defaultValue={initialData?.rating ?? 5}
           type="number"
           max={5}
@@ -193,7 +193,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       <div className="space-y-4 flex gap-3">
         <Textarea
           name={`extraInfo`}
-          placeholder={"Extra Infos"}
+          placeholder={"Ek Bilgiler"}
           defaultValue={initialData?.extraInfo ?? ""}
           rows={5}
           className="w-[300px]"
@@ -203,7 +203,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button className="w-[300px]" variant="outline">
-              Chose
+            Seç
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
@@ -213,22 +213,22 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
               checked={inStock}
               onCheckedChange={setInStock}
             >
-              In Stock
+             Stokta
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem checked={New} onCheckedChange={setNew}>
-              New
+              Yeni
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               checked={freeShipping}
               onCheckedChange={setFreeShipping}
             >
-              Free Shipping
+              Ücretsiz Kargo
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               checked={mostSale}
               onCheckedChange={setMostSale}
             >
-              Most Sales
+              En Çok Satış
             </DropdownMenuCheckboxItem>
           </DropdownMenuContent>
         </DropdownMenu>

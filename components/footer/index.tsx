@@ -19,7 +19,7 @@ const Footer = () => {
     },
     {
       name: "Hakkımızda",
-      href: "/about",
+      href: "/about ",
     },
 
     {

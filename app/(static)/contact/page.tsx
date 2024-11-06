@@ -9,7 +9,7 @@ const ContactPage = () => {
     <div>
       <ContactData
         address="25 Aralık, Tüfekçi Yusuf Blv. No:86, 27100 Şahinbey/Gaziantep"
-        contactData="Contact Us"
+        contactData="Bize Ulaşın"
         email="email@provider.com"
         phone="+90 999 999 9 99 "
       />

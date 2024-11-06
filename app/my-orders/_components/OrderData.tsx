@@ -9,7 +9,9 @@ const OrderData = ({ order }: OrderDataProps) => {
   if (!order) {
     return (
       <Container>
-        <h1 className="text-3xl font-semibold text-primary">Order Not Found</h1>
+        <h1 className="text-3xl font-semibold text-primary">
+          Sipariş Bulunamadı
+        </h1>
       </Container>
     );
   }
@@ -18,7 +20,9 @@ const OrderData = ({ order }: OrderDataProps) => {
     <div className="py-20">
       <Container>
         <div className="flex flex-col gap-5">
-          <h1 className="text-3xl font-semibold text-primary">Order Items</h1>
+          <h1 className="text-3xl font-semibold text-primary">
+            Sipariş Öğeleri
+          </h1>
           <ul className="list-disc list-inside">
             {order.orderItems.map((item, index) => (
               <div key={index}>
@@ -26,51 +30,51 @@ const OrderData = ({ order }: OrderDataProps) => {
                   Adet: {item.quantity}
                 </p>
                 <p className="text-lg font-medium text-gray-600">
-                  Product: {item.package.products.description}
+                  Ürün: {item.package.products.description}
                 </p>
               </div>
             ))}
           </ul>
           <div>
             <h1 className="text-3xl font-semibold text-primary">
-              Order Details
+              Sipariş Detayları
             </h1>
             <p className="text-lg font-medium text-gray-600">
-              Order ID: {order.id}
+              Sipariş Kimliği: {order.id}
             </p>
             <p className="text-lg font-medium text-gray-600">
-              Total: ${order.total.toFixed(2)}
+              Toplam: {order.total.toFixed(2)}TL
             </p>
             <p className="text-lg font-medium text-gray-600">
-              Status: {order.status}
+              Durum: {order.status}
             </p>
             <p className="text-lg font-medium text-gray-600">
-              Created At: {new Date(order.createdAt).toLocaleString()}
+              Oluşturuldu: {new Date(order.createdAt).toLocaleString()}
             </p>
           </div>
 
           <div>
             <h1 className="text-3xl font-semibold text-primary">
-              Customer Details
+              Müşteri Detayları
             </h1>
             <p className="text-lg font-medium text-gray-600">
-              Full Name: {order.userData.fullName}
+              Ad Soyad: {order.userData.fullName}
             </p>
             <p className="text-lg font-medium text-gray-600">
-              Phone: {order.userData.phone}
+              Telefon: {order.userData.phone}
             </p>
             <p className="text-lg font-medium text-gray-600">
-              Email: {order.userData.email}
+              E-posta: {order.userData.email}
             </p>
             <p className="text-lg font-medium text-gray-600">
-              Address: {order.userData.adress}
+              Adres: {order.userData.adress}
             </p>
             <p className="text-lg font-medium text-gray-600">
-              Address Type: {order.userData.adressPlace}
+              Adres Türü: {order.userData.adressPlace}
             </p>
             {order.userData.firmaAdi && (
               <p className="text-lg font-medium text-gray-600">
-                Company Name: {order.userData.firmaAdi}
+                Firma Adı: {order.userData.firmaAdi}
               </p>
             )}
             {order.userData.vkn && (
@@ -80,11 +84,11 @@ const OrderData = ({ order }: OrderDataProps) => {
             )}
             {order.userData.vergiDairesi && (
               <p className="text-lg font-medium text-gray-600">
-                Tax Office: {order.userData.vergiDairesi}
+                Vergi Dairesi: {order.userData.vergiDairesi}
               </p>
             )}
             <p className="text-lg font-medium text-gray-600">
-              E-Invoice: {order.userData.Efatura ? "Yes" : "No"}
+              E-Fatura: {order.userData.Efatura ? "Yes" : "No"}
             </p>
           </div>
         </div>

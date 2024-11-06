@@ -26,30 +26,30 @@ const CartItemCard = ({ item }: CartItemCardProps) => {
     const res = await deleteCartItem(item.id);
 
     if (res) {
-      toast.success("Successfully Deleted From Cart!");
+      toast.success("Sepetinizden Başarıyla Silindi!");
       return;
     } else {
-      toast.error("Something went wrong!");
+      toast.error("Bir şeyler ters gitti!");
     }
   };
   const increaseItem = async () => {
     const res = await increaseQuantity(item.id);
 
     if (res) {
-      toast.success("Successfully Increased Item!");
+      toast.success("Ürün Başarıyla Artırıldı!");
       return;
     } else {
-      toast.error("Something went wrong!");
+      toast.error("Bir şeyler ters gitti!");
     }
   };
   const decreesItem = async () => {
     const res = await decreesQuantity(item.id);
 
     if (res) {
-      toast.success("Successfully Decreased Item!");
+      toast.success("Ürün Başarıyla Azaltıldı!");
       return;
     } else {
-      toast.error("Something went wrong!");
+      toast.error("Bir şeyler ters gitti!");
     }
   };
   return (
@@ -78,7 +78,7 @@ const CartItemCard = ({ item }: CartItemCardProps) => {
         </p>
         <div className="flex gap-3 items-center">
           <Truck className="text-blue-600 h-6 w-6" />
-          <p className="text-lg text-primary ">Free shipping</p>
+          <p className="text-lg text-primary ">Ücretsiz kargo</p>
         </div>
 
         <div className="flex flex-col gap-3 w-fit">

@@ -23,12 +23,12 @@ const ContactData = ({
     {
       icon: <Phone size={30} />,
       text: phone,
-      info: "+90 534 927 77 44",
+      info: "+90 999 99 99 00 0",
     },
     {
       icon: <Mail size={30} />,
       text: email,
-      info: "sindibad_Lokntasi@hotmail.com",
+      info: "email@provider.com",
     },
   ];
   return (

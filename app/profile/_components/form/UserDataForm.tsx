@@ -36,7 +36,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
 
   const isSubmitting = async (data: ZodTypeProp) => {
     if (!data.fullName || !data.phone || !data.address) {
-      toast.error("Please fill all fields");
+      toast.error("Lütfen tüm alanları doldurun");
       return;
     }
 
@@ -44,7 +44,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
       addressPlace === AdressPlace.company &&
       (!data.firmaAdi || !data.vkn || !data.vergiDairesi)
     ) {
-      toast.error("Please fill all fields");
+      toast.error("Lütfen tüm alanları doldurun");
       return;
     }
 
@@ -63,10 +63,10 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
     const res = await createUserData(userId, userData);
 
     if (res) {
-      toast.success("User data added successfully");
+      toast.success("Kullanıcı verileri başarıyla eklendi");
       redirect("/profile/" + userId);
     } else {
-      toast.error("An error occurred");
+      toast.error("Bir hata oluştu");
     }
   };
   return (
@@ -75,11 +75,11 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
         <form onSubmit={handleSubmit(isSubmitting)}>
           <div className="grid grid-cols-1 gap-7 max-w-xl">
             <div className="space-y-5">
-              <h1 className="text-3xl">Add a new data</h1>
+              <h1 className="text-3xl">Yeni bir veri ekle</h1>
             </div>
             <div className="w-full space-y-2">
               <div className="space-y-6">
-                <label className="text-xl font-bold">{"Full Name"}</label>
+                <label className="text-xl font-bold">Ad Soyad</label>
                 <Input
                   type="text"
                   className="border-zinc-950 focus:border-none border-b-secondary py-4"
@@ -87,12 +87,12 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                 />
                 {errors.fullName && (
                   <p className="text-red-400 font-light ">
-                    {"Name should be between 3 and 30 characters"}
+                    Ad 3 ile 30 karakter arasında olmalıdır
                   </p>
                 )}
               </div>
               <div className="space-y-6">
-                <label className="text-xl font-bold">{"E-mail"}</label>
+                <label className="text-xl font-bold">E-Posta</label>
                 <Input
                   value={email}
                   disabled
@@ -100,7 +100,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                 />
               </div>
               <div className="space-y-6">
-                <label className="text-xl font-bold">{"Phone"}</label>
+                <label className="text-xl font-bold">Telefon</label>
                 <Input
                   type="phone"
                   className="border-zinc-950 focus:border-none border-b-secondary py-4"
@@ -108,13 +108,13 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                 />
                 {errors.phone && (
                   <p className="text-red-400 font-light ">
-                    Please enter a valid Phone
+                    Lütfen geçerli bir Telefon girin
                   </p>
                 )}
               </div>
 
               <div className="space-y-6 ">
-                <label className="text-xl font-bold">{"Address"}</label>
+                <label className="text-xl font-bold">Adres</label>
                 <Textarea
                   rows={5}
                   className="border-zinc-950 focus:border-none border-b-secondary py-4 "
@@ -122,7 +122,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                 />
                 {errors.address && (
                   <p className="text-red-400 font-light ">
-                    Message should be between 20 and 200 characters
+                    Mesaj 20 ile 200 karakter arasında olmalıdır
                   </p>
                 )}
               </div>
@@ -135,23 +135,21 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                       onClick={() => setAddressPlace("individual")}
                       value="individual"
                     >
-                      Individual
+                      Bireysel
                     </TabsTrigger>
                     <TabsTrigger
                       className="flex-1 w-full"
                       onClick={() => setAddressPlace("company")}
                       value="company"
                     >
-                      Company
+                      Şirket
                     </TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="company">
                     <div className="space-y-2">
                       <div className="space-y-6">
-                        <label className="text-xl font-bold">
-                          {"Company Name"}
-                        </label>
+                        <label className="text-xl font-bold">Firma Adı</label>
                         <Input
                           type="text"
                           className="border-zinc-950 focus:border-none border-b-secondary py-4"
@@ -159,7 +157,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                         />
                       </div>
                       <div className="space-y-6">
-                        <label className="text-xl font-bold">{"VKN"}</label>
+                        <label className="text-xl font-bold">VKN</label>
                         <Input
                           type="text"
                           className="border-zinc-950 focus:border-none border-b-secondary py-4"
@@ -168,7 +166,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                       </div>
                       <div className="space-y-6">
                         <label className="text-xl font-bold">
-                          {"Vergi Dairesi"}
+                          Vergi Dairesi
                         </label>
                         <Input
                           type="text"

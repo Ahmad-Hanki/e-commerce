@@ -23,8 +23,8 @@ const PackagePage = async () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-5 gap-12 sm:gap-2">
           <Heading
             total={packages?.length}
-            description={"Total Packages"}
-            title={"Category Data Data"}
+            description={"Toplam Paketler"}
+            title={"Kategori Veri Veri"}
           />
 
           <Link href={"/dashboard/package/add"}>
@@ -39,7 +39,7 @@ const PackagePage = async () => {
         <DataTable
           columns={PackageColumns}
           data={packages}
-          filtered="productDescription"
+          filtered="description"
         />
         <Heading title="API" description="API calls for entered Package" />
         <Separator />

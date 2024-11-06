@@ -21,7 +21,7 @@ const EditPackagePage = async ({
 
   return (
     <div className="py-10 min-h-[60vh] grid place-content-center space-y-5">
-      <h1>Edit Category Data</h1>
+      <h1>Paket Verilerini Düzenle</h1>
       <PackageForm Products={products} initialData={pkg} />
     </div>
   );

@@ -13,7 +13,7 @@ const CategoryNamePage = async ({
 
   if (!products || products.products.length === 0) {
     return (
-      <p className="text-3xl text-center my-10">No Product for this category</p>
+      <p className="text-3xl text-center my-10">Bu kategori için ürün yok</p>
     );
   }
 

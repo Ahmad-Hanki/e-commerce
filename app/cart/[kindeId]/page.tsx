@@ -83,7 +83,7 @@ const CartPage = async ({
                 userData={userData}
               />
             ) : (
-              <p>No items in the cart</p>
+              <p>Sepette ürün yok</p>
             )}
           </div>
         </Suspense>

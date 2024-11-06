@@ -9,10 +9,10 @@ const OrderNavbar = () => {
 
   // Define an array of menu items
   const menuItems = [
-    { name: "New Orders", href: "/dashboard/order/newOrder" },
-    { name: "Sent to cargo", href: "/dashboard/order/cargo" },
-    { name: "Delivered", href: "/dashboard/order/delivered" },
-    { name: "Canceled", href: "/dashboard/order/cancel" },
+    { name: "Yeni Siparişler", href: "/dashboard/order/newOrder" },
+    { name: "Kargoya gönderildi", href: "/dashboard/order/cargo" },
+    { name: "Teslim edilmiş", href: "/dashboard/order/delivered" },
+    { name: "İptal edildi", href: "/dashboard/order/cancel" },
     
   ];
 

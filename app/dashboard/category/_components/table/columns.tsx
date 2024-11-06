@@ -7,12 +7,12 @@ import CellAction from "./cellAction";
 export const categoryColumns: ColumnDef<Category>[] = [
   {
     accessorKey: "name",
-    header: () => <div className="text-start w-full">Category Name</div>,
+    header: () => <div className="text-start w-full">Kategori Adı</div>,
   },
 
   {
     id: "actions",
-    header: () => <div className="text-start w-full">Manage Data</div>,
+    header: () => <div className="text-start w-full">Verileri Yönet</div>,
 
     cell: ({ row }) => {
       const data = row.original;

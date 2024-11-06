@@ -15,7 +15,7 @@ const UserOrders = async ({
   const orders = await getUserOrders(userId);
 
   if (!orders) {
-    return <div>No orders found</div>;
+    return <div>Hiçbir sipariş bulunamadı</div>;
   }
 
   return (
