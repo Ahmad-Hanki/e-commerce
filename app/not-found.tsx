@@ -15,7 +15,7 @@ const NotFound = () => {
               Aradığınız sayfayı bulamadık. Taşınmış veya silinmiş olabilir.
             </p>
             <p className="text-2xl">
-              Lütfen adres çubuğundaki URL'yi kontrol edin ve tekrar deneyin.{" "}
+              Lütfen adres çubuğundaki URL&apos;yi kontrol edin ve tekrar deneyin.{" "}
             </p>
           </div>
 
