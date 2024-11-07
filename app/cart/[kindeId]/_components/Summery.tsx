@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
-import PaymentForm from "./PaymentForm";
 import { userData } from "@prisma/client";
+import Payment from "./Payment";
 
 interface SummeryProps {
   totalAmount: number;
@@ -57,7 +57,7 @@ const Summery = ({
       {/* Todo: */}
 
       <div>
-        <PaymentForm
+        <Payment
           totalBeforeDiscount={totalBeforeDiscount}
           totalAmount={totalAmount}
           userId={userId}

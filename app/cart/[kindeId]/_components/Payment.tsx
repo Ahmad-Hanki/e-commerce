@@ -14,7 +14,7 @@ interface PaymentFormProps {
   totalBeforeDiscount?: number;
 }
 
-const PaymentForm = ({ userData, userId, totalAmount, totalBeforeDiscount }: PaymentFormProps) => {
+const Payment = ({ userData, userId, totalAmount, totalBeforeDiscount }: PaymentFormProps) => {
   const [userDataId, setUserDataId] = useState<string>(userData[0]?.id ?? "");
 
   const checkOutSubmit = async () => {
@@ -47,4 +47,4 @@ const PaymentForm = ({ userData, userId, totalAmount, totalBeforeDiscount }: Pay
   );
 };
 
-export default PaymentForm;
+export default Payment;
