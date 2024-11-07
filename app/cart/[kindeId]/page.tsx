@@ -47,6 +47,17 @@ const CartPage = async ({
       };
     }) || [];
 
+  // // for paytr data
+  // const basket = packageData.map((item) => [
+  //   `${item.description} (Piece: ${item.Piece})`,
+  //   // Product name with piece count for more details
+  //   item.price.toFixed(2),
+  //   // Unit price as a string with two decimal places
+  //   item.quantity,
+  //   // Quantity of the item
+  // ]);
+
+
   const totalAmount = packageData.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
