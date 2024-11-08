@@ -24,7 +24,10 @@ export default function CarouselComponent({
     <div className="py-20">
       <Container>
         <h2 className="text-3xl font-semibold mb-6">
-          {like && "You may also like"}
+          {like && "Şunları da beğenebilirsiniz"}
+        </h2>
+        <h2 className="text-3xl font-semibold mb-6">
+          {!like && "Sizin için seçildi"}
         </h2>
         <Carousel className="w-full">
           <CarouselContent>
