@@ -65,14 +65,6 @@ function getCategoryPaths() {
       name: "KisiselBakim",
       id: 3,
     },
-    {
-      name: "HOME",
-      id: 4,
-    },
-    {
-      name: "SPORTS",
-      id: 5,
-    },
   ];
 
   return category.map((cat) => ({
