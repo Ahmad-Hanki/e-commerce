@@ -29,7 +29,7 @@ export default async function Home() {
 
       <CarouselComponent products={randomProducts} />
 
-      <Blog />
+      {/* <Blog /> */}
     </div>
   );
 }
