@@ -42,7 +42,7 @@ const CartPage = async ({
         oldPrice: item.package.oldPrice || 0,
         discount: item.package.discount,
         inStock: item.package.inStock,
-        img: item.package.products.image,
+        img: item.package.products.Photos.find((photo) => photo.primary)!.url,
         description: item.package.products.description,
       };
     }) || [];
@@ -56,7 +56,6 @@ const CartPage = async ({
   //   item.quantity,
   //   // Quantity of the item
   // ]);
-
 
   const totalAmount = packageData.reduce((acc, item) => {
     return acc + item.price * item.quantity;

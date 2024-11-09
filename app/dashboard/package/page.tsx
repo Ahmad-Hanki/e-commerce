@@ -13,10 +13,6 @@ import { PackageColumns } from "./_components/table/columns";
 const PackagePage = async () => {
   const packages = await getAllPackages();
 
-
-
-  
-
   return (
     <div className="mt-[88px] sm:mt-[10px] w-full flex-1">
       <Container>
@@ -24,7 +20,7 @@ const PackagePage = async () => {
           <Heading
             total={packages?.length}
             description={"Toplam Paketler"}
-            title={"Kategori Veri Veri"}
+            title={"Paketler Veri"}
           />
 
           <Link href={"/dashboard/package/add"}>

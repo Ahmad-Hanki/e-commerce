@@ -11,7 +11,12 @@ const getOnePackage = async (id: string): Promise<FormattedPackage> => {
           select: {
             id: true,
             description: true,
-            image: true,
+            Photos: {
+              select: {
+                url: true,
+                primary: true,
+              },
+            },
           },
         },
       },
@@ -31,7 +36,7 @@ const getOnePackage = async (id: string): Promise<FormattedPackage> => {
       oldPrice: pkg?.oldPrice,
       discount: pkg?.discount,
       piece: pkg!.Piece!,
-      productImage: pkg?.products.image,
+      productImage: pkg?.products.Photos.find((photo) => photo.primary)?.url,
       productId: pkg!.products.id,
       productDescription: pkg!.products.description,
     };

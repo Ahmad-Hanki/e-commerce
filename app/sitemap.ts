@@ -5,7 +5,6 @@ const weeklyFrequency = "weekly" as const; // Declare as a constant
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch dynamic product pages
   const dynamicProducts = await fetchProductPaths();
-  const categories = getCategoryPaths();
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
@@ -36,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Combine static and dynamic pages and return the final sitemap
-  return [...staticPages, ...dynamicProducts, ...categories];
+  return [...staticPages, ...dynamicProducts];
 }
 
 // Fetch product paths and return them for sitemap
@@ -48,28 +47,5 @@ async function fetchProductPaths() {
     lastModified: product.updatedAt, // Ensure this is a Date or a string that is valid
     changeFrequency: weeklyFrequency, // Explicitly declare the literal type
     priority: 0.9,
-  }));
-}
-// Fetch product paths and return them for sitemap
-function getCategoryPaths() {
-  const category = [
-    {
-      name: "Kozmetik",
-      id: 1,
-    },
-    {
-      name: "Elektronik",
-      id: 2,
-    },
-    {
-      name: "KisiselBakim",
-      id: 3,
-    },
-  ];
-
-  return category.map((cat) => ({
-    url: `https://acme.com/${cat.name}`,
-    changeFrequency: weeklyFrequency, // Explicitly declare the literal type
-    priority: 0.8,
   }));
 }

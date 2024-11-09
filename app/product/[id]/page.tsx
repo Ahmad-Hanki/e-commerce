@@ -5,10 +5,10 @@ import { Suspense } from "react";
 import Loading from "@/components/loading";
 import getProductWithPackage from "@/actions/getProductWithPackage";
 import CarouselComponent from "@/components/Carousel";
-import getProductsCategory from "@/actions/getProductDownerCategory";
 import createOrFindUser from "@/actions/createOrFindUser";
 import { notFound } from "next/navigation";
 import getProductBasedOnCategory from "@/actions/getProductBasedOnCategory";
+import getProductImages from "@/actions/getProductImages";
 
 // Define a type for the product with packages
 type ProductWithPackages = PrismaProduct & {
@@ -31,17 +31,17 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     return notFound();
   }
 
+  const images = await getProductImages(id);
+
+  if (!images) {
+    return notFound();
+  }
+
   const extractPackages = (product: ProductWithPackages | null): Package[] => {
     return product?.Packages || [];
   };
 
   const packages = extractPackages(product);
-
-  const images = {
-    image: product?.image ?? "",
-    image2: product?.image2 ?? "",
-    image3: product?.image3 ?? "",
-  };
 
   const productData = {
     id: product?.id ?? "",

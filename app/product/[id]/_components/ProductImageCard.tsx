@@ -1,43 +1,45 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Photo } from "@prisma/client";
 import Image from "next/image";
 import { useState } from "react";
 
 interface ProductImageCardProps {
-  image: string; // Main image, required
-  image2: string; // Optional images
-  image3: string; // Optional images
+  images: Photo[];
 }
 
-const ProductImageCard = ({ image, image2, image3 }: ProductImageCardProps) => {
-  const images = [image, image2, image3].filter(Boolean); // Filter out empty strings
-  const [ChosenImage, setChosenImage] = useState(images[0]);
+const ProductImageCard = ({ images }: ProductImageCardProps) => {
+  const [chosenImage, setChosenImage] = useState(
+    images.find((img) => img.primary)?.url ?? images[0]?.url
+  );
 
   return (
     <div className="w-full max-w-[40rem] mx-auto space-y-5">
       <div className="w-full min-h-[500px] relative overflow-hidden">
-        <Image
-          src={ChosenImage}
-          fill
-          className="object-contain object-center rounded-2xl"
-          alt="Product Image"
-        />
+        {chosenImage && (
+          <Image
+            src={chosenImage}
+            fill
+            className="object-contain object-center rounded-2xl"
+            alt="Product Image"
+          />
+        )}
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         {images.map((img, index) => (
           <button
             key={index}
-            onClick={() => setChosenImage(img)}
+            onClick={() => setChosenImage(img.url)}
             className={cn(
               "rounded-xl",
-              img === ChosenImage
+              img.url === chosenImage
                 ? "border-2 border-primary"
                 : "border-2 border-gray-300"
             )}
           >
             <Image
-              src={img}
+              src={img.url}
               width={100}
               height={100}
               className="object-contain object-center"

@@ -2,11 +2,11 @@ import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
 
 import newImage from "@/public/images/new.png";
-import { Product } from "@prisma/client";
 import Link from "next/link";
+import { FormattedProductWithPhoto } from "@/actions/getMostSailedProducts";
 
 interface ProductCardProps {
-  product: Product;
+  product: FormattedProductWithPhoto;
 }
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
@@ -19,7 +19,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <CardContent>
             <div className="relative w-full h-[300px] sm:h-[220px] aspect-square ">
               <Image
-                src={product.image}
+                src={product.primaryImageUrl}
                 fill
                 className="object-cover object-center transition-all duration-300 group-hover:scale-110 rounded-2xl"
                 alt={product.description}

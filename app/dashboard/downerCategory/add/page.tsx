@@ -1,5 +1,4 @@
 import DownerCategoryForm from "../DownerrCategoryForm";
-import UpperCategoryForm from "../DownerrCategoryForm";
 import getUpperCategories from "../upperCategory/_actions/getUpperCategories";
 
 const AddPage = async () => {

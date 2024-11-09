@@ -17,9 +17,14 @@ const getCartWithItems = async (kindeId: string) => {
               include: {
                 products: {
                   select: {
-                    image: true, // Select the first image from Product
                     description: true,
                     freeShipping: true,
+                    Photos:{
+                      select: {
+                        url: true,
+                        primary: true,
+                      }
+                    }
                   },
                 },
               },

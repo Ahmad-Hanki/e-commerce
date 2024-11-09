@@ -44,7 +44,7 @@ const editPackage = async ({
         productId,
         inStock,
         discount,
-        oldPrice,
+        oldPrice: oldPrice || null,
       },
     });
     return true;

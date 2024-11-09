@@ -1,129 +1,124 @@
+// getAllOrders.ts
+"use server";
+
 import prisma from "@/lib/db";
 import { OrderStatus } from "@prisma/client";
 
-type ProductInfo = {
-  description: string;
-  image: string;
-};
-
-export type OrderItemInfo = {
-  packageId: string;
+export interface FormattedOrderItem {
+  id: string;
   quantity: number;
   price: number;
-  piece: number; 
+  pieces: number;
+  discount: number | null;
+  product: {
+    id: string;
+    description: string;
+    price: number;
+    oldPrice: number | null;
+    inStock: boolean;
+    primaryImageUrl: string;
+  };
+}
 
-  discount?: number | null;
-  product: ProductInfo;
-};
-
-export type OrderFormatType = {
+export interface FormattedOrder {
   id: string;
   status: OrderStatus;
   total: number;
-  shippingFee: number | null;
+  shippingFee: number;
   discount: number | null;
   freeShipping: boolean;
-  billingAddress?: string | null;
-  paymentMethod?: string | null;
+  billingAddress: string | null;
+  paymentMethod: string | null;
   createdAt: Date;
   updatedAt: Date;
-  orderItems: OrderItemInfo[];
-  userData: {
+
+  // Optional fields
+  userAddress: {
     fullName: string;
     phone: string;
     email: string;
-    adress: string;
+    address: string;
+    vkn?: string;
+    vergiDairesi?: string;
+    firmaAdi?: string;
     adressPlace: "individual" | "company";
-    firmaAdi?: string | null;
-    vkn?: string | null;
-    vergiDairesi?: string | null;
-    Efatura?: boolean | null;
+    eFatura?: boolean;
   };
-};
 
-const getAllOrders = async (
-  status: OrderStatus,
-  userId?: string
-): Promise<OrderFormatType[]> => {
+  orderItems: FormattedOrderItem[];
+}
+
+const getAllOrders = async (status: OrderStatus): Promise<FormattedOrder[]> => {
   try {
     const orders = await prisma.order.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
       where: {
         status,
-        userId,
       },
       include: {
+        address: true, // Includes user address data
         orderItems: {
           include: {
             package: {
               include: {
                 products: {
-                  select: {
-                    description: true,
-                    image: true,
+                  include: {
+                    Photos: {
+                      where: { primary: true },
+                      select: { url: true }, // Select primary image URL only
+                    },
                   },
                 },
               },
             },
           },
         },
-        address: { // Fetch userData (address)
-          select: {
-            fullName: true,
-            phone: true,
-            email: true,
-            adress: true,
-            adressPlace: true,
-            firmaAdi: true,
-            vkn: true,
-            vergiDairesi: true,
-            Efatura: true,
-          },
-        },
       },
     });
 
-    const formattedOrders: OrderFormatType[] = orders.map((order) => ({
-      id: order.id,
+    // Format the fetched orders to match FormattedOrder type
+    return orders.map((order) => ({
       status: order.status,
+      id: order.id,
+
       total: order.total,
-      shippingFee: order.shippingFee,
-      discount: order.discount,
+      shippingFee: order.shippingFee ?? 0.0,
+      discount: order.discount ?? null,
       freeShipping: order.freeShipping,
-      billingAddress: order.billingAddress,
-      paymentMethod: order.paymentMethod,
+      billingAddress: order.billingAddress ?? null,
+      paymentMethod: order.paymentMethod ?? null,
       createdAt: order.createdAt,
       updatedAt: order.updatedAt,
-      orderItems: order.orderItems.map((orderItem) => ({
-        packageId: orderItem.packageId,
-        quantity: orderItem.quantity,
-        price: orderItem.price,
-        discount: orderItem.discount,
-        piece: orderItem.package.Piece, 
-        product: {
-          description: orderItem.package.products.description,
-          image: orderItem.package.products.image,
-        },
-      })),
-      userData: {
+      userAddress: {
         fullName: order.address.fullName,
         phone: order.address.phone,
         email: order.address.email,
-        adress: order.address.adress,
+        address: order.address.adress,
         adressPlace: order.address.adressPlace,
-        firmaAdi: order.address.firmaAdi,
-        vkn: order.address.vkn,
-        vergiDairesi: order.address.vergiDairesi,
-        Efatura: order.address.Efatura,
+        vkn: order.address.vkn ?? undefined, // Convert null to undefined
+        vergiDairesi: order.address.vergiDairesi ?? undefined, // Convert null to undefined
+        firmaAdi: order.address.firmaAdi ?? undefined, // Convert null to undefined
+        eFatura: order.address.Efatura ?? false,
       },
+      orderItems: order.orderItems.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+        price: item.price,
+        pieces: item.package.Piece,
+        discount: item.discount ?? null,
+        product: {
+          id: item.package.products.id,
+          description: item.package.products.description,
+          price: item.package.products.price,
+          oldPrice: item.package.products.oldPrice ?? null,
+          inStock: item.package.products.inStock,
+          primaryImageUrl: item.package.products.Photos[0]?.url || "", // Primary image URL
+          pieces: item.package.Piece, // Access Piece from Package
+        },
+      })),
     }));
-
-    return formattedOrders;
   } catch (error) {
     console.error("Error fetching orders:", error);
-    throw new Error("Failed to fetch orders.");
+    return [];
   }
 };
 

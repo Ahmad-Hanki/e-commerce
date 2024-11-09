@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-import updateUpperCategory from "./_actions/updateUpperCategory";
 import addDownerCategory from "./_actions/addDownerCategory";
 import editDownerCategory from "./_actions/editDownerCategory";
 import { FormattedDownerCategoriesType } from "./_actions/getDownerCategories";

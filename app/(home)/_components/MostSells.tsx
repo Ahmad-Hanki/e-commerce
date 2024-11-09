@@ -1,9 +1,9 @@
+import { FormattedProductWithPhoto } from "@/actions/getMostSailedProducts";
 import Container from "@/components/Container";
 import ProductCard from "@/components/ProductCard";
-import { Product } from "@prisma/client";
 
 interface MostSellsProps {
-  products: Product[];
+  products: FormattedProductWithPhoto[];
 }
 
 const MostSells = ({ products }: MostSellsProps) => {

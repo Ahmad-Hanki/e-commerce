@@ -22,7 +22,7 @@ import UploadThingButton from "@/components/UploadThingButton";
 import { Textarea } from "@/components/ui/textarea";
 import addProduct from "./_actions/addProduct";
 import updateProduct from "./_actions/updateProduct";
-import { TrashIcon } from "lucide-react";
+import { Star, TrashIcon } from "lucide-react";
 import ChooseUpperCategory from "../downerCategory/_components/choseUpperCategory";
 import { UpperCategoryWithDowner } from "./_actions/getUpperCategoriesWithRelatedDowner";
 
@@ -36,6 +36,32 @@ const ProductForm = ({
   UpperCategoryWithDowner,
 }: ProductFormProps) => {
   const router = useRouter();
+  const [image, setImage] = useState<
+    {
+      url: string;
+      primary: boolean;
+    }[] // Initial images state (array)
+  >(
+    initialData?.photos.map((photo) => ({
+      url: photo.url,
+      primary: photo.primary,
+    })) || []
+  );
+
+  const handleImageDelete = (imageUrl: string) => {
+    setImage((prevImages) => prevImages.filter((img) => img.url !== imageUrl));
+  };
+
+  const handleImageSetPrimary = (index: number) => {
+    setImage((prevImages) => {
+      // Set the clicked image as primary and make all others not primary
+      const updatedImages = prevImages.map((img, i) => ({
+        ...img,
+        primary: i === index, // Set primary for the clicked image only
+      }));
+      return updatedImages;
+    });
+  };
 
   // State variables
   const [inStock, setInStock] = useState<boolean>(initialData?.inStock || true);
@@ -55,10 +81,6 @@ const ProductForm = ({
     name: initialData?.category.name ?? "",
     upperCategoryId: initialData?.upperCategory.id ?? "",
   });
-
-  const [image, setImage] = useState<string>(initialData?.image || "");
-  const [image2, setImage2] = useState<string>(initialData?.image2 || "");
-  const [image3, setImage3] = useState<string>(initialData?.image3 || "");
 
   useEffect(() => {
     setChosenCategory(null);
@@ -95,8 +117,7 @@ const ProductForm = ({
       const response = await updateProduct({
         id: initialData.id,
         extraInfo,
-        image2,
-        image3,
+        images: image,
         description,
         price: Number(price),
         oldPrice: Number(oldPrice),
@@ -107,8 +128,6 @@ const ProductForm = ({
         New,
         freeShipping,
         mostSale,
-
-        image,
       });
       if (response) {
         toast.success("Başarıyla Güncellendi");
@@ -128,12 +147,10 @@ const ProductForm = ({
       New,
       freeShipping,
       mostSale,
-      image,
-      image2,
-      image3,
       extraInfo,
       downerCategoryId: chosenCategory.id,
       upperCategoryId: chosenUpperCategory.id,
+      images: image,
     });
     if (response) {
       toast.success("Başarıyla Eklendi");
@@ -251,18 +268,34 @@ const ProductForm = ({
       {/* Upload Images */}
       <div className="flex flex-col gap-5">
         <Label>Main Product Image (Required)</Label>
-        {image && (
-          <div className="relative aspect-square w-[250px] overflow-hidden">
-            <Image
-              src={image}
-              alt="Product Image"
-              fill
-              className="rounded-md object-cover object-center"
-            />
-            <TrashIcon
-              onClick={() => setImage("")}
-              className="absolute top-0 right-0 cursor-pointer h-8 w-8 text-red-500"
-            />
+        {image.length > 0 && (
+          <div className="flex flex-wrap gap-3">
+            {image.map((img, index) => (
+              <div
+                key={index}
+                className="relative aspect-square w-[250px] overflow-hidden"
+                onClick={() => handleImageSetPrimary(index)}
+              >
+                <Image
+                  src={img.url}
+                  alt={`Product Image ${index + 1}`}
+                  fill
+                  className="rounded-md object-cover object-center"
+                />
+                <TrashIcon
+                  onClick={() => handleImageDelete(img.url)}
+                  className="absolute top-0 right-0 cursor-pointer h-8 w-8 text-red-500"
+                />
+
+                {img.primary && (
+                  <span>
+                    {
+                      <Star className="absolute bottom-0 left-0 bg-primary text-secondary-foreground p-1 text-xs" />
+                    }
+                  </span>
+                )}
+              </div>
+            ))}
           </div>
         )}
         <UploadThingButton setImage={setImage} />

@@ -1,15 +1,15 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { OrderFormatType } from "../_actions/getAllOrders";
+import { FormattedOrder } from "../_actions/getAllOrders";
 import Image from "next/image";
 import { getCurrentYMD } from "@/utils/getCurrentYMD";
 import { StatusRadio } from "./StatusRadio";
 
-export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
+export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
   {
     accessorKey: "id",
-    header: () => <div className="text-start w-full  min-w-[120px]">Id</div>,
+    header: () => <div className="text-start w-full min-w-[120px]">Id</div>,
   },
 
   {
@@ -17,7 +17,6 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
     header: () => (
       <div className="text-start max-w-[250px] min-w-[120px]">Resim</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
       return (
@@ -25,22 +24,22 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
           {data.orderItems.map((item, ix) => (
             <Image
               key={ix}
-              src={item.product.image}
-              width={70}
-              height={70}
-              alt="product"
+              src={item.product.primaryImageUrl}
+              width={50}
+              height={50}
+              alt="Product Image"
             />
           ))}
         </div>
       );
     },
   },
+
   {
     id: "description",
     header: () => (
-      <div className="text-start max-w-[250px] min-w-[120px] ">Tanım</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Tanım</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
       return (
@@ -52,6 +51,7 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
       );
     },
   },
+
   {
     id: "quantity",
     header: () => (
@@ -59,7 +59,6 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
         Kaç tane Paket
       </div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
       return (
@@ -71,31 +70,31 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
       );
     },
   },
+
   {
-    id: "Pieace",
+    id: "piece",
     header: () => (
       <div className="text-start max-w-[250px] min-w-[120px]">
         Pakette Parça sayısı:
       </div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
       return (
         <div className="flex flex-col gap-3">
           {data.orderItems.map((item, ix) => (
-            <p key={ix}>{item.piece}</p>
+            <p key={ix}>{item.pieces}</p> // Corrected to access the 'pieces' property
           ))}
         </div>
       );
     },
   },
+
   {
     id: "Price",
     header: () => (
       <div className="text-start max-w-[250px] min-w-[120px]">Fiyat</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
       return (
@@ -113,128 +112,124 @@ export const OrdersColumns: ColumnDef<OrderFormatType>[] = [
   {
     accessorKey: "total",
     header: () => (
-      <div className="text-start w-full  min-w-[120px]">Toplam Fiyat</div>
+      <div className="text-start w-full min-w-[120px]">Toplam Fiyat</div>
     ),
   },
+
   {
     accessorKey: "status",
-    header: () => <div className="text-start w-full  min-w-[120px]">Durum</div>,
+    header: () => <div className="text-start w-full min-w-[120px]">Durum</div>,
   },
+
   {
     id: "date",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Tarih</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Tarih</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
       return <div>{getCurrentYMD(data.createdAt)}</div>;
     },
   },
+
   {
     id: "address",
-    accessorKey: "address",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Adres</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Adres</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return <div>{data.userData.adress}</div>;
+      return <div>{data.userAddress.address}</div>; // Corrected to match `userAddress`
     },
   },
+
   {
     id: "phone",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Telefon</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Telefon</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return <div>{data.userData.phone}</div>;
+      return <div>{data.userAddress.phone}</div>;
     },
   },
+
   {
     id: "name",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">İsim</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">İsim</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return <div>{data.userData.fullName}</div>;
+      return <div>{data.userAddress.fullName}</div>;
     },
   },
+
   {
     id: "actions",
     header: () => (
-      <div className="text-start w-full  min-w-[120px]">Verileri Yönet</div>
+      <div className="text-start w-full min-w-[120px]">Verileri Yönet</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return (
-        <div>
-          <StatusRadio orderId={data.id} statusOrder={data.status} />
-        </div>
-      );
+      return <StatusRadio orderId={data.id} statusOrder={data.status} />;
     },
   },
+
   {
     id: "placeName",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Yer adı</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Yer adı</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return <div>{data.userData.adressPlace}</div>;
+      return <div>{data.userAddress.adressPlace}</div>;
     },
   },
+
   {
     id: "companyName",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">Firma Adı</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Firma Adı</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return <div>{data.userData.firmaAdi}</div>;
+      return <div>{data.userAddress.firmaAdi}</div>;
     },
   },
+
   {
     id: "vkn",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">VKN</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">VKN</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return <div>{data.userData.vkn}</div>;
+      return <div>{data.userAddress.vkn}</div>;
     },
   },
+
   {
     id: "vergiDairesi",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">
+      <div className="text-start max-w-[250px] min-w-[120px]">
         Vergi Dairesi
       </div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return <div>{data.userData.vergiDairesi}</div>;
+      return <div>{data.userAddress.vergiDairesi}</div>;
     },
   },
+
   {
     id: "Efatura",
     header: () => (
-      <div className="text-start max-w-[250px]  min-w-[120px]">E Fatura</div>
+      <div className="text-start max-w-[250px] min-w-[120px]">E Fatura</div>
     ),
-
     cell: ({ row }) => {
       const data = row.original;
-      return <div>{data.userData.Efatura}</div>;
+      return <div>{data.userAddress.eFatura ? "Yes" : "No"}</div>; // Boolean check
     },
   },
 ];

@@ -1,4 +1,3 @@
-import getCategories from "@/actions/getCategories";
 import ProductForm from "../ProductForm";
 import getUpperCategoriesWithRelatedDowner from "../_actions/getUpperCategoriesWithRelatedDowner";
 

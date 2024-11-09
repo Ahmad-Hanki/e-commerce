@@ -8,7 +8,6 @@ import Link from "next/link";
 import { DataTable } from "../_components/DataTable";
 import { categoryColumns } from "./_components/table/columns";
 import { Plus } from "lucide-react";
-import getCategories from "@/actions/getCategories";
 import getUpperCategories from "./_actions/getUpperCategories";
 
 const CategoryPage = async () => {

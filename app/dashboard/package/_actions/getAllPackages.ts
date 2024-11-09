@@ -1,7 +1,6 @@
 "use server";
 import prisma from "@/lib/db";
 
-
 export type FormattedPackage = {
   id: string;
   price: number;
@@ -23,7 +22,12 @@ const getAllPackages = async (): Promise<FormattedPackage[]> => {
           select: {
             id: true,
             description: true,
-            image: true,
+            Photos: {
+              select: {
+                url: true,
+                primary: true,
+              },
+            },
           },
         },
       },
@@ -34,6 +38,8 @@ const getAllPackages = async (): Promise<FormattedPackage[]> => {
       },
     });
 
+    console.log(packages);
+
     // Formatting the data to match the Package type
     return packages.map((pkg) => ({
       id: pkg.id,
@@ -42,7 +48,7 @@ const getAllPackages = async (): Promise<FormattedPackage[]> => {
       oldPrice: pkg.oldPrice,
       discount: pkg.discount,
       piece: pkg.Piece,
-      productImage: pkg.products.image,
+      productImage: pkg.products.Photos.find((photo) => photo.primary)?.url,
       productId: pkg.products.id,
       productDescription: pkg.products.description,
     }));

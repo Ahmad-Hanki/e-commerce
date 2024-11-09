@@ -13,8 +13,9 @@ const auth = async () => {
 };
 
 export const ourFileRouter = {
-  imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
-    .middleware(async () => { // Removed req from here as it's not used
+  imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 10 } })
+    .middleware(async () => {
+      // Removed req from here as it's not used
       const user = await auth(); // Call auth without req
 
       if (!user) throw new UploadThingError("Unauthorized");

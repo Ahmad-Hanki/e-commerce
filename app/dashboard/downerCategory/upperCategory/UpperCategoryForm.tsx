@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-import updateCategory from "./_actions/updateUpperCategory";
 import addCategory from "./_actions/addUpperCategory";
 import { UpperCategory } from "@prisma/client";
 import updateUpperCategory from "./_actions/updateUpperCategory";

@@ -9,15 +9,15 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Container from "@/components/Container";
-import { Product } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import { FormattedProductWithPhoto } from "@/actions/getMostSailedProducts";
 
 export default function CarouselComponent({
   products,
   like,
 }: {
-  products: Product[];
+  products: FormattedProductWithPhoto[];
   like?: boolean;
 }) {
   return (
@@ -40,7 +40,7 @@ export default function CarouselComponent({
                   <Card className="px-4 py-3">
                     <CardContent className="aspect-square rounded-2xl relative overflow-hidden p-0">
                       <Image
-                        src={product.image}
+                        src={product.primaryImageUrl}
                         fill
                         className="object-cover object-center rounded-2xl"
                         alt={product.description}

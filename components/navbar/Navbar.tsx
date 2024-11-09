@@ -6,7 +6,6 @@ import CategoryBar from "./CategoryBar";
 import IsAuthenticated from "@/actions/isAuthenticated";
 import getKindeId from "@/actions/getKindeId";
 import getCartLength from "@/actions/getCartLength";
-import { UpperCategory } from "@prisma/client";
 import getUpperCategories from "@/app/dashboard/upperCategory/_actions/getUpperCategories";
 
 export const admins = ["itxti909@gmail.com", "kocticarettrendyol@gmail.com"];
