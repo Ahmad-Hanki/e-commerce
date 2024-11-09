@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FormattedProduct } from "./_actions/getAllProducts";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Category, UpperCategory } from "@prisma/client";
+import { DownerCategory, UpperCategory } from "@prisma/client";
 import { ChooseCategory } from "./_components/chooseCategory";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
@@ -23,15 +23,21 @@ import { Textarea } from "@/components/ui/textarea";
 import addProduct from "./_actions/addProduct";
 import updateProduct from "./_actions/updateProduct";
 import { TrashIcon } from "lucide-react";
-import { ChooseUpperCategory } from "./_components/ChooseUpperCategory";
+import ChooseUpperCategory from "../downerCategory/_components/choseUpperCategory";
+import { UpperCategoryWithDowner } from "./_actions/getUpperCategoriesWithRelatedDowner";
 
 interface ProductFormProps {
   initialData?: FormattedProduct;
-  categoryData: Category[];
+  UpperCategoryWithDowner: UpperCategoryWithDowner[];
 }
 
-const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
+const ProductForm = ({
+  initialData,
+  UpperCategoryWithDowner,
+}: ProductFormProps) => {
   const router = useRouter();
+
+  // State variables
   const [inStock, setInStock] = useState<boolean>(initialData?.inStock || true);
   const [New, setNew] = useState<boolean>(initialData?.new || true);
   const [freeShipping, setFreeShipping] = useState<boolean>(
@@ -41,18 +47,30 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
     initialData?.mostSale || false
   );
 
-  // State for chosen category
-  const [chosenCategory, setChosenCategory] = useState<Category | null>(
-    initialData?.category || null
-  );
-
   const [chosenUpperCategory, setChosenUpperCategory] =
     useState<UpperCategory | null>(initialData?.upperCategory || null);
-  //images
+
+  const [chosenCategory, setChosenCategory] = useState<DownerCategory | null>({
+    id: initialData?.category.id ?? "",
+    name: initialData?.category.name ?? "",
+    upperCategoryId: initialData?.upperCategory.id ?? "",
+  });
 
   const [image, setImage] = useState<string>(initialData?.image || "");
   const [image2, setImage2] = useState<string>(initialData?.image2 || "");
   const [image3, setImage3] = useState<string>(initialData?.image3 || "");
+
+  useEffect(() => {
+    setChosenCategory(null);
+  }, [chosenUpperCategory]);
+
+  const filteredDownerCategories = useMemo(() => {
+    if (!chosenUpperCategory) return [];
+    const selectedUpper = UpperCategoryWithDowner.find(
+      (upper) => upper.id === chosenUpperCategory.id
+    );
+    return selectedUpper ? selectedUpper.DownerCategory : [];
+  }, [chosenUpperCategory, UpperCategoryWithDowner]);
 
   const ProductSumption = async (formData: FormData) => {
     const description = formData.get("description") as string;
@@ -73,7 +91,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
     }
 
     if (initialData) {
-      // Update
+      // Update product
       const response = await updateProduct({
         id: initialData.id,
         extraInfo,
@@ -81,14 +99,15 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
         image3,
         description,
         price: Number(price),
-        upperCategory: chosenUpperCategory,
         oldPrice: Number(oldPrice),
+        downerCategoryId: chosenCategory.id,
+        upperCategoryId: chosenUpperCategory.id,
         rating: Number(rating),
         inStock,
         New,
         freeShipping,
         mostSale,
-        categoryId: chosenCategory?.id,
+
         image,
       });
       if (response) {
@@ -99,10 +118,9 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       toast.error("Bir şeyler ters gitti");
       return;
     }
-    // Add
+    // Add product
     const response = await addProduct({
       description,
-      upperCategory: chosenUpperCategory,
       price: Number(price),
       oldPrice: Number(oldPrice),
       rating: Number(rating),
@@ -110,11 +128,12 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       New,
       freeShipping,
       mostSale,
-      categoryId: chosenCategory?.id,
       image,
       image2,
       image3,
       extraInfo,
+      downerCategoryId: chosenCategory.id,
+      upperCategoryId: chosenUpperCategory.id,
     });
     if (response) {
       toast.success("Başarıyla Eklendi");
@@ -122,7 +141,6 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       return;
     }
     toast.error("Bir şeyler ters gitti");
-    return;
   };
 
   return (
@@ -130,23 +148,28 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
       action={ProductSumption}
       className="space-y-6 max-w-sm mx-auto w-full"
     >
-      <h1 className="text-primary text-3xl text-center font-semibold">Ürün Ekle</h1>
+      <h1 className="text-primary text-3xl text-center font-semibold">
+        Ürün Ekle
+      </h1>
 
+      {/* Product description */}
       <div className="space-y-4">
         <Textarea
-          name={`description`}
-          placeholder={"Ürün Açıklaması (Gerekli)"}
+          name="description"
+          placeholder="Ürün Açıklaması (Gerekli)"
           defaultValue={initialData?.description ?? ""}
           required
           className="w-[300px]"
           rows={2}
         />
       </div>
+
+      {/* Pricing fields */}
       <div className="space-y-4 flex gap-3">
         <Input
-          name={`price`}
+          name="price"
           step="0.01"
-          placeholder={"Ürün Fiyatı (Tek) (Gerekli)"}
+          placeholder="Ürün Fiyatı (Tek) (Gerekli)"
           defaultValue={initialData?.price}
           required
           type="number"
@@ -155,55 +178,25 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
           className="w-[300px]"
         />
       </div>
+      {/* Old Price */}
       <div>
-        {initialData?.oldPrice ? (
-          <Input
-            step="0.01"
-            name={`oldPrice`}
-            placeholder={"Eski Fiyat (tek)"}
-            defaultValue={initialData.oldPrice}
-            type="number"
-            max={100000}
-            min={1}
-            className="w-[300px]"
-          />
-        ) : (
-          <Input
-            step="0.01"
-            name={`oldPrice`}
-            placeholder={"Eski Fiyat (tek)"}
-            type="number"
-            max={100000}
-            min={1}
-            className="w-[300px]"
-          />
-        )}
-      </div>
-      <div className="space-y-4 flex gap-3">
         <Input
-          name={`rating`}
-          placeholder={"Ürün Derecelendirmesi"}
-          defaultValue={initialData?.rating ?? 5}
+          step="0.01"
+          name="oldPrice"
+          placeholder="Eski Fiyat (tek)"
+          defaultValue={initialData?.oldPrice ?? ""}
           type="number"
-          max={5}
+          max={100000}
           min={1}
           className="w-[300px]"
         />
       </div>
-      <div className="space-y-4 flex gap-3">
-        <Textarea
-          name={`extraInfo`}
-          placeholder={"Ek Bilgiler"}
-          defaultValue={initialData?.extraInfo ?? ""}
-          rows={5}
-          className="w-[300px]"
-        />
-      </div>
+
       <div className="space-y-4 flex gap-3">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button className="w-[300px]" variant="outline">
-            Seç
+              Seç
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
@@ -213,7 +206,7 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
               checked={inStock}
               onCheckedChange={setInStock}
             >
-             Stokta
+              Stokta
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem checked={New} onCheckedChange={setNew}>
               Yeni
@@ -234,23 +227,30 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
         </DropdownMenu>
       </div>
 
+      {/* Upper Category Selection */}
       <div>
         <ChooseUpperCategory
           chosenUpperCategory={chosenUpperCategory}
           setChosenUpperCategory={setChosenUpperCategory}
+          UpperCategoryData={UpperCategoryWithDowner.map(({ id, name }) => ({
+            id,
+            name,
+          }))}
         />
       </div>
 
+      {/* Downer Category Selection */}
       <div>
         <ChooseCategory
-          categoryData={categoryData}
+          categoryData={filteredDownerCategories}
           chosenCategory={chosenCategory}
           setChosenCategory={setChosenCategory}
         />
       </div>
 
+      {/* Upload Images */}
       <div className="flex flex-col gap-5">
-        <Label>{`Main Product Image (Required)`}</Label>
+        <Label>Main Product Image (Required)</Label>
         {image && (
           <div className="relative aspect-square w-[250px] overflow-hidden">
             <Image
@@ -259,7 +259,6 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
               fill
               className="rounded-md object-cover object-center"
             />
-
             <TrashIcon
               onClick={() => setImage("")}
               className="absolute top-0 right-0 cursor-pointer h-8 w-8 text-red-500"
@@ -268,42 +267,8 @@ const ProductForm = ({ initialData, categoryData }: ProductFormProps) => {
         )}
         <UploadThingButton setImage={setImage} />
       </div>
-      <div className="flex flex-col gap-5">
-        <Label>{`Second Product Image (Optional)`}</Label>
-        {image2 && (
-          <div className="relative aspect-square w-[250px] overflow-hidden">
-            <Image
-              src={image2}
-              alt="Product Image"
-              fill
-              className="rounded-md object-cover object-center"
-            />
-            <TrashIcon
-              onClick={() => setImage2("")}
-              className="absolute top-0 right-0 cursor-pointer h-8 w-8 text-red-500"
-            />
-          </div>
-        )}
-        <UploadThingButton setImage={setImage2} />
-      </div>
-      <div className="flex flex-col gap-5">
-        <Label>{`Third Product Images (Optional)`}</Label>
-        {image3 && (
-          <div className="relative aspect-square w-[250px] overflow-hidden">
-            <Image
-              src={image3}
-              alt="Product Image"
-              fill
-              className="rounded-md object-cover object-center"
-            />
-            <TrashIcon
-              onClick={() => setImage3("")}
-              className="absolute top-0 right-0 cursor-pointer h-8 w-8 text-red-500"
-            />
-          </div>
-        )}
-        <UploadThingButton setImage={setImage3} />
-      </div>
+
+      {/* Submit Button */}
       <div className="flex flex-col gap-3">
         <SubmitButton submitting="Adding" submit="Add" className="p-3" />
       </div>

@@ -5,15 +5,16 @@ import { Suspense } from "react";
 import Loading from "@/components/loading";
 import getProductWithPackage from "@/actions/getProductWithPackage";
 import CarouselComponent from "@/components/Carousel";
-import getProductsCategory from "@/actions/getProductCategory";
+import getProductsCategory from "@/actions/getProductDownerCategory";
 import createOrFindUser from "@/actions/createOrFindUser";
+import { notFound } from "next/navigation";
+import getProductBasedOnCategory from "@/actions/getProductBasedOnCategory";
 
 // Define a type for the product with packages
 type ProductWithPackages = PrismaProduct & {
   Packages: Package[];
   categoryId: string;
 };
-
 
 const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -23,8 +24,12 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (isLoggedIn) {
     await createOrFindUser();
   }
-  
+
   const product = await getProductWithPackage(id);
+
+  if (!product) {
+    return notFound();
+  }
 
   const extractPackages = (product: ProductWithPackages | null): Package[] => {
     return product?.Packages || [];
@@ -45,9 +50,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     extraInfo: product?.extraInfo ?? "",
   };
 
-  const productsCategory = product?.categoryId
-    ? await getProductsCategory(product.categoryId)
-    : { products: [] };
+  const productsCategory = await getProductBasedOnCategory(product.categoryId);
 
   return (
     <div>
@@ -61,10 +64,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
       </Suspense>
 
       <Suspense fallback={<Loading />}>
-        <CarouselComponent
-          like={true}
-          products={productsCategory.products ?? []}
-        />
+        <CarouselComponent like={true} products={productsCategory} />
       </Suspense>
     </div>
   );

@@ -4,14 +4,14 @@ import { Package, Product as PrismaProduct } from "@prisma/client";
 
 type ProductWithPackages = PrismaProduct & {
   Packages: Package[];
-  categoryId: string;
+  categoryId: string; // The categoryId is coming from upperCategory.id
 };
 
 const getProductWithPackage = async (
   productId: string
 ): Promise<ProductWithPackages | null> => {
   try {
-    const product: ProductWithPackages | null = await prisma.product.findFirst({
+    const product = await prisma.product.findFirst({
       where: {
         id: productId,
       },
@@ -27,7 +27,7 @@ const getProductWithPackage = async (
             productId: true,
           },
         },
-        Category: {
+        upperCategory: {
           select: {
             id: true,
           },
@@ -35,9 +35,15 @@ const getProductWithPackage = async (
       },
     });
 
-   
+    // If the product is found, map upperCategory.id to categoryId
+    if (product) {
+      return {
+        ...product,
+        categoryId: product.upperCategory?.id || "",
+      };
+    }
 
-    return product;
+    return null;
   } catch (error) {
     console.log(error);
     return null;

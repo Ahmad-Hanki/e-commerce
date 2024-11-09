@@ -20,10 +20,10 @@ const MobileCategories = ({ categories }: { categories: UpperCategory[] }) => {
           <AccordionTrigger className="text-3xl">Ürünlerimiz</AccordionTrigger>
           <AccordionContent className="pl-5">
             <div className="flex flex-col gap-4">
-              {categories.map((category) => (
+              {categories?.map((category) => (
                 <Link
-                  key={category}
-                  href={`/category/${category}`}
+                  key={category.id}
+                  href={`/category/${category.id}`}
                   className={cn(
                     "cursor-pointer text-3xl lowercase first-letter:uppercase",
                     pathname == `category/${category}`
@@ -31,7 +31,7 @@ const MobileCategories = ({ categories }: { categories: UpperCategory[] }) => {
                       : "text-gray-600"
                   )}
                 >
-                  {category == "KisiselBakim" ? "Kişisel Bakım" : category}
+                  {category.name}
                 </Link>
               ))}
             </div>

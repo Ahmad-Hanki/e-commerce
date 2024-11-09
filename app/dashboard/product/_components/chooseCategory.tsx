@@ -10,12 +10,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Category } from "@prisma/client";
+import { DownerCategory } from "@prisma/client";
+import { Dispatch } from "react";
 
 interface ChooseCategoryProps {
-  categoryData: Category[];
-  chosenCategory: Category | null;
-  setChosenCategory: React.Dispatch<React.SetStateAction<Category | null>>;
+  categoryData: DownerCategory[];
+  chosenCategory: DownerCategory | null;
+  setChosenCategory: Dispatch<React.SetStateAction<DownerCategory | null>>;
 }
 
 export function ChooseCategory({

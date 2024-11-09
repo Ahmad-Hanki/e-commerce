@@ -8,8 +8,8 @@ interface AddProduct {
   price: number;
   description: string;
   image: string;
-  upperCategory: UpperCategory;
-  categoryId: string;
+  upperCategoryId: string;
+  downerCategoryId: string;
 
   image2?: string;
   image3?: string;
@@ -29,8 +29,8 @@ const addProduct = async ({
   image,
   image2,
   image3,
-  categoryId,
-  upperCategory,
+  downerCategoryId,
+  upperCategoryId,
 
   oldPrice,
   rating,
@@ -41,7 +41,7 @@ const addProduct = async ({
   extraInfo,
 }: AddProduct) => {
   try {
-    if (!price || !description || !image || !categoryId || !upperCategory) {
+    if (!price || !description || !image || !upperCategoryId || !downerCategoryId) {
       return false;
     }
 
@@ -61,10 +61,9 @@ const addProduct = async ({
       image,
       image2,
       image3,
-      categoryId,
+      downerCategoryId,
       oldPrice,
       rating,
-
       inStock,
       New,
       freeShipping,
@@ -72,16 +71,17 @@ const addProduct = async ({
       extraInfo,
       discount
     );
+
     await prisma.product.create({
       data: {
-        upperCategory,
+        upperCategoryId,
+        downerCategoryId,
         price,
         description,
         image,
         image2,
         image3,
-        categoryId,
-        oldPrice:oldPrice == 0 ? null : oldPrice,
+        oldPrice: oldPrice == 0 ? null : oldPrice,
         rating,
         inStock,
         new: New,
@@ -94,8 +94,7 @@ const addProduct = async ({
 
     return true;
   } catch (error) {
-    console.log(error);
-    console.log(error);
+    console.error("Error creating product: ", error);
     return false;
   }
 };

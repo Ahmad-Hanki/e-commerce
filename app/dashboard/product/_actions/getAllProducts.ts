@@ -15,11 +15,11 @@ export type FormattedProduct = {
   oldPrice?: number | null;
   discount?: number | null;
   new?: boolean | null;
-  upperCategory: UpperCategory
+  upperCategory: UpperCategory;
   freeShipping?: boolean | null;
   extraInfo?: string | null;
   rating?: number | null;
-  mostSale?: boolean | null; // Allow null
+  mostSale?: boolean | null;
   createdAt: Date;
   updatedAt: Date;
   category: {
@@ -32,7 +32,8 @@ const getAllProducts = async (): Promise<FormattedProduct[]> => {
   try {
     const products = await prisma.product.findMany({
       include: {
-        Category: {
+        upperCategory: true, // Includes all fields from UpperCategory model
+        downerCategory: {
           select: {
             name: true,
             id: true,
@@ -43,7 +44,6 @@ const getAllProducts = async (): Promise<FormattedProduct[]> => {
 
     const formattedProducts: FormattedProduct[] = products.map((product) => ({
       id: product.id,
-      upperCategory: product.upperCategory,
       description: product.description,
       price: product.price,
       inStock: product.inStock,
@@ -53,16 +53,16 @@ const getAllProducts = async (): Promise<FormattedProduct[]> => {
       oldPrice: product.oldPrice,
       discount: product.discount,
       new: product.new,
+      upperCategory: product.upperCategory,
       freeShipping: product.freeShipping,
       extraInfo: product.extraInfo,
       rating: product.rating,
+      mostSale: product.mostSale,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
-      mostSale: product.mostSale,
-
       category: {
-        name: product.Category.name,
-        id: product.Category.id,
+        name: product.downerCategory.name,
+        id: product.downerCategory.id,
       },
     }));
 

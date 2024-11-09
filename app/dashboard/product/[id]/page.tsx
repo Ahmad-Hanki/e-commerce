@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import ProductForm from "../ProductForm";
 import getOneProduct from "../_actions/getOneProduct";
-import getCategories from "@/actions/getCategories";
+import getUpperCategoriesWithRelatedDowner from "../_actions/getUpperCategoriesWithRelatedDowner";
 
 const EditCategoryPage = async ({
   params,
@@ -9,10 +9,15 @@ const EditCategoryPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
+
+  const upperCategoriesWithDowner = await getUpperCategoriesWithRelatedDowner();
+
+
+ 
   if (!id) {
     notFound();
   }
-  const categories = await getCategories();
+  
   const product = await getOneProduct(id);
 
   if (!product) {
@@ -22,7 +27,7 @@ const EditCategoryPage = async ({
   return (
     <div className="py-10 min-h-[60vh] grid place-content-center space-y-5">
       <h1 className="text-3xl font-semibold">Kategori Verilerini Düzenle</h1>
-      <ProductForm categoryData={categories} initialData={product} />
+      <ProductForm  UpperCategoryWithDowner={upperCategoriesWithDowner}  initialData={product} />
     </div>
   );
 };

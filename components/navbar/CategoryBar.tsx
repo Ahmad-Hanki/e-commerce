@@ -11,7 +11,6 @@ interface CategoryBarProps {
 
 const CategoryBar = ({ categories }: CategoryBarProps) => {
   const pathname = usePathname();
-  // console.log(pathname);
 
   return (
     <div
@@ -26,16 +25,16 @@ const CategoryBar = ({ categories }: CategoryBarProps) => {
           <div className="flex gap-4 flex-nowrap w-fit">
             {categories.map((category) => (
               <Link
-                href={"/category/" + category}
-                key={category}
+                href={"/category/" + category.id}
+                key={category.id}
                 className={cn(
                   "hover:text-yellow-600 transition-all duration-300 cursor-pointer text-lg lowercase first-letter:uppercase",
-                  pathname.includes(`/category/${category}`)
+                  pathname.includes(`/category/${category.id}`)
                     ? "!text-primary underline"
                     : "text-gray-600"
                 )}
               >
-                {category == "KisiselBakim" ? "Kişisel Bakım" : category}
+                {category.name}
               </Link>
             ))}
           </div>

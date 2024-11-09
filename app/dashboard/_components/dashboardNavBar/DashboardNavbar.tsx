@@ -7,8 +7,12 @@ const DashboardNavbar = () => {
       name: "Yönetim Paneli",
     },
     {
-      href: "/dashboard/category",
-      name: "Kategoriler",
+      href: "/dashboard/upperCategory",
+      name: "Üst Kategoriler",
+    },
+    {
+      href: "/dashboard/downerCategory",
+      name: "Alt Kategoriler",
     },
     {
       href: "/dashboard/product",

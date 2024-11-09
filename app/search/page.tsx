@@ -1,5 +1,5 @@
 import getProductsSearch from "@/actions/getProductsSearch";
-import CategoryName from "../category/[categoryName]/_components/CategoryName"; 
+import CategoryName from "../category/[upperCategory]/_components/UpperCategoryName"; 
 import { Suspense } from "react";
 import Loading from "@/components/loading";
 import { notFound } from "next/navigation";

@@ -7,7 +7,7 @@ import { FormattedProduct } from "../../_actions/getAllProducts";
 export const productColumns: ColumnDef<FormattedProduct>[] = [
   {
     id: "description",
-    header: () => <div className="text-start max-w-[250px]">Kategori</div>,
+    header: () => <div className="text-start max-w-[250px]">Aciklama</div>,
 
     cell: ({ row }) => {
       const data = row.original;
@@ -40,19 +40,28 @@ export const productColumns: ColumnDef<FormattedProduct>[] = [
   },
   {
     accessorKey: "rating",
-    header: () => <div className="text-start w-full">Ürün derecelendirmesi</div>,
+    header: () => (
+      <div className="text-start w-full">Ürün derecelendirmesi</div>
+    ),
   },
   {
     accessorKey: "mostSale",
     header: () => <div className="text-start w-full">En Çok Satılan</div>,
   },
+
   {
-    accessorKey: "upperCategory",
-    header: () => <div className="text-start w-full">Üst Kategori</div>,
+    id: "upperCategory",
+    header: () => <div className="text-start w-full"> Use Kategori</div>,
+
+    cell: ({ row }) => {
+      const data = row.original;
+      return <div>{data.upperCategory.name}</div>;
+    },
   },
+
   {
-    id: "category",
-    header: () => <div className="text-start w-full">Kategori</div>,
+    id: "altCategory",
+    header: () => <div className="text-start w-full"> alt Kategori</div>,
 
     cell: ({ row }) => {
       const data = row.original;

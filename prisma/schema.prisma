@@ -7,6 +7,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// 1. we will add a photos table to store the photos of the products
+// 2. we will add a 2 new column to the products table to store the photos // barkod // stak kodu
 model Product {
   id           String   @id @default(uuid())
   description  String
@@ -25,25 +27,31 @@ model Product {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  upperCategory UpperCategory
-  categoryId    String
-  Category      Category      @relation(fields: [categoryId], references: [id])
+  upperCategoryId String
+  upperCategory   UpperCategory @relation(fields: [upperCategoryId], references: [id])
 
-  Packages Package[]
+  downerCategoryId String
+  downerCategory   DownerCategory @relation(fields: [downerCategoryId], references: [id])
+  Packages         Package[]
 }
 
-enum UpperCategory {
-  Kozmetik
-  Elektronik
-  KisiselBakim
+model DownerCategory {
+  id              String        @id @default(uuid())
+  name            String
+  upperCategoryId String
+  upper           UpperCategory @relation(fields: [upperCategoryId], references: [id])
+  Product         Product[]
 }
 
-model Category {
-  id       String    @id @default(uuid())
-  name     String
-  products Product[]
+model UpperCategory {
+  id   String @id @default(uuid())
+  name String
+
+  DownerCategory DownerCategory[]
+  Product        Product[]
 }
 
+// 4. we will add name to the package table
 model Package {
   id      String  @id @default(uuid())
   price   Float
@@ -54,7 +62,7 @@ model Package {
   Piece     Int         @default(1)
   productId String
   products  Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
-  CartItem  CartItem[] // can refer to more than one cart item
+  CartItem  CartItem[]
   OrderItem OrderItem[]
 }
 

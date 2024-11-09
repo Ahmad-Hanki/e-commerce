@@ -8,11 +8,11 @@ interface UpdateProduct {
   price: number;
   description: string;
   image: string;
-  categoryId: string;
 
   image2?: string;
   image3?: string;
-  upperCategory: UpperCategory;
+  upperCategoryId: string;
+  downerCategoryId: string;
   extraInfo?: string;
   oldPrice?: number;
   rating?: number;
@@ -29,18 +29,25 @@ const updateProduct = async ({
   image,
   image2,
   image3,
-  categoryId,
   oldPrice,
   rating,
   inStock,
-  upperCategory,
   New,
   freeShipping,
+  downerCategoryId,
   mostSale,
   extraInfo,
+  upperCategoryId,
 }: UpdateProduct) => {
   try {
-    if (!price || !description || !image || !categoryId || !upperCategory) {
+    if (
+      !price ||
+      !description ||
+      !image ||
+      !upperCategoryId ||
+      !downerCategoryId ||
+      !id
+    ) {
       return false;
     }
 
@@ -53,7 +60,7 @@ const updateProduct = async ({
     if (oldPrice) {
       discount = getDiscountAmount(oldPrice, price);
     }
-// qwlks dkd]
+    // qwlks dkd]
     await prisma.product.update({
       where: {
         id,
@@ -64,13 +71,13 @@ const updateProduct = async ({
         image,
         image2,
         image3,
-        categoryId,
-        oldPrice:oldPrice == 0 ? null : oldPrice,
+        oldPrice: oldPrice == 0 ? null : oldPrice,
         rating,
         inStock,
         new: New,
         freeShipping,
-        upperCategory,
+        upperCategoryId,
+        downerCategoryId,
         mostSale,
         extraInfo,
         discount,
