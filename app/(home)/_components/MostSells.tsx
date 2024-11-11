@@ -10,9 +10,9 @@ const MostSells = ({ products }: MostSellsProps) => {
   return (
     <div className="py-20">
       <Container>
-        <h1 className="text-4xl text-center font-semibold pb-10">
+        <p className="text-4xl text-center font-semibold pb-10">
           En Çok Satanlar
-        </h1>
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />

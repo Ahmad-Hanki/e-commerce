@@ -25,7 +25,7 @@ const Blog = () => {
   ];
   return (
     <div className="pb-20">
-      <h1 className="text-4xl text-center font-semibold pb-10">Bloglar</h1>
+      <p className="text-4xl text-center font-semibold pb-10">Bloglar</p>
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {blogs.map((blog) => (

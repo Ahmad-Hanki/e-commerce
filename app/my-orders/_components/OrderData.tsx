@@ -9,9 +9,9 @@ const OrderData = ({ order }: OrderDataProps) => {
   if (!order) {
     return (
       <Container>
-        <h1 className="text-3xl font-semibold text-primary">
+        <p className="text-3xl font-semibold text-primary">
           Sipariş Bulunamadı
-        </h1>
+        </p>
       </Container>
     );
   }
@@ -43,9 +43,9 @@ const OrderData = ({ order }: OrderDataProps) => {
             ))}
           </ul>
           <div>
-            <h1 className="text-3xl font-semibold text-primary">
+            <h2 className="text-3xl font-semibold text-primary">
               Sipariş Detayları
-            </h1>
+            </h2>
             <p className="text-lg font-medium text-gray-600">
               Sipariş Kimliği: {order.id}
             </p>
@@ -61,9 +61,9 @@ const OrderData = ({ order }: OrderDataProps) => {
           </div>
 
           <div>
-            <h1 className="text-3xl font-semibold text-primary">
+            <h3 className="text-3xl font-semibold text-primary">
               Müşteri Detayları
-            </h1>
+            </h3>
             <p className="text-lg font-medium text-gray-600">
               Ad Soyad: {order.userData.fullName}
             </p>

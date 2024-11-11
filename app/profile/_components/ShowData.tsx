@@ -13,7 +13,7 @@ const ShowData = ({ userData }: ShowDataProps) => {
     return (
       <Container>
         <div className="flex justify-center items-center h-96">
-          <h1 className="text-2xl">Veri bulunamadı</h1>
+          <p className="text-2xl">Veri bulunamadı</p>
         </div>
       </Container>
     );

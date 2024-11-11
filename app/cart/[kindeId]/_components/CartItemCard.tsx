@@ -65,9 +65,9 @@ const CartItemCard = ({ item }: CartItemCardProps) => {
       </div>
 
       <div className="space-y-2">
-        <h1 className="text-xl font-semibold">
+        <p className="text-xl font-semibold">
           {item.description} / {item.name}, parçe: {item.Piece}
-        </h1>
+        </p>
         <div className="flex flex-col gap-3 sm:items-center sm:flex-row">
           <p className="text-base text-gray-500 line-through ">
             {item?.oldPrice && `Eski Fiyat: ${item?.oldPrice} ₺`}

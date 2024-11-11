@@ -87,9 +87,9 @@ const Footer = () => {
 
           <div className="w-full ">
             <div className="space-y-4 ">
-              <h1 className="text-xl text-secondary-foreground ">
+              <p className="text-xl text-secondary-foreground ">
                 Hızlı Erişim
-              </h1>
+              </p>
               <div className="flex flex-col gap-2 ">
                 {navItems.map((item) => (
                   <Links key={item.href} item={item} />
@@ -100,9 +100,9 @@ const Footer = () => {
 
           <div className="w-full ">
             <div className="space-y-4 ">
-              <h1 className="text-xl text-secondary-foreground ">
+              <p className="text-xl text-secondary-foreground ">
                 Müşteri Hizmetleri
-              </h1>
+              </p>
               <div className="flex flex-col gap-2 ">
                 {hizmet.map((item) => (
                   <Links key={item.href} item={item} />
@@ -113,9 +113,9 @@ const Footer = () => {
 
           <div className="w-full ">
             <div className="space-y-4 ">
-              <h1 className="text-xl text-secondary-foreground ">
+              <p className="text-xl text-secondary-foreground ">
                 Müşteri İlişkileri
-              </h1>
+              </p>
               <div className="flex flex-col gap-2 ">
                 {Musteri.map((item) => (
                   <Links key={item.href} item={item} />
@@ -126,7 +126,7 @@ const Footer = () => {
 
           <div className="w-full flex  ">
             <div className=" space-y-4">
-              <h1 className="text-xl text-secondary-foreground ">Bize Takip</h1>
+              <p className="text-xl text-secondary-foreground ">Bize Takip</p>
               <div className="flex items-center gap-2">
                 <InstagramLogoIcon className="text-muted-foreground hover:text-secondary-foreground transition-all duration-300 cursor-pointer w-7 h-7" />
                 <TwitterLogoIcon className="text-muted-foreground hover:text-secondary-foreground transition-all duration-300 cursor-pointer w-7 h-7" />
