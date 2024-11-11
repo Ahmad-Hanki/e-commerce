@@ -7,7 +7,10 @@ import { Card } from "@/components/ui/card";
 interface ProductData {
   id: string;
   description: string;
-  rating: number | null; // Allow null
+  rating: number | null;
+  extraInfo?: string;
+  stokKodu: string;
+  barkod: string;
 }
 
 interface ProductContainerProps {

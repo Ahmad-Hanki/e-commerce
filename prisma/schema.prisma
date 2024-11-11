@@ -12,6 +12,8 @@ datasource db {
 model Product {
   id           String   @id @default(uuid())
   description  String
+  stokKodu     String
+  barkod       String
   price        Float
   inStock      Boolean  @default(true)
   oldPrice     Float?

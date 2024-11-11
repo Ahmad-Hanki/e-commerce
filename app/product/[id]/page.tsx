@@ -9,6 +9,7 @@ import createOrFindUser from "@/actions/createOrFindUser";
 import { notFound } from "next/navigation";
 import getProductBasedOnCategory from "@/actions/getProductBasedOnCategory";
 import getProductImages from "@/actions/getProductImages";
+import { Metadata } from "next";
 
 // Define a type for the product with packages
 type ProductWithPackages = PrismaProduct & {
@@ -25,15 +26,12 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     await createOrFindUser();
   }
 
-  const product = await getProductWithPackage(id);
+  const [product, images] = await Promise.all([
+    getProductWithPackage(id),
+    getProductImages(id),
+  ]);
 
-  if (!product) {
-    return notFound();
-  }
-
-  const images = await getProductImages(id);
-
-  if (!images) {
+  if (!product || !images) {
     return notFound();
   }
 
@@ -48,6 +46,8 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     description: product?.description ?? "",
     rating: product?.rating ?? 0,
     extraInfo: product?.extraInfo ?? "",
+    stokKodu: product?.stokKodu ?? "",
+    barkod: product?.barkod ?? "",
   };
 
   const productsCategory = await getProductBasedOnCategory(product.categoryId);
@@ -71,3 +71,26 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 };
 
 export default ProductPage;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const [product, images] = await Promise.all([
+    getProductWithPackage(id),
+    getProductImages(id),
+  ]);
+
+  const imgUrl = images.find((image) => image.primary)?.url;
+
+  return {
+    title: `${product?.description} || ${product?.barkod} || ${product?.stokKodu}`,
+    openGraph: {
+      images: [{ url: imgUrl! }],
+    },
+    description: product?.description,
+    category: product?.categoryId,
+  };
+}

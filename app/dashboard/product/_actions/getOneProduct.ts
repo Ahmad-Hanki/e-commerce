@@ -24,6 +24,8 @@ const getOneProduct = async (id: string): Promise<FormattedProduct | null> => {
     const formattedProduct: FormattedProduct = {
       id: product.id,
       description: product.description,
+      stokKodu: product.stokKodu,
+      barkod: product.barkod,
       price: product.price,
       inStock: product.inStock,
       upperCategory: product.upperCategory, // Get the full upperCategory data

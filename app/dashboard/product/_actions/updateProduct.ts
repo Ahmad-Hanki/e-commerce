@@ -12,6 +12,8 @@ interface UpdateProduct {
   id: string;
   price: number;
   description: string;
+  stokKodu: string;
+  barkod: string;
   upperCategoryId: string;
   downerCategoryId: string;
   images: ImagesType[]; // Added images to the request
@@ -27,6 +29,8 @@ interface UpdateProduct {
 const updateProduct = async ({
   id,
   price,
+  barkod,
+  stokKodu,
   description,
   oldPrice,
   rating,
@@ -46,12 +50,11 @@ const updateProduct = async ({
       !upperCategoryId ||
       !downerCategoryId ||
       !id ||
-      images.length < 1 // Ensure there is at least one image
+      images.length < 1 ||
+      !barkod ||
+      !stokKodu ||
+      (oldPrice && oldPrice < price)
     ) {
-      return false;
-    }
-
-    if (oldPrice && oldPrice < price) {
       return false;
     }
 
@@ -61,19 +64,18 @@ const updateProduct = async ({
       discount = getDiscountAmount(oldPrice, price);
     }
 
-    // If no image is set as primary, make the first image the primary
     if (!images.some((image) => image.primary)) {
-      images[0].primary = true; // Set the first image as primary
+      images[0].primary = true;
     }
 
-    // Delete all images connected to the product
+    
     await prisma.photo.deleteMany({
       where: {
         productId: id,
       },
     });
 
-    // Create new photos and link them to the product
+    
     const photosData = images.map((image) => ({
       url: image.url,
       primary: image.primary,
@@ -84,7 +86,7 @@ const updateProduct = async ({
       data: photosData,
     });
 
-    // Update the product with the new details
+   
     await prisma.product.update({
       where: {
         id,
@@ -95,6 +97,8 @@ const updateProduct = async ({
         oldPrice: oldPrice == 0 ? null : oldPrice,
         rating,
         inStock,
+        barkod,
+        stokKodu,
         new: New,
         freeShipping,
         upperCategoryId,

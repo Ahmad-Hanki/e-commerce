@@ -5,7 +5,7 @@ import prisma from "@/lib/db";
 const getProductImages = async (productId: string) => {
   try {
     if (!productId) {
-      return false;
+      return [];
     }
     const images = await prisma.photo.findMany({
       where: {
@@ -13,12 +13,10 @@ const getProductImages = async (productId: string) => {
       },
     });
 
-
     return images;
   } catch (error) {
-    return false;
+    return [];
   }
 };
-
 
 export default getProductImages;

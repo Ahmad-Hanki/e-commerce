@@ -100,13 +100,17 @@ const ProductForm = ({
     const oldPrice = formData.get("oldPrice");
     const rating = formData.get("rating");
     const extraInfo = formData.get("extraInfo") as string;
+    const stokKodu = formData.get("stokKodu") as string;
+    const barkod = formData.get("barkod") as string;
 
     if (
       !description ||
       !price ||
       !chosenCategory ||
       !image ||
-      !chosenUpperCategory
+      !chosenUpperCategory ||
+      !stokKodu ||
+      !barkod
     ) {
       toast.error("Lütfen tüm alanları doldurun");
       return;
@@ -117,6 +121,8 @@ const ProductForm = ({
       const response = await updateProduct({
         id: initialData.id,
         extraInfo,
+        stokKodu,
+        barkod,
         images: image,
         description,
         price: Number(price),
@@ -141,6 +147,8 @@ const ProductForm = ({
     const response = await addProduct({
       description,
       price: Number(price),
+      stokKodu,
+      barkod,
       oldPrice: Number(oldPrice),
       rating: Number(rating),
       inStock,
@@ -178,6 +186,25 @@ const ProductForm = ({
           required
           className="w-[300px]"
           rows={2}
+        />
+      </div>
+
+      <div className="space-y-4">
+        <Input
+          name="stokKodu"
+          placeholder="Stok Kodu (Gerekli)"
+          defaultValue={initialData?.stokKodu ?? ""}
+          required
+          className="w-[300px]"
+        />
+      </div>
+      <div className="space-y-4">
+        <Input
+          name="barkod"
+          placeholder="Barkod (Gerekli)"
+          defaultValue={initialData?.barkod ?? ""}
+          required
+          className="w-[300px]"
         />
       </div>
 

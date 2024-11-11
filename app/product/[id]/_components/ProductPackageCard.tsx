@@ -6,6 +6,8 @@ interface ProductData {
   description: string;
   rating: number | null; // Allow null
   extraInfo?: string;
+  stokKodu: string;
+  barkod: string;
 }
 
 interface ProductPackageCardProps {
@@ -22,6 +24,8 @@ const ProductPackageCard = ({
   return (
     <div className="w-full space-y-5 my-6">
       <h1 className="text-3xl  font-semibold">{product.description}</h1>
+      <h2 className="scale-0 max-h-[0px] max-w-[0px]">Barkod: {product.stokKodu}</h2>
+      <h3 className="scale-0 max-h-[0px] max-w-[0px]">Stok Kodu: {product.barkod}</h3>
 
       <div className="flex items-center gap-5">
         <div className="bg-yellow-500 px-2 py-[1px] rounded-md">

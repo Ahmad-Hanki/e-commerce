@@ -15,6 +15,14 @@ export const productColumns: ColumnDef<FormattedProduct>[] = [
     },
   },
   {
+    accessorKey: "stokKodu",
+    header: () => <div className="text-start w-full">Stok Kodu</div>,
+  },
+  {
+    accessorKey: "barkod",
+    header: () => <div className="text-start w-full">Barkod</div>,
+  },
+  {
     accessorKey: "price",
     header: () => <div className="text-start w-full">Fiyat</div>,
   },

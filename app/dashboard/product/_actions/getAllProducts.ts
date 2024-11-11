@@ -7,9 +7,10 @@ import { Photo, UpperCategory } from "@prisma/client";
 export type FormattedProduct = {
   id: string;
   description: string;
+  stokKodu: string;
+  barkod: string;
   price: number;
   inStock: boolean;
-
   oldPrice?: number | null;
   discount?: number | null;
   new?: boolean | null;
@@ -45,6 +46,8 @@ const getAllProducts = async (): Promise<FormattedProduct[]> => {
     const formattedProducts: FormattedProduct[] = products.map((product) => ({
       id: product.id,
       description: product.description,
+      stokKodu: product.stokKodu,
+      barkod: product.barkod,
       price: product.price,
       inStock: product.inStock,
       oldPrice: product.oldPrice,

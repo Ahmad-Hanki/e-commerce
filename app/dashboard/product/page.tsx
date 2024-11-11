@@ -1,15 +1,14 @@
-import { ApiAlert } from "../_components/ApiAlert"; 
-import Heading from "../_components/Heading"; 
+import { ApiAlert } from "../_components/ApiAlert";
+import Heading from "../_components/Heading";
 
-import Container from "@/components/Container"; 
+import Container from "@/components/Container";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { DataTable } from "../_components/DataTable"; 
+import { DataTable } from "../_components/DataTable";
 import { Plus } from "lucide-react";
 import getAllProducts from "./_actions/getAllProducts";
 import { productColumns } from "./_components/table/columns";
-
 
 const ProductPage = async () => {
   const products = await getAllProducts();
@@ -33,11 +32,7 @@ const ProductPage = async () => {
 
         <Separator className="mt-5 mb-10" />
 
-        <DataTable
-          columns={productColumns}
-          data={products}
-          filtered="description"
-        />
+        <DataTable columns={productColumns} data={products} filtered="barkod" />
         <Heading title="API" description="API calls for entered Product" />
         <Separator />
         <ApiAlert />

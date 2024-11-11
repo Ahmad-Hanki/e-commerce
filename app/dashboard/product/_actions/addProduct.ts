@@ -14,7 +14,8 @@ interface AddProduct {
   upperCategoryId: string;
   downerCategoryId: string;
   images: ImagesType[];
-
+  stokKodu: string;
+  barkod: string;
   extraInfo?: string;
   oldPrice?: number;
   rating?: number;
@@ -27,6 +28,8 @@ interface AddProduct {
 const addProduct = async ({
   price,
   description,
+  stokKodu,
+  barkod,
   downerCategoryId,
   upperCategoryId,
   images,
@@ -45,13 +48,11 @@ const addProduct = async ({
       !description ||
       images.length === 0 || // Ensure there is at least one image
       !upperCategoryId ||
-      !downerCategoryId
+      !downerCategoryId ||
+      !stokKodu ||
+      !barkod ||
+      (oldPrice && oldPrice < price)
     ) {
-      return false;
-    }
-
-    // If oldPrice is provided and less than price, return false
-    if (oldPrice && oldPrice < price) {
       return false;
     }
 
@@ -60,15 +61,16 @@ const addProduct = async ({
       discount = getDiscountAmount(oldPrice, price);
     }
 
-    // If no image is set as primary, make the first image the primary
     if (!images.some((image) => image.primary)) {
-      images[0].primary = true; // Set the first image as primary
+      images[0].primary = true;
     }
 
     // Create the product in the database
     const product = await prisma.product.create({
       data: {
         upperCategoryId,
+        stokKodu,
+        barkod,
         downerCategoryId,
         price,
         description,
@@ -83,14 +85,12 @@ const addProduct = async ({
       },
     });
 
-    // Create photo records and link them to the product
     const photosData = images.map((image) => ({
       url: image.url,
       primary: image.primary,
-      productId: product.id, // Link the photo to the created product
+      productId: product.id,
     }));
 
-    // Insert the images into the database
     await prisma.photo.createMany({
       data: photosData,
     });
