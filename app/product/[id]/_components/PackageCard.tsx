@@ -69,6 +69,7 @@ const PackageCard = ({
                 </div>
               )}
               <div className="mt-5">
+                <p className="text-lg"> {pack?.name}</p>
                 <p className="text-lg">Adet: {pack?.Piece}</p>
                 <p className="text-base text-gray-500 line-through ">
                   {pack?.oldPrice && `Eski Fiyat: ${pack?.oldPrice} ₺`}

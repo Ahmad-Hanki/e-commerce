@@ -37,6 +37,7 @@ const CartPage = async ({
       return {
         id: item.id,
         quantity: item.quantity,
+        name: item.package.name,
         price: item.package.price,
         Piece: item.package.Piece,
         oldPrice: item.package.oldPrice || 0,

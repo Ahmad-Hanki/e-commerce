@@ -10,6 +10,10 @@ export const PackageColumns: ColumnDef<FormattedPackage>[] = [
     header: () => <div className="text-start w-full">Hangi Ürün</div>,
   },
   {
+    accessorKey: "name",
+    header: () => <div className="text-start w-full">Paket Adi</div>,
+  },
+  {
     accessorKey: "piece",
     header: () => <div className="text-start w-full">Parçalar</div>,
   },

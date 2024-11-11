@@ -2,11 +2,16 @@
 
 import prisma from "@/lib/db";
 import getKindeId from "./getKindeId";
+import { redirect } from "next/navigation";
 
 const createOrFindUser = async () => {
   try {
-    const {kindeId} = await getKindeId();
-    
+    const { kindeId } = await getKindeId();
+
+    if (!kindeId) {
+      redirect("/api/auth/login");
+    }
+
     const user = await prisma.user.upsert({
       where: { kindeId },
       update: {},

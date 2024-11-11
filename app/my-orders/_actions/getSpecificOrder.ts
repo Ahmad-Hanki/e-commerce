@@ -2,28 +2,27 @@
 import prisma from "@/lib/db";
 import { OrderStatus } from "@prisma/client";
 
-// Define the types for the order response
 type Product = {
-  description: string; // Ensure this matches your data
+  description: string;
 };
 
 type Package = {
-  products: Product; // Change this to a single product
-  Piece: number; // Add this to capture the Piece value
+  products: Product;
+  Piece: number;
+  name: string;
 };
 
 type OrderItem = {
   quantity: number;
-  package: Package; // Ensure this aligns with your returned structure
+  package: Package;
 };
 
-// Define userData type within the OrderResponse structure
 type UserData = {
   fullName: string;
   phone: string;
   email: string;
   adress: string;
-  adressPlace: string; // "individual" or "company"
+  adressPlace: string;
   vkn?: string;
   vergiDairesi?: string;
   firmaAdi?: string;
@@ -61,6 +60,7 @@ const getSpecificOrder = async (
             package: {
               select: {
                 Piece: true,
+                name: true,
                 products: {
                   select: {
                     description: true,
@@ -99,9 +99,9 @@ const getSpecificOrder = async (
 
       orderItems: order.orderItems.map((item) => ({
         quantity: item.quantity,
-
         package: {
           Piece: item.package.Piece, // Include Piece here
+          name: item.package.name,
 
           products: item.package.products,
         },

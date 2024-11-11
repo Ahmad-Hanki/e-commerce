@@ -40,8 +40,9 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
     const price = formData.get("price");
     const oldPrice = formData.get("oldPrice");
     const piece = formData.get("piece");
+    const name = formData.get("name") as string;
 
-    if (!price || !piece || !chosenProduct?.id) {
+    if (!price || !piece || !chosenProduct?.id || !name) {
       toast.error("Fiyat ve adettir ve istenilen ürün seçilir");
       return;
     }
@@ -50,6 +51,7 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
       // Update
       const response = await editPackage({
         id: initialData.id,
+        name, 
         price: Number(price),
         oldPrice: Number(oldPrice),
         productId: chosenProduct.id,
@@ -67,6 +69,7 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
     // Add
     const response = await addPackage({
       price: Number(price),
+      name,
       oldPrice: Number(oldPrice),
       productId: chosenProduct.id,
       Piece: Number(piece),
@@ -86,7 +89,19 @@ const PackageForm = ({ initialData, Products }: PackageFormProps) => {
       action={PackageSumption}
       className="space-y-6 max-w-sm mx-auto w-full"
     >
-      <h1 className="text-primary text-3xl text-center font-semibold">Paket Ekle</h1>
+      <h1 className="text-primary text-3xl text-center font-semibold">
+        Paket Ekle
+      </h1>
+
+      <div className="space-y-4">
+        <Input
+          name={`name`}
+          placeholder={"Paket Adi (Gerekli)"}
+          defaultValue={initialData?.price}
+          required
+          className="w-[300px]"
+        />
+      </div>
 
       <div className="space-y-4">
         <Input

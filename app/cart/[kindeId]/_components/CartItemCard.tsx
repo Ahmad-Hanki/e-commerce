@@ -11,6 +11,7 @@ interface CartItemCardProps {
   item: {
     id: string;
     quantity: number;
+    name: string
     price: number;
     oldPrice: number | null;
     discount: number | null;
@@ -65,7 +66,7 @@ const CartItemCard = ({ item }: CartItemCardProps) => {
 
       <div className="space-y-2">
         <h1 className="text-xl font-semibold">
-          {item.description}, parçe: {item.Piece}
+          {item.description} / {item.name}, parçe: {item.Piece}
         </h1>
         <div className="flex flex-col gap-3 sm:items-center sm:flex-row">
           <p className="text-base text-gray-500 line-through ">

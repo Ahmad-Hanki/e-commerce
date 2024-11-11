@@ -7,6 +7,7 @@ interface CheckoutProps {
     | {
         id: string;
         quantity: number;
+        name: string;
         price: number;
         oldPrice: number | null;
         discount: number | null;

@@ -5,6 +5,7 @@ import getDiscountAmount from "@/utils/getDiscountAmount";
 
 interface EditPackage {
   id: string;
+  name: string;
   price: number;
 
   productId: string;
@@ -16,19 +17,25 @@ interface EditPackage {
 
 const editPackage = async ({
   id,
+  name,
   Piece,
   price,
   productId,
   inStock,
   oldPrice,
 }: EditPackage) => {
-  if (!Piece || !price || !productId || !id) {
+  if (
+    !Piece ||
+    !price ||
+    !productId ||
+    !id ||
+    !name ||
+    (oldPrice && oldPrice < price)
+  ) {
     return false;
   }
   let discount;
-  if (oldPrice && oldPrice < price) {
-    return false;
-  }
+
   if (oldPrice) {
     discount = getDiscountAmount(oldPrice, price);
   }
@@ -40,6 +47,7 @@ const editPackage = async ({
       },
       data: {
         Piece,
+        name,
         price,
         productId,
         inStock,

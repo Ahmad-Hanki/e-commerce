@@ -31,6 +31,7 @@ const getOnePackage = async (id: string): Promise<FormattedPackage> => {
 
     return {
       id: pkg!.id,
+      name: pkg!.name,
       price: pkg!.price,
       inStock: pkg!.inStock,
       oldPrice: pkg?.oldPrice,

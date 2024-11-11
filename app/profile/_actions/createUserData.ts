@@ -17,6 +17,9 @@ const createUserData = async (
     Efatura: boolean;
   }
 ) => {
+  if (!userId || !data.fullName || !data.phone || !data.email || !data.adress) {
+    return false;
+  }
   try {
     await prisma.userData.create({
       data: {

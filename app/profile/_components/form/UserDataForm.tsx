@@ -7,19 +7,28 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserDataScheme, ZodTypeProp } from "./Scheme";
 import Container from "@/components/Container";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AdressPlace } from "@prisma/client";
+import { AdressPlace, userData } from "@prisma/client";
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import toast from "react-hot-toast";
 import createUserData from "../../_actions/createUserData";
 import { redirect } from "next/navigation";
+import editUserData from "../../_actions/editUserData";
 
-const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
+const UserDataForm = ({
+  email,
+  userId,
+  initialData,
+}: {
+  email: string;
+  userId: string;
+  initialData?: userData;
+}) => {
   const [addressPlace, setAddressPlace] = useState<AdressPlace>(
-    AdressPlace.individual
+    initialData?.adressPlace ?? AdressPlace.individual
   );
-  const [eFatura, seteFatura] = useState<boolean>(false);
+  const [eFatura, seteFatura] = useState<boolean>(initialData?.Efatura ?? false);
 
   const {
     register,
@@ -60,6 +69,16 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
       Efatura: eFatura,
     };
 
+    if (initialData) {
+      const response = await editUserData(userId, initialData.id, userData);
+      if (response) {
+        toast.success("Kullanıcı verileri başarıyla Duzenlendi");
+        redirect("/profile/" + userId);
+      } else {
+        toast.error("Bir hata oluştu");
+      }
+    }
+
     const res = await createUserData(userId, userData);
 
     if (res) {
@@ -82,6 +101,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                 <label className="text-xl font-bold">Ad Soyad</label>
                 <Input
                   type="text"
+                  defaultValue={initialData?.fullName}
                   className="border-zinc-950 focus:border-none border-b-secondary py-4"
                   {...register("fullName")}
                 />
@@ -102,6 +122,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
               <div className="space-y-6">
                 <label className="text-xl font-bold">Telefon</label>
                 <Input
+                  defaultValue={initialData?.phone}
                   type="phone"
                   className="border-zinc-950 focus:border-none border-b-secondary py-4"
                   {...register("phone")}
@@ -116,6 +137,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
               <div className="space-y-6 ">
                 <label className="text-xl font-bold">Adres</label>
                 <Textarea
+                  defaultValue={initialData?.adress}
                   rows={5}
                   className="border-zinc-950 focus:border-none border-b-secondary py-4 "
                   {...register("address")}
@@ -152,6 +174,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                         <label className="text-xl font-bold">Firma Adı</label>
                         <Input
                           type="text"
+                          defaultValue={initialData?.firmaAdi ?? ""}
                           className="border-zinc-950 focus:border-none border-b-secondary py-4"
                           {...register("firmaAdi")}
                         />
@@ -160,6 +183,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                         <label className="text-xl font-bold">VKN</label>
                         <Input
                           type="text"
+                          defaultValue={initialData?.vkn ?? ""}
                           className="border-zinc-950 focus:border-none border-b-secondary py-4"
                           {...register("vkn")}
                         />
@@ -169,6 +193,7 @@ const UserDataForm = ({ email, userId }: { email: string; userId: string }) => {
                           Vergi Dairesi
                         </label>
                         <Input
+                          defaultValue={initialData?.vergiDairesi ?? ""}
                           type="text"
                           className="border-zinc-950 focus:border-none border-b-secondary py-4"
                           {...register("vergiDairesi")}

@@ -5,7 +5,7 @@ import getDiscountAmount from "@/utils/getDiscountAmount";
 
 interface AddPackage {
   price: number;
-
+  name: string;
   productId: string;
   Piece: number;
 
@@ -15,18 +15,23 @@ interface AddPackage {
 
 const addPackage = async ({
   Piece,
+  name,
   price,
   productId,
   inStock,
   oldPrice,
 }: AddPackage) => {
-  if (!Piece || !price || !productId) {
+  if (
+    !Piece ||
+    !price ||
+    !productId ||
+    !name ||
+    (oldPrice && oldPrice < price)
+  ) {
     return false;
   }
   let discount;
-  if (oldPrice && oldPrice < price) {
-    return false;
-  }
+
   if (oldPrice) {
     discount = getDiscountAmount(oldPrice, price);
   }
@@ -35,6 +40,7 @@ const addPackage = async ({
     await prisma.package.create({
       data: {
         Piece,
+        name,
         price,
         productId,
         inStock,

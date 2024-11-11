@@ -9,6 +9,7 @@ export interface FormattedOrderItem {
   quantity: number;
   price: number;
   pieces: number;
+  PackageName: string;
   discount: number | null;
   product: {
     id: string;
@@ -103,6 +104,7 @@ const getAllOrders = async (status: OrderStatus): Promise<FormattedOrder[]> => {
         id: item.id,
         quantity: item.quantity,
         price: item.price,
+        PackageName: item.package.name,
         pieces: item.package.Piece,
         discount: item.discount ?? null,
         product: {

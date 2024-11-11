@@ -7,8 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// 1. we will add a photos table to store the photos of the products
-// 2. we will add a 2 new column to the products table to store the photos // barkod // stak kodu
+
 model Product {
   id           String   @id @default(uuid())
   description  String
@@ -59,9 +58,9 @@ model UpperCategory {
   Product        Product[]
 }
 
-// 4. we will add name to the package table
 model Package {
   id      String  @id @default(uuid())
+  name    String
   price   Float
   inStock Boolean @default(true)
 

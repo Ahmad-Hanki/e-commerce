@@ -3,6 +3,7 @@ import prisma from "@/lib/db";
 
 export type FormattedPackage = {
   id: string;
+  name: string;
   price: number;
   inStock: boolean;
   oldPrice?: number | null;
@@ -43,6 +44,7 @@ const getAllPackages = async (): Promise<FormattedPackage[]> => {
     // Formatting the data to match the Package type
     return packages.map((pkg) => ({
       id: pkg.id,
+      name: pkg.name,
       price: pkg.price,
       inStock: pkg.inStock,
       oldPrice: pkg.oldPrice,

@@ -10,14 +10,15 @@ const OrderId = async ({
 
   const specificOrder = await getSpecificOrder(userId, orderId);
 
-    if (!specificOrder) {
-        return <div>Sipariş bulunamadı</div>;
-    }
+  if (!specificOrder) {
+    return <div>Sipariş bulunamadı</div>;
+  }
 
-
-  return <div>
-    <OrderData order={specificOrder} />
-  </div>;
+  return (
+    <div>
+      <OrderData order={specificOrder} />
+    </div>
+  );
 };
 
 export default OrderId;

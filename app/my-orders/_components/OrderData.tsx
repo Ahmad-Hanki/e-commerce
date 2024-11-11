@@ -27,6 +27,9 @@ const OrderData = ({ order }: OrderDataProps) => {
             {order.orderItems.map((item, index) => (
               <div className="pb-4" key={index}>
                 <p className="text-lg font-medium text-gray-600">
+                  Adi: {item.package.name}
+                </p>
+                <p className="text-lg font-medium text-gray-600">
                   Adet: {item.quantity}
                 </p>
                 <p className="text-lg font-medium text-gray-600">
@@ -36,7 +39,6 @@ const OrderData = ({ order }: OrderDataProps) => {
                   Pakette kac adet: {item.package.Piece}{" "}
                   {/* Display Piece value */}
                 </p>
-                
               </div>
             ))}
           </ul>

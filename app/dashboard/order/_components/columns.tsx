@@ -52,6 +52,8 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
     },
   },
 
+
+
   {
     id: "quantity",
     header: () => (
@@ -65,6 +67,25 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
         <div className="flex flex-col gap-3">
           {data.orderItems.map((item, ix) => (
             <p key={ix}>{item.quantity}</p>
+          ))}
+        </div>
+      );
+    },
+  },
+
+  {
+    id: "PackageName",
+    header: () => (
+      <div className="text-start max-w-[250px] min-w-[120px]">
+        Paketin Adi:
+      </div>
+    ),
+    cell: ({ row }) => {
+      const data = row.original;
+      return (
+        <div className="flex flex-col gap-3">
+          {data.orderItems.map((item, ix) => (
+            <p key={ix}>{item.PackageName}</p> 
           ))}
         </div>
       );

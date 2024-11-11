@@ -68,14 +68,12 @@ const updateProduct = async ({
       images[0].primary = true;
     }
 
-    
     await prisma.photo.deleteMany({
       where: {
         productId: id,
       },
     });
 
-    
     const photosData = images.map((image) => ({
       url: image.url,
       primary: image.primary,
@@ -86,7 +84,6 @@ const updateProduct = async ({
       data: photosData,
     });
 
-   
     await prisma.product.update({
       where: {
         id,
@@ -95,7 +92,7 @@ const updateProduct = async ({
         price,
         description,
         oldPrice: oldPrice == 0 ? null : oldPrice,
-        rating,
+        rating: rating == 0 ? 5 : rating,
         inStock,
         barkod,
         stokKodu,

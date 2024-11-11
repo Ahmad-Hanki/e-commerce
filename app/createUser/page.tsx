@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 const CreateUser = async () => {
+  
   await createOrFindUser();
   redirect("/");
 };

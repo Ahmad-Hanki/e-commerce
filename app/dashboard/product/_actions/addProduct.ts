@@ -75,7 +75,7 @@ const addProduct = async ({
         price,
         description,
         oldPrice: oldPrice == 0 ? null : oldPrice,
-        rating,
+        rating: rating == 0 ? 5 : rating,
         inStock,
         new: New,
         freeShipping,

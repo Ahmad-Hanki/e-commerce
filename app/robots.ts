@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/dashboard", "/dashboard/*"], // Disallow `/dashboard` and everything under it
+      disallow: ["/dashboard", "/dashboard/*", '/cart'], // Disallow `/dashboard` and everything under it
     },
     sitemap: "https://acme.com/sitemap.xml",
   };

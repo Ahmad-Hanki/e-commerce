@@ -19,6 +19,7 @@ const getProductWithPackage = async (
         Packages: {
           select: {
             id: true,
+            name: true,
             Piece: true,
             inStock: true,
             price: true,

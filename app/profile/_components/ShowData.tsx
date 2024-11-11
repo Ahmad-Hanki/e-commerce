@@ -2,6 +2,8 @@ import Container from "@/components/Container";
 import { Card } from "@/components/ui/card";
 import { userData } from "@prisma/client";
 import DeleteUserDataComponent from "./DeleteUserDataComponent";
+import { EditIcon } from "lucide-react";
+import Link from "next/link";
 
 interface ShowDataProps {
   userData: userData[];
@@ -41,8 +43,11 @@ const ShowData = ({ userData }: ShowDataProps) => {
                 )}
               </div>
 
-              <div>
+              <div className="flex flex-col justify-between">
                 <DeleteUserDataComponent userDataId={data.id} />
+                <Link href={`/profile/${userData[0].userId}/${data.id}`}>
+                  <EditIcon className="text-blue-500 cursor-pointer hover:brightness-110" />
+                </Link>
               </div>
             </Card>
           ))}
