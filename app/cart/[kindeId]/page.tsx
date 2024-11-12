@@ -16,6 +16,8 @@ const CartPage = async ({
     kindeId: string;
   }>;
 }) => {
+
+
   const { kindeId } = await params;
   const isLoggedIn = await IsAuthenticated();
 
@@ -48,15 +50,13 @@ const CartPage = async ({
       };
     }) || [];
 
-  // // for paytr data
-  // const basket = packageData.map((item) => [
-  //   `${item.description} (Piece: ${item.Piece})`,
-  //   // Product name with piece count for more details
-  //   item.price.toFixed(2),
-  //   // Unit price as a string with two decimal places
-  //   item.quantity,
-  //   // Quantity of the item
-  // ]);
+  // give me the paytr data
+
+  const basketData = packageData.map((item) => [
+    item.name + " " + item.description, // Product name
+    item.price.toFixed(2), // Product price (formatted to 2 decimal places)
+    item.quantity, // Product quantity
+  ]);
 
   const totalAmount = packageData.reduce((acc, item) => {
     return acc + item.price * item.quantity;

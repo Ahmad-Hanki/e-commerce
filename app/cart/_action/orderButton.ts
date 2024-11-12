@@ -3,11 +3,7 @@ import getKindeId from "@/actions/getKindeId";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-const createOrder = async (
-  userDataId: string,
-  totalAmount: number,
-  totalBeforeDiscount: number | undefined
-) => {
+const createOrder = async (userDataId: string) => {
   try {
     const response = await getKindeId();
     const kindeId = response?.kindeId;
@@ -28,12 +24,30 @@ const createOrder = async (
       },
     });
 
-    console.log("cartWithItems", cartWithItems);
+    // get the totalAmount and totalBeforeDiscount by doing the function
+
+    const totalAmount = cartWithItems?.cartItems.reduce((acc, item) => {
+      return acc + item.package.price * item.quantity;
+    }, 0);
+
+    if (!totalAmount) {
+      return false;
+    }
+
+    const totalBeforeDiscount = cartWithItems?.cartItems.reduce((acc, item) => {
+      if (!item.package.oldPrice) {
+        return acc;
+      }
+      return acc + item.package.oldPrice * item.quantity;
+    }, 0);
 
     if (!cartWithItems || !cartWithItems.cartItems.length) {
       console.error("Cart is empty or not found");
       return false;
     }
+
+    console.log("totalAmount", totalAmount);
+    console.log("totalBeforeDiscount", totalBeforeDiscount);
 
     const user = await prisma.user.findUnique({
       where: { kindeId },

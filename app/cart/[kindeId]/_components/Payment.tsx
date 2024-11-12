@@ -18,7 +18,7 @@ const Payment = ({ userData, userId, totalAmount, totalBeforeDiscount }: Payment
   const [userDataId, setUserDataId] = useState<string>(userData[0]?.id ?? "");
 
   const checkOutSubmit = async () => {
-    const res = await createOrder(userDataId, totalAmount, totalBeforeDiscount);
+    const res = await createOrder(userDataId);
 
     if (res) {
       toast.success("Sipariş başarıyla oluşturuldu");

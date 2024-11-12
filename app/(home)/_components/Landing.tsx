@@ -1,7 +1,6 @@
 import Image from "next/image";
 import landing from "@/public/images/landing.jpg";
 import { Button } from "@/components/ui/button";
-import Container from "@/components/Container";
 const Landing = () => {
   return (
     <div className="relative w-full min-h-[75vh]">
