@@ -14,7 +14,7 @@ export default function UploadThingButton({
     <div className="w-full flex justify-start">
       <UploadButton
         endpoint="imageUploader"
-        className="w-fit"
+        className="w-fit "
         onClientUploadComplete={(res) => {
           // Assuming res contains an array of uploaded image objects with URLs
           const newImages = res.map(

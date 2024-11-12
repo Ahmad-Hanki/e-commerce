@@ -8,7 +8,7 @@ interface MostSellsProps {
 
 const MostSells = ({ products }: MostSellsProps) => {
   return (
-    <div className="py-20">
+    <div className="pb-20">
       <Container>
         <p className="text-4xl text-center font-semibold pb-10">
           En Çok Satanlar
