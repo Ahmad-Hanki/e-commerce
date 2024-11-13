@@ -20,7 +20,6 @@ const Payment = ({
   userData,
   userId,
   totalAmount,
-  totalBeforeDiscount,
   basketData,
 }: PaymentFormProps) => {
   const [userDataId, setUserDataId] = useState<string>(userData[0]?.id ?? "");

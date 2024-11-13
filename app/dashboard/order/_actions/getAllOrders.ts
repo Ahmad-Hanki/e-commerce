@@ -52,6 +52,9 @@ export interface FormattedOrder {
 const getAllOrders = async (status: OrderStatus): Promise<FormattedOrder[]> => {
   try {
     const orders = await prisma.order.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
       where: {
         status,
       },

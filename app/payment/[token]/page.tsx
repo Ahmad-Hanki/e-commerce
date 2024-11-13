@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 const TokenPage = async ({
   params,
 }: {
@@ -7,13 +9,13 @@ const TokenPage = async ({
 
   return (
     <>
-      <script src="https://www.paytr.com/js/iframeResizer.min.js"></script>
+      <Script src="https://www.paytr.com/js/iframeResizer.min.js"></Script>
       <iframe
         src={`https://www.paytr.com/odeme/guvenli/${token}`}
         id="paytriframe"
         style={{ width: "100%", height: "100%", minHeight: "120vh" }}
       ></iframe>
-      <script>iFrameResize({},'#paytriframe');</script>
+      <script>iFrameResize({},&apos;#paytriframe&apos;);</script>
     </>
   );
 };

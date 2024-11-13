@@ -1,7 +1,6 @@
 "use server";
 import getKindeId from "@/actions/getKindeId";
 import prisma from "@/lib/db";
-import { revalidatePath } from "next/cache";
 
 const createOrder = async (userDataId: string) => {
   try {
@@ -83,6 +82,7 @@ const createOrder = async (userDataId: string) => {
     // });
 
     // revalidatePath("/cart/" + kindeId);
+    
     return order.id;
   } catch (error) {
     console.error("Error creating order:", error);
