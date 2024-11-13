@@ -26,6 +26,7 @@ const UpperCategoryNamePage = async ({
           upperCategoryId={upperCategory}
           downerCategories={products.downerCategories}
           products={products.products}
+          UpperCategoryName={products.products[0].categoryName}
         />
       </Suspense>
     </div>

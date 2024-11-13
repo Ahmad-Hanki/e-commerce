@@ -1,48 +1,100 @@
+"use server";
+
+import axios from "axios";
+import { headers } from "next/headers";
+import * as crypto from "crypto";
+import createOrder from "@/app/cart/_action/orderButton";
+
 export type PaytrDataType = {
   data: {
-    merchant_id?: string; // Merchant ID (Mağaza no) provided by PayTR
-    user_ip?: string; // User IP address (Make sure it's the external IP)
-    merchant_oid?: string; // Unique order ID for the transaction
-    email: string; // User email address (registered or received via the order form)
-    payment_amount: number; // Total payment amount (in the smallest currency unit, e.g., cents)
-    currency: "TL" | "EUR" | "USD" | "GBP" | "RUB"; // Currency (TL is assumed if not sent)
-    user_basket: string; // User basket/order contents (base64 encoded)
-    no_installment: number; // 1 to disable installment options, 0 to enable them
-    max_installment: number; // Maximum number of installments (0 means the maximum available installment will be used)
-    paytr_token: string; // PayTR token for ensuring request integrity
-    user_name: string; // User name (first and last name)
-    user_address: string; // User address
-    user_phone: string; // User phone number
-    merchant_ok_url: string; // Success URL after payment
-    merchant_fail_url: string; // Failure URL if payment fails
-    lang: "tr" | "en"; // Language for payment pages (tr is assumed if not sent)
+    merchant_id?: string;
+    user_ip?: string;
 
-    // Optional fields (can be left out)
+    merchant_oid?: string; // order Id
+    email: string;
+    payment_amount: number;
+    currency?: "TL" | "EUR" | "USD" | "GBP" | "RUB";
+    user_basket: any;
+    no_installment?: number; // taksit? 1 means no
+    max_installment?: number; // max taksit
+    paytr_token?: string;
+    user_name: string;
+    user_address: string;
+    user_phone: string;
+    merchant_ok_url?: string;
+    merchant_fail_url?: string;
+    lang?: "tr" | "en";
+
     test_mode?: "0" | "1"; // 1 for test mode, 0 for live mode (defaults to 0)
     debug_on?: number; // 1 to display errors for debugging purposes
     timeout_limit?: number;
   }; // Time limit for payment completion in minutes (defaults to 30 if not sent)
 };
 
-import axios from "axios";
-import { headers } from "next/headers";
+const CreatePaytrToken = async (
+  userDataId: string,
+  { data }: PaytrDataType
+) => {
+  // first get the order Id
 
-const CreatePaytrToken = async ({ data }: PaytrDataType) => {
-    const header = await headers();
-    const ip = (header.get("x-forwarded-for") ?? "127.0.0.1").split(",")[0];
-    const merchant_id = process.env.PAYTR_MERCHANT_ID;
+  const res = await createOrder(userDataId);
 
-    data.user_ip = ip;
+  if (!res) {
+    return false;
+  }
 
+  const header = await headers();
+  data.user_ip = (header.get("x-forwarded-for") ?? "127.0.0.1").split(",")[0];
+  data.merchant_id = process.env.PAYTR_MERCHANT_ID;
+
+  data.currency = "TL";
+  data.no_installment = 1;
+
+  data.max_installment = 0;
+
+  data.test_mode = "1";
+
+  data.merchant_oid = res;
+  data.merchant_ok_url = `${process.env.BASE_URL}/api/payment/${data.merchant_oid}/success`;
+  data.merchant_fail_url = `${process.env.BASE_URL}/api/payment/${data.merchant_oid}/fail`;
+
+  data.user_basket = JSON.stringify(data.user_basket);
+
+  const hashStr = [
+    data.merchant_id,
+    data.user_ip,
+    data.merchant_oid,
+    data.email,
+    data.payment_amount,
+    data.user_basket,
+    data.no_installment,
+    data.max_installment,
+    data.currency,
+    data.test_mode,
+  ].join("");
+
+  const paytrToken = crypto
+    .createHmac("sha256", process.env.PAYTR_MERCHANT_KEY!) // Use the merchant key for hashing
+    .update(hashStr + process.env.PAYTR_MERCHANT_SALT!) // Append merchant salt
+    .digest("base64");
+
+  data.paytr_token = paytrToken;
   try {
+    // Send the request to PayTR API
     const response = await axios.post(
       "https://www.paytr.com/odeme/api/get-token",
-      data
+      data,
+      { headers: { "Content-Type": "application/x-www-form-urlencoded" } } // Set content type for form submission
     );
-    console.log("Paytr token generated:", response.data);
+
     return response.data;
   } catch (error) {
-    console.error("Error generating token:", error);
+    // Handle errors
+    if (axios.isAxiosError(error) && error.response) {
+      console.error("Error response:", error.response.data);
+    } else {
+      console.error("Error generating token:", error);
+    }
   }
 };
 

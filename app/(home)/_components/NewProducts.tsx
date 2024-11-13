@@ -2,16 +2,16 @@ import { FormattedProductWithPhoto } from "@/actions/getMostSailedProducts";
 import Container from "@/components/Container";
 import ProductCard from "@/components/ProductCard";
 
-interface MostSellsProps {
+interface NewProductsProps {
   products: FormattedProductWithPhoto[];
 }
 
-const MostSells = ({ products }: MostSellsProps) => {
+const NewProducts = ({ products }: NewProductsProps) => {
   return (
     <div className="pb-20">
       <Container>
         <p className="text-4xl font-semibold pb-10">
-          En Çok Satanlar
+          Yeni Ürünler
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
           {products.map((product) => (
@@ -23,4 +23,4 @@ const MostSells = ({ products }: MostSellsProps) => {
   );
 };
 
-export default MostSells;
+export default NewProducts;

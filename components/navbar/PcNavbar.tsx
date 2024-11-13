@@ -1,63 +1,34 @@
-import {
-  RegisterLink,
-  LoginLink,
-} from "@kinde-oss/kinde-auth-nextjs/components";
+
 import Logo from "../Logo";
-import Cart from "../cart/Cart";
-import { LogIn, User } from "lucide-react";
 import SearchBar from "./SearchBar";
-import Link from "next/link";
-import DashboardIcon from "@/public/icons/DashboardIcon";
-import AccountDropDownMenu from "./AccountDropDownMenu";
 
-interface PcNavbarProps {
-  isLoggedIn: boolean;
-  kindeId: string;
-  cartLength: number;
-  admin: boolean;
-}
 
-const PcNavbar = ({
-  isLoggedIn,
-  kindeId,
-  cartLength,
-  admin,
-}: PcNavbarProps) => {
+interface PcNavbarProps {}
+
+const PcNavbar = ({}: PcNavbarProps) => {
   return (
     <div>
       <div className="flex items-center justify-between gap-5 ">
         <Logo w="w-12 " />
 
-        <div className="flex flex-1 justify-between gap-8 items-center">
-          <SearchBar />
+        <SearchBar />
 
-          <div className="flex items-center gap-4 ">
-            {!isLoggedIn ? (
-              <>
-                <LoginLink postLoginRedirectURL="/createUser">
-                  <div className="flex justify-between gap-2 items-center transition-all duration-300 hover:text-yellow-500">
-                    <LogIn className="w-9 h-9 lg:w-6 lg:h-6" />
-                    <p>Oturum Aç</p>
-                  </div>
-                </LoginLink>
-                <RegisterLink postLoginRedirectURL="/createUser">
-                  <div className="flex justify-between gap-2 items-center transition-all duration-300  hover:text-yellow-500">
-                    <User className="w-9 h-9 lg:w-6 lg:h-6" />
-                    <p>Kayıt Ol</p>
-                  </div>
-                </RegisterLink>
-              </>
-            ) : (
-              <div className="flex items-center gap-4">
-                {admin && (
-                  <Link href={"/dashboard"}>
-                    <DashboardIcon className="transition-all duration-300  hover:text-yellow-500 w-9 h-9 lg:w-6 lg:h-6" />
-                  </Link>
-                )}
-                <Cart cartLength={cartLength} kindeId={kindeId} />
-                <AccountDropDownMenu />
-              </div>
-            )}
+        <div className="flex items-center gap-5 ">
+          <div className="flex flex-col gap-1">
+            <p className="text-muted-foreground">E-posta</p>
+            <a
+              className="text-xl"
+              href="mailto:email@provider.com?subject=Hello%20there&body=How%20are%20you?"
+            >
+              Email@provider.com
+            </a>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-muted-foreground ">Telefon</p>
+
+            <a className="text-xl" href="tel:+1234567890">
+              Call +1 234 567 890
+            </a>
           </div>
         </div>
       </div>

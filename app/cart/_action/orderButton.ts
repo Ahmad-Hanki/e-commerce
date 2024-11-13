@@ -10,7 +10,7 @@ const createOrder = async (userDataId: string) => {
 
     if (!kindeId || !userDataId) {
       console.error("No kindeId found");
-      return false;
+      return "";
     }
 
     const cartWithItems = await prisma.cart.findFirst({
@@ -31,7 +31,7 @@ const createOrder = async (userDataId: string) => {
     }, 0);
 
     if (!totalAmount) {
-      return false;
+      return "";
     }
 
     const totalBeforeDiscount = cartWithItems?.cartItems.reduce((acc, item) => {
@@ -43,7 +43,7 @@ const createOrder = async (userDataId: string) => {
 
     if (!cartWithItems || !cartWithItems.cartItems.length) {
       console.error("Cart is empty or not found");
-      return false;
+      return "";
     }
 
     console.log("totalAmount", totalAmount);
@@ -56,10 +56,10 @@ const createOrder = async (userDataId: string) => {
 
     if (!user || !user.id) {
       console.error("User not found");
-      return false;
+      return "";
     }
 
-    await prisma.order.create({
+    const order = await prisma.order.create({
       data: {
         userId: user.id,
         addressId: userDataId,
@@ -78,15 +78,15 @@ const createOrder = async (userDataId: string) => {
       },
     });
 
-    await prisma.cartItem.deleteMany({
-      where: { cartId: cartWithItems.id },
-    });
+    // await prisma.cartItem.deleteMany({
+    //   where: { cartId: cartWithItems.id },
+    // });
 
-    revalidatePath("/cart/" + kindeId);
-    return true;
+    // revalidatePath("/cart/" + kindeId);
+    return order.id;
   } catch (error) {
     console.error("Error creating order:", error);
-    return false;
+    return "";
   }
 };
 

@@ -6,7 +6,7 @@ import { FormattedProductWithPhoto } from "@/actions/getMostSailedProducts";
 
 interface CategoryNameProps {
   products: FormattedProductWithPhoto[];
-  categoryName?: string;
+  UpperCategoryName?: string;
   downerCategories?: DownerCategory[];
   upperCategoryId?: string;
 }
@@ -15,10 +15,14 @@ const CategoryName = ({
   products,
   downerCategories,
   upperCategoryId,
+  UpperCategoryName,
 }: CategoryNameProps) => {
   return (
     <div className="pb-10">
       <Container>
+        {UpperCategoryName && (
+          <h1 className="text-3xl font-semibold my-5">{UpperCategoryName}</h1>
+        )}
         {downerCategories && upperCategoryId && (
           <CategoryLinks
             downerCategories={downerCategories}

@@ -1,8 +1,6 @@
 "use server";
 import prisma from "@/lib/db";
-import { Product } from "@prisma/client";
 
-// Define a type for the response format, allowing null values for optional fields
 export interface FormattedProductWithPhoto {
   id: string;
   description: string;
@@ -23,13 +21,11 @@ export interface FormattedProductWithPhoto {
   primaryImageUrl: string;
 }
 
-const getMostSailedProducts = async (): Promise<
-  FormattedProductWithPhoto[]
-> => {
+const getNewProducts = async (): Promise<FormattedProductWithPhoto[]> => {
   try {
     const mostSailed = await prisma.product.findMany({
       where: {
-        mostSale: true,
+        new: true,
       },
       take: 8,
       include: {
@@ -69,4 +65,4 @@ const getMostSailedProducts = async (): Promise<
   }
 };
 
-export default getMostSailedProducts;
+export default getNewProducts;

@@ -93,6 +93,7 @@ const CartPage = async ({
                   })),
                 }}
                 userData={userData}
+                basketData={basketData}
               />
             ) : (
               <p>Sepette ürün yok</p>

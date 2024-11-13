@@ -18,6 +18,11 @@ const getProductsUpperCategoryAndDownerCategories = async (
       },
 
       include: {
+        upperCategory: {
+          select: {
+            name: true,
+          },
+        },
         Photos: {
           where: {
             primary: true, // Only include photos where primary is true
@@ -34,7 +39,7 @@ const getProductsUpperCategoryAndDownerCategories = async (
       description: product.description,
       price: product.price,
       inStock: product.inStock,
-
+      categoryName: product.upperCategory.name,
       oldPrice: product.oldPrice, // Can be null
       discount: product.discount, // Can be null
       new: product.new, // Can be null

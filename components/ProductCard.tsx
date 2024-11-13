@@ -34,8 +34,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
               )}
 
               {product.discount && (
-                <div className="text-white text-sm font-bold w-full  group-hover:flex justify-end hidden absolute right-0 top-5">
-                  <p className="bg-primary/80 p-1">%{product.discount}</p>
+                <div className="text-white text-sm font-bold w-full  flex  justify-end absolute right-0 top-5 bg-transparent ">
+                  <p className="bg-primary/50 p-1 border">%{product.discount}</p>
                 </div>
               )}
               {product.new && (
@@ -48,25 +48,24 @@ const ProductCard = ({ product }: ProductCardProps) => {
                   />
                 </div>
               )}
-
-              {product.rating && (
-                <div className="hidden absolute -bottom-2 w-full group-hover:flex justify-center z-10 ">
-                  {/* make an array with the number of index of rating */}
-                  {[...Array(product.rating)].map((_, index) => (
-                    <p key={index} className="text-yellow-400 text-3xl">
-                      ★
-                    </p>
-                  ))}
-                </div>
-              )}
             </div>
             <div className="flex flex-col gap-1 mt-5">
-              <p className="text-center text-muted-foreground">
+              <p className="text-xl text-muted-foreground">
                 {product.description}
               </p>
             </div>
 
-            <div className="flex items-center gap-2 justify-center">
+            {product.rating && product.rating != 0 && (
+              <div className=" w-full flex items-center ">
+                {[...Array(product.rating)].map((_, index) => (
+                  <p key={index} className="text-yellow-400 text-2xl">
+                    ★
+                  </p>
+                ))}
+              </div>
+            )}
+
+            <div className="flex items-center gap-2">
               <p className="text-2xl text-red-500 font-bold">
                 {product.price} TL
               </p>

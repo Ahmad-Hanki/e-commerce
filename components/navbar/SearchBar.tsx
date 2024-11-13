@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { redirect } from "next/navigation";
+import { SearchIcon } from "lucide-react";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -14,22 +15,22 @@ const SearchBar = () => {
     redirect(`/search?q=${search}`);
   };
   return (
-    <div className="flex-1">
+    <div className="flex-1 min-h-full">
       <div className="gap-0 items-center hidden lg:flex">
         <Input
           onChange={(e) => {
             setSearch(e.target.value);
           }}
           value={search}
-          className="flex-1 h-[40px] border-r-0 rounded-r-none text-xl"
+          className="flex-1 min-h-[60px] h-full border-r-0 rounded-r-none text-2xl"
         />
 
         <Button
           disabled={search == ""}
           onClick={goTo}
-          className="h-[40px] border-l-0 rounded-l-none"
+          className="min-h-[60px] h-full border-l-0 rounded-l-none"
         >
-          Bul
+          <SearchIcon />
         </Button>
       </div>
     </div>

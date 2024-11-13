@@ -13,6 +13,7 @@ interface SummeryProps {
   }[];
   userData: userData[];
   userId: string;
+  basketData: (string | number)[][];
 }
 const Summery = ({
   totalAmount,
@@ -20,6 +21,7 @@ const Summery = ({
   products,
   userId,
   userData,
+  basketData
 }: SummeryProps) => {
   return (
     <div className="space-y-7 pt-10 md:pt-0">
@@ -62,6 +64,7 @@ const Summery = ({
           totalAmount={totalAmount}
           userId={userId}
           userData={userData}
+          basketData={basketData}
         />
       </div>
     </div>

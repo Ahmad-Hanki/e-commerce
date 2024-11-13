@@ -127,7 +127,7 @@ model CartItem {
 }
 
 model Order {
-  id             String      @id @default(uuid())
+  id             String      @id @default(cuid())
   status         OrderStatus @default(PENDING)
   total          Float
   shippingFee    Float?      @default(0.0)

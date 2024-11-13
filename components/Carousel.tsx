@@ -23,10 +23,10 @@ export default function CarouselComponent({
   return (
     <div className="py-20">
       <Container>
-        <h2 className="text-3xl font-semibold text-center mb-6">
+        <h2 className="text-4xl font-semibold  mb-6">
           {like && "Şunları da beğenebilirsiniz"}
         </h2>
-        <h2 className="text-3xl font-semibold text-center mb-6">
+        <h2 className="text-4xl font-semibold  mb-6">
           {!like && "Sizin için seçildi"}
         </h2>
         <Carousel className="w-full">
@@ -49,19 +49,20 @@ export default function CarouselComponent({
 
                     <div className="flex flex-col gap-3 mt-5">
                       <div className="h-full">
-                        <p className="text-secondary-foreground/70 t">
+                        <p className="text-secondary-foreground/70 text-2xl ">
                           {product.description}
                         </p>
                       </div>
                       <div className="flex items-center gap-4">
+                      <p className="text-primary text-2xl font-semibold">
+                          {product.price} ₺
+                        </p>
                         {product.oldPrice && (
-                          <p className="text-muted-foreground text-base font-light line-through">
+                          <p className="text-muted-foreground font-light line-through text-lg">
                             {product.oldPrice} ₺
                           </p>
                         )}
-                        <p className="text-primary text-lg font-semibold">
-                          {product.price} ₺
-                        </p>
+                       
                       </div>
                     </div>
                   </Card>

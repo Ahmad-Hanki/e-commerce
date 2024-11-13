@@ -30,8 +30,9 @@ interface CheckoutProps {
   };
   userData: userData[];
   userId: string;
+  basketData: (string | number)[][];
 }
-const Checkout = ({ items, summery, userData, userId }: CheckoutProps) => {
+const Checkout = ({ items, summery, userData, userId, basketData }: CheckoutProps) => {
   if (!items && items == undefined) {
     return null;
   }
@@ -49,6 +50,7 @@ const Checkout = ({ items, summery, userData, userId }: CheckoutProps) => {
           products={summery.products}
           userData={userData}
           userId={userId}
+          basketData={basketData}
         />
       </div>
     </div>
