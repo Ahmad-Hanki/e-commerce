@@ -25,7 +25,7 @@ const CategoryNamePage = async ({
   return (
     <div>
       <Suspense fallback={<Loading />}>
-        <CategoryName products={products} categoryName={q} />
+        <CategoryName products={products} searchParams={q} />
       </Suspense>
     </div>
   );

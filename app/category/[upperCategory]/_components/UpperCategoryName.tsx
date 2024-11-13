@@ -9,6 +9,7 @@ interface CategoryNameProps {
   UpperCategoryName?: string;
   downerCategories?: DownerCategory[];
   upperCategoryId?: string;
+  searchParams?: string;
 }
 
 const CategoryName = ({
@@ -16,12 +17,16 @@ const CategoryName = ({
   downerCategories,
   upperCategoryId,
   UpperCategoryName,
+  searchParams
 }: CategoryNameProps) => {
   return (
     <div className="pb-10">
       <Container>
         {UpperCategoryName && (
           <h1 className="text-3xl font-semibold my-5">{UpperCategoryName}</h1>
+        )}
+        {searchParams && (
+          <h1 className="text-3xl font-semibold my-5">{searchParams}</h1>
         )}
         {downerCategories && upperCategoryId && (
           <CategoryLinks
