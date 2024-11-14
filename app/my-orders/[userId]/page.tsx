@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import getUserOrders from "../_actions/getUserOrders";
 import OrdersTable from "../_components/OrdersTable";
+import { Suspense } from "react";
+import Loading from "@/components/loading";
 
 const UserOrders = async ({
   params,
@@ -20,7 +22,9 @@ const UserOrders = async ({
 
   return (
     <div>
-      <OrdersTable userId={userId} orders={orders} />
+      <Suspense fallback={<Loading />}>
+        <OrdersTable userId={userId} orders={orders} />
+      </Suspense>
     </div>
   );
 };

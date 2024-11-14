@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import getSpecificOrder from "../../_actions/getSpecificOrder";
 import OrderData from "../../_components/OrderData";
+import Loading from "@/components/loading";
 
 const OrderId = async ({
   params,
@@ -16,7 +18,9 @@ const OrderId = async ({
 
   return (
     <div>
-      <OrderData order={specificOrder} />
+      <Suspense fallback={<Loading />}>
+        <OrderData order={specificOrder} />
+      </Suspense>
     </div>
   );
 };

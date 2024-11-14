@@ -40,7 +40,7 @@ const Payment = ({
     });
 
     if (res.status == "success") {
-      redirect("/payment/" + res.token);
+      redirect("/checkoutForm");
     }
   };
   return (

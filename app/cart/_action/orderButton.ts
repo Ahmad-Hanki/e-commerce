@@ -23,8 +23,6 @@ const createOrder = async (userDataId: string) => {
       },
     });
 
-    // get the totalAmount and totalBeforeDiscount by doing the function
-
     const totalAmount = cartWithItems?.cartItems.reduce((acc, item) => {
       return acc + item.package.price * item.quantity;
     }, 0);
@@ -77,12 +75,6 @@ const createOrder = async (userDataId: string) => {
       },
     });
 
-    // await prisma.cartItem.deleteMany({
-    //   where: { cartId: cartWithItems.id },
-    // });
-
-    // revalidatePath("/cart/" + kindeId);
-    
     return order.id;
   } catch (error) {
     console.error("Error creating order:", error);

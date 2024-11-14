@@ -1,9 +1,10 @@
 "use server";
 
 import axios from "axios";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import * as crypto from "crypto";
 import createOrder from "@/app/cart/_action/orderButton";
+import prisma from "@/lib/db";
 
 export type PaytrDataType = {
   data: {
@@ -28,7 +29,8 @@ export type PaytrDataType = {
     test_mode?: "0" | "1"; // 1 for test mode, 0 for live mode (defaults to 0)
     debug_on?: number; // 1 to display errors for debugging purposes
     timeout_limit?: number;
-  }; // Time limit for payment completion in minutes (defaults to 30 if not sent)
+  }; 
+  // Time limit for payment completion in minutes (defaults to 30 if not sent)
 };
 
 const CreatePaytrToken = async (
@@ -52,13 +54,16 @@ const CreatePaytrToken = async (
 
   data.max_installment = 0;
 
-  data.test_mode = "1";
+  data.test_mode = "0";
+  data.timeout_limit = 2; // mins
 
   data.merchant_oid = res;
-  data.merchant_ok_url = `${process.env.BASE_URL}/api/payment/${data.merchant_oid}/success`;
-  data.merchant_fail_url = `${process.env.BASE_URL}/api/payment/${data.merchant_oid}/fail`;
+  data.merchant_ok_url = `${process.env.BASE_URL}/payment/${data.merchant_oid}/success`;
+  data.merchant_fail_url = `${process.env.BASE_URL}/payment/${data.merchant_oid}/fail`;
 
   data.user_basket = JSON.stringify(data.user_basket);
+
+  data.payment_amount = data.payment_amount * 100;
 
   const hashStr = [
     data.merchant_id,
@@ -87,6 +92,27 @@ const CreatePaytrToken = async (
       { headers: { "Content-Type": "application/x-www-form-urlencoded" } } // Set content type for form submission
     );
 
+    const cookie = await cookies();
+
+    if (response.data.status === "success") {
+      // await prisma.cartItem.deleteMany({
+      //   where: { cartId: cartWithItems.id },
+      // });
+
+      // empty it in the success callback
+      // in the callbackurl
+
+
+      cookie.set({
+        name: "paytrToken",
+        value: response.data.token,
+        httpOnly: true,
+        path: "/",
+        secure: true,
+        sameSite: "strict",
+        expires: new Date(Date.now() + 2 * 60 * 1000), // Expires in 2 minutes
+      });
+    }
     return response.data;
   } catch (error) {
     // Handle errors
