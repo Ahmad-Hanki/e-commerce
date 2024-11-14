@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import prisma from "@/lib/db";
 
 const merchant_key = process.env.PAYTR_MERCHANT_KEY;
 const merchant_salt = process.env.PAYTR_MERCHANT_SALT;
@@ -9,6 +10,8 @@ export const POST = async (req: Request) => {
     // Parse the form data
     const formData = await req.text();
     const callback = Object.fromEntries(new URLSearchParams(formData));
+
+    console.log(callback);
 
     // Generate hash
     const paytr_token =
@@ -27,7 +30,10 @@ export const POST = async (req: Request) => {
     }
 
     if (callback.status === "success") {
-      // Process successful payment
+      await prisma.order.update({
+        where: { id: callback.merchant_oid },
+        data: { status: "CONFIRMED" },
+      });
     } else {
       // Handle unsuccessful payment
     }
