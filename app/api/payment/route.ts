@@ -30,10 +30,18 @@ export const POST = async (req: Request) => {
     }
 
     if (callback.status === "success") {
-      await prisma.order.update({
+      const order = await prisma.order.update({
         where: { id: callback.merchant_oid },
         data: { status: "CONFIRMED" },
+        include: { user: { include: { Cart: true } } },
       });
+
+      if (order?.user?.Cart) {
+        // Delete all cart items associated with the user's cart
+        await prisma.cartItem.deleteMany({
+          where: { cartId: order.user.Cart.id },
+        });
+      }
     } else {
       // Handle unsuccessful payment
     }

@@ -95,9 +95,6 @@ const CreatePaytrToken = async (
     const cookie = await cookies();
 
     if (response.data.status === "success") {
-      // await prisma.cartItem.deleteMany({
-      //   where: { cartId: cartWithItems.id },
-      // });
 
       // empty it in the success callback
       // in the callbackurl
