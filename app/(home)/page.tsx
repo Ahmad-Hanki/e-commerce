@@ -10,13 +10,12 @@ import Features from "./_components/Features";
 // import Landing from "./_components/Landing";
 import NewProducts from "./_components/NewProducts";
 import getNewProducts from "@/actions/getNewProducts";
+import prisma from "@/lib/db";
 
 export default async function Home() {
-  const [mostSailed, randomProducts, newProducts] = await Promise.all([
-    getMostSailedProducts(),
-    getRandomProducts(),
-    getNewProducts(),
-  ]);
+  const mostSailed = await getMostSailedProducts();
+  const randomProducts = await getRandomProducts();
+  const newProducts = await getNewProducts();
 
   return (
     <div>

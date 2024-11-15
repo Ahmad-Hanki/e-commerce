@@ -26,10 +26,8 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     await createOrFindUser();
   }
 
-  const [product, images] = await Promise.all([
-    getProductWithPackage(id),
-    getProductImages(id),
-  ]);
+  const product = await getProductWithPackage(id);
+  const images = await getProductImages(id);
 
   if (!product || !images) {
     return notFound();
@@ -78,10 +76,8 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const [product, images] = await Promise.all([
-    getProductWithPackage(id),
-    getProductImages(id),
-  ]);
+  const product = await getProductWithPackage(id);
+  const images = await getProductImages(id);
 
   const imgUrl = images.find((image) => image.primary)?.url;
 
