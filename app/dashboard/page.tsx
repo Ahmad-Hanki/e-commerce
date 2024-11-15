@@ -1,8 +1,13 @@
+import getChartOrderData from "./_action/chartOrders";
+import Chart from "./_components/Chart";
 
-const DashboardPage = () => {
+// Assuming the data is fetched from your server-side code
+export default async function ChartPage() {
+  const chartData = await getChartOrderData();
+
   return (
-    <div>DashboardPage</div>
-  )
+    <>
+      <Chart data={chartData} />
+    </>
+  );
 }
-
-export default DashboardPage

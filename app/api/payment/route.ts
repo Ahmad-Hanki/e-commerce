@@ -43,7 +43,9 @@ export const POST = async (req: Request) => {
         });
       }
     } else {
-      // Handle unsuccessful payment
+      await prisma.order.delete({
+        where: { id: callback.merchant_oid },
+      });
     }
 
     return NextResponse.json({ message: "OK" }, { status: 200 });
