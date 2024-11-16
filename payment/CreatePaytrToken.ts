@@ -4,7 +4,6 @@ import axios from "axios";
 import { cookies, headers } from "next/headers";
 import * as crypto from "crypto";
 import createOrder from "@/app/cart/_action/orderButton";
-import prisma from "@/lib/db";
 
 export type PaytrDataType = {
   data: {
@@ -29,7 +28,7 @@ export type PaytrDataType = {
     test_mode?: "0" | "1"; // 1 for test mode, 0 for live mode (defaults to 0)
     debug_on?: number; // 1 to display errors for debugging purposes
     timeout_limit?: number;
-  }; 
+  };
   // Time limit for payment completion in minutes (defaults to 30 if not sent)
 };
 
@@ -54,7 +53,7 @@ const CreatePaytrToken = async (
 
   data.max_installment = 0;
 
-  data.test_mode = "0";
+  data.test_mode = "1";
   data.timeout_limit = 2; // mins
 
   data.merchant_oid = res;
@@ -95,10 +94,8 @@ const CreatePaytrToken = async (
     const cookie = await cookies();
 
     if (response.data.status === "success") {
-
       // empty it in the success callback
       // in the callbackurl
-
 
       cookie.set({
         name: "paytrToken",

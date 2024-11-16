@@ -10,17 +10,20 @@ import Features from "./_components/Features";
 // import Landing from "./_components/Landing";
 import NewProducts from "./_components/NewProducts";
 import getNewProducts from "@/actions/getNewProducts";
-import prisma from "@/lib/db";
+import { headers } from "next/headers";
 
 export default async function Home() {
   const mostSailed = await getMostSailedProducts();
   const randomProducts = await getRandomProducts();
   const newProducts = await getNewProducts();
 
+  const header = await headers();
+
+  const ip = (header.get("x-forwarded-for") ?? "127.0.0.1").split(",")[0];
+  console.log(ip);
+
   return (
     <div>
-      {/* <Landing /> */}
-
       <Hero
         img={img2}
         title="En Sevdiğiniz Ürünlerde En İyi Fırsatları Keşfedin!"
