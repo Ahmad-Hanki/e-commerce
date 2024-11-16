@@ -1,18 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { UpperCategory } from "@prisma/client";
 import Link from "next/link";
-import {usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface PcCategoryProps {
   categories: UpperCategory[]; // Expecting categories with 'id' and 'name'
@@ -31,7 +23,7 @@ export function PcCategory({ categories }: PcCategoryProps) {
   return (
     <div className="flex justify-start items-center gap-2">
       {categoriesLink.map((category) => (
-        <Button className="text-xl" key={category.name} variant={'link'}>
+        <Button className="text-xl" key={category.name} variant={"link"}>
           <Link
             className={category.active ? "underline" : ""}
             href={category.href}
