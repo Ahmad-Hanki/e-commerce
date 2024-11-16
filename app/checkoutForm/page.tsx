@@ -16,7 +16,7 @@ const CheckOutFormPage = async () => {
       <iframe
         src={`https://www.paytr.com/odeme/guvenli/${token}`}
         id="paytriframe"
-        className="w-full !min-h-[800px] !max-h-[3000px] !overflow-auto !h-auto"
+        className="w-full !min-h-[800px] !max-h-[3000px] !overflow-auto !h-full"
       ></iframe>
       <script style={{ height: "1000px" }}>
         iFrameResize({},&apos;#paytriframe&apos;);

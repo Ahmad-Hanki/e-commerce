@@ -47,9 +47,10 @@ const PcDownerNav = ({
       <Container>
         <div className="flex items-center justify-between">
           <PcCategory categories={categories} />
-
+          
           <div className="flex items-center gap-5 ">
             {links.map((link) => (
+
               <Links className="text-xl" item={link} key={link.href} />
             ))}
           </div>

@@ -11,41 +11,35 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { UpperCategory } from "@prisma/client";
-import { redirect } from "next/navigation";
-import { useState } from "react";
+import Link from "next/link";
+import {usePathname } from "next/navigation";
 
 interface PcCategoryProps {
   categories: UpperCategory[]; // Expecting categories with 'id' and 'name'
 }
 
 export function PcCategory({ categories }: PcCategoryProps) {
-  const [position, setPosition] = useState("Kategori Sec");
+  const pathname = usePathname();
 
+  const categoriesLink = categories.map((category) => {
+    return {
+      href: `/category/${category.id}`,
+      name: category.name,
+      active: pathname.includes(`/category/${category.id}`),
+    };
+  });
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button className="text-2xl" variant="outline">
-          {position}
+    <div className="flex justify-start items-center gap-2">
+      {categoriesLink.map((category) => (
+        <Button className="text-xl" key={category.name} variant={'link'}>
+          <Link
+            className={category.active ? "underline" : ""}
+            href={category.href}
+          >
+            {category.name}
+          </Link>
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Kategoriler:</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          {categories.map((category) => (
-            <DropdownMenuRadioItem
-              className="text-xl"
-              onClick={() => {
-                redirect("/category/" + category.id);
-              }}
-              key={category.id}
-              value={category.id}
-            >
-              {category.name}
-            </DropdownMenuRadioItem>
-          ))}
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      ))}
+    </div>
   );
 }
