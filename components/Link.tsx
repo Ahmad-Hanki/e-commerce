@@ -27,8 +27,8 @@ const Links = ({
           : item.href
       }
       className={cn(
-        "text-base text-muted-foreground hover:text-secondary transition-all duration-300",
-        active && "text-lg text-primary",
+        "text-base text-muted-foreground hover:text-yellow-500 transition-all duration-300 hover:underline",
+        active && "text-lg text-primary ",
         className
       )}
     >

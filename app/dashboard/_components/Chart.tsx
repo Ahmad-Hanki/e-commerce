@@ -18,7 +18,6 @@ import Container from "@/components/Container";
 // Define the type for the chart data
 interface ChartData {
   month: string;
-  totalOrders: number;
   totalPayment: number;
 }
 
@@ -28,23 +27,18 @@ interface ChartProps {
 }
 
 const chartConfig = {
-  totalOrders: {
-    label: "Total Orders",
-    color: "hsl(var(--chart-1))", // Custom color for total orders
-  },
   totalPayment: {
     label: "Total Payment",
-    color: "hsl(var(--chart-2))", // Custom color for total payments
+    color: "hsl(var(--chart-2))",
   },
-} satisfies ChartConfig;
+};
 
-// Modify the component to accept props
 export default function Chart({ data }: ChartProps) {
   return (
     <div className="py-20">
       <Container>
         <div>
-          <CardTitle>Bar Chart - Side by Side</CardTitle>
+          <CardTitle>Bar Chart - Total Payment</CardTitle>
           <CardDescription>January - June 2024</CardDescription>
         </div>
         <div>
@@ -59,19 +53,16 @@ export default function Chart({ data }: ChartProps) {
                 tickFormatter={(value) => value.slice(0, 3)} // Format month abbreviation
               />
               <YAxis />
-              <Tooltip />
-              <Legend />
+              <Tooltip
+                formatter={(value, name) => [value, chartConfig.totalPayment.label]} // Tooltip only for totalPayment
+              />
+              <Legend
+                formatter={() => chartConfig.totalPayment.label} // Legend only for totalPayment
+              />
 
-              {/* Side by side bars */}
               <Bar
                 dataKey="totalPayment"
-                fill={chartConfig.totalPayment.color} // Color for totalPayment
-                radius={[0, 0, 4, 4]}
-                barSize={45} // Adjust the width of the bar to fit the container better
-              />
-              <Bar
-                dataKey="totalOrders"
-                fill={chartConfig.totalOrders.color} // Color for totalOrders
+                fill={chartConfig.totalPayment.color}
                 radius={[4, 4, 0, 0]}
                 barSize={45} // Adjust the width of the bar to fit the container better
               />

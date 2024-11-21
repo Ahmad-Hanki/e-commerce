@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 const Shop = async () => {
   const allProducts = await getAllProducts();
   return (
-    <div>
+    <div className="pb-10">
       <Container>
         <div className="space-y-6">
           <p className="text-xl">Stokta {allProducts.length} ürün bulunmaktadır.</p>

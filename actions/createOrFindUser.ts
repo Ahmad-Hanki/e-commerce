@@ -17,6 +17,7 @@ const createOrFindUser = async () => {
       update: {},
       create: {
         kindeId,
+        
       },
     });
 

@@ -25,7 +25,9 @@ export function PcCategory({ categories }: PcCategoryProps) {
       {categoriesLink.map((category) => (
         <Button className="text-xl px-0" key={category.name} variant={"link"}>
           <Link
-            className={category.active ? "underline" : ""}
+            className={`text-base text-muted-foreground hover:text-yellow-500 transition-all duration-300 hover:underline ${
+              category.active ? "text-lg text-primary " : ""
+            }`}
             href={category.href}
           >
             {category.name}
