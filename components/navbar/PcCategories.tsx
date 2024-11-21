@@ -23,7 +23,7 @@ export function PcCategory({ categories }: PcCategoryProps) {
   return (
     <div className="flex justify-start items-center gap-2">
       {categoriesLink.map((category) => (
-        <Button className="text-xl" key={category.name} variant={"link"}>
+        <Button className="text-xl px-0" key={category.name} variant={"link"}>
           <Link
             className={category.active ? "underline" : ""}
             href={category.href}

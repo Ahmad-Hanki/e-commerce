@@ -1,29 +1,29 @@
-'use server'
+"use server";
 import prisma from "@/lib/db";
 
 // Define the type for the aggregated data
 export interface ChartDataType {
   [month: string]: {
-    totalPayment: number;  // Replaced 'totalAmount' with 'totalPayment'
-    totalOrders: number;   // Replaced 'orderCount' with 'totalOrders'
+    totalPayment: number; // Replaced 'totalAmount' with 'totalPayment'
+    totalOrders: number; // Replaced 'orderCount' with 'totalOrders'
   };
 }
 
 async function getChartOrderData() {
   const chartOrder = await prisma.order.findMany({
     where: {
-      status: 'CONFIRMED',
+      status: "DELIVERED",
     },
     select: {
       total: true,
       createdAt: true,
     },
   });
-
+  
   // Helper function to format date into "yyyy-MM"
   const formatDate = (date: Date): string => {
     const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ensure two digits for the month
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Ensure two digits for the month
     return `${year}-${month}`;
   };
 
@@ -45,7 +45,10 @@ async function getChartOrderData() {
     const monthKey = formatDate(month);
 
     return {
-      month: month.toLocaleString('default', { month: 'long', year: 'numeric' }), // Localize month name
+      month: month.toLocaleString("default", {
+        month: "long",
+        year: "numeric",
+      }), // Localize month name
       totalPayment: monthlyData[monthKey]?.totalPayment || 0, // Replace with totalPayment
       totalOrders: monthlyData[monthKey]?.totalOrders || 0, // Replace with totalOrders
     };

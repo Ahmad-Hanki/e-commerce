@@ -16,7 +16,9 @@ const Links = ({
   const pathName = usePathname();
 
   const active =
-    pathName == "/" ? item.href == "/" : pathName.includes(item.href);
+    pathName === item.href ||
+    (item.href !== "/" && pathName.includes(item.href));
+
   return (
     <Link
       href={

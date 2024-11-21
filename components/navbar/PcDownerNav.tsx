@@ -34,6 +34,11 @@ const PcDownerNav = ({
       href: "/",
     },
     {
+      name: "Ürünler",
+      href: "/shop",
+    },
+
+    {
       name: "Hakkımızda",
       href: "/about",
     },
@@ -45,14 +50,15 @@ const PcDownerNav = ({
   return (
     <div className="py-5 hidden lg:block">
       <Container>
-        <div className="flex items-center justify-between">
-          <PcCategory categories={categories} />
-          
-          <div className="flex items-center gap-5 ">
-            {links.map((link) => (
+        <div className="flex justify-between">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-5 ">
+              {links.map((link) => (
+                <Links className="text-xl" item={link} key={link.href} />
+              ))}
+            </div>
 
-              <Links className="text-xl" item={link} key={link.href} />
-            ))}
+            <PcCategory categories={categories} />
           </div>
 
           <div className="flex items-center gap-4 ">

@@ -64,6 +64,11 @@ const MobileNavbar = ({
       active: pathname === "/",
     },
     {
+      title: "Ürünler",
+      url: "/shop",
+      active: pathname === "/shop",
+    },
+    {
       title: "Hakkımızda",
       url: "/about",
       active: pathname === "/about",
