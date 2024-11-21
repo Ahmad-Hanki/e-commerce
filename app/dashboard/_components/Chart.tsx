@@ -54,7 +54,7 @@ export default function Chart({ data }: ChartProps) {
               />
               <YAxis />
               <Tooltip
-                formatter={(value, name) => [value, chartConfig.totalPayment.label]} // Tooltip only for totalPayment
+                formatter={(value) => [value, chartConfig.totalPayment.label]} // Tooltip only for totalPayment
               />
               <Legend
                 formatter={() => chartConfig.totalPayment.label} // Legend only for totalPayment
