@@ -12,7 +12,7 @@ import {
 } from "recharts";
 
 import { CardDescription, CardFooter, CardTitle } from "@/components/ui/card";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { ChartContainer } from "@/components/ui/chart";
 import Container from "@/components/Container";
 
 // Define the type for the chart data
