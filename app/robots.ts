@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
 
+const baseUrl = process.env.BASE_URL!;
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/dashboard", "/dashboard/*", '/cart'], // Disallow `/dashboard` and everything under it
+      disallow: ["/dashboard", "/dashboard/*", "/cart", '/createUser', '/checkoutForm' , '/search'], // Disallow `/dashboard` and everything under it
     },
-    sitemap: "https://acme.com/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

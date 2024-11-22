@@ -35,7 +35,7 @@ const PcDownerNav = ({
     },
     {
       name: "Ürünler",
-      href: "/shop",
+      href: "/product",
     },
 
     {

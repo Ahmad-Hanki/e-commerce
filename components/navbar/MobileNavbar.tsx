@@ -65,7 +65,7 @@ const MobileNavbar = ({
     },
     {
       title: "Ürünler",
-      url: "/shop",
+      url: "/product",
       active: pathname === "/shop",
     },
     {
@@ -111,7 +111,7 @@ const MobileNavbar = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-50 w-full bg-popover text-popover-foreground px-4 pt-[120px] min-h-[100vh] overflow-scroll"
+            className="fixed inset-0 z-50 w-full  text-popover-foreground px-4 pt-[120px] min-h-[100vh] overflow-scroll bg-zinc-200"
           >
             <div className="relative pb-10">
               <div className="flex flex-col gap-6">
@@ -121,14 +121,16 @@ const MobileNavbar = ({
                   <Link
                     key={index}
                     href={link.url}
-                    className={`text-4xl ${link.active ? "text-primary" : ""}`}
+                    className={`text-4xl text-primary/80 ${
+                      link.active ? "text-primary  underline" : ""
+                    }`}
                   >
                     {link.title}
                   </Link>
                 ))}
               </div>
 
-              <div className="flex items-center gap-6 mt-10">
+              <div className="flex flex-col  gap-6 mt-10">
                 {!isLoggedIn ? (
                   <>
                     <LoginLink postLoginRedirectURL="/createUser">
@@ -169,32 +171,40 @@ const MobileNavbar = ({
               </div>
 
               <p className="mt-5 text-2xl">
-                Fıstıklık Mahallesi 152080 Nolu Sokak No:4 Günsev Baran Apt.
-                Altı Beykent Mahallesi 85016 Nolu Sokak Beykent Ünite Merkezi
-                No:13 İç Kapı:5
+                Fıstıklık Mahallesi. 152080 Nolu Sokak. No:4
+                Şahitkamil/Gaziantep
               </p>
+              <div className="mt-5 flex flex-col gap-1">
+                <p className="text-primary/80 text-lg">Bize Ulaşın</p>
 
-              <div className="mt-5 flex gap-3">
-                <InstagramLogoIcon
-                  height={40}
-                  width={40}
-                  className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
-                />
-                <LinkedInLogoIcon
-                  height={40}
-                  width={40}
-                  className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
-                />
-                <TwitterLogoIcon
-                  height={40}
-                  width={40}
-                  className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
-                />
-                <GitHubLogoIcon
-                  height={40}
-                  width={40}
-                  className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
-                />
+                <p className=" text-2xl">+90 552 680 80 00</p>
+              </div>
+
+              <div className="mt-5 flex flex-col gap-1">
+                <p className="text-primary/80 text-lg">Bize Takip Edin</p>
+
+                <div className=" flex gap-3">
+                  <InstagramLogoIcon
+                    height={40}
+                    width={40}
+                    className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
+                  />
+                  <LinkedInLogoIcon
+                    height={40}
+                    width={40}
+                    className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
+                  />
+                  <TwitterLogoIcon
+                    height={40}
+                    width={40}
+                    className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
+                  />
+                  <GitHubLogoIcon
+                    height={40}
+                    width={40}
+                    className="transition-all duration-200 cursor-pointer hover:text-secondary-foreground"
+                  />
+                </div>
               </div>
             </div>
           </motion.div>

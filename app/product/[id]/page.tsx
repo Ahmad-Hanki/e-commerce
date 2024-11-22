@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 import getProductBasedOnCategory from "@/actions/getProductBasedOnCategory";
 import getProductImages from "@/actions/getProductImages";
 import { Metadata } from "next";
+import getAllProducts from "@/actions/getAllProducts";
 
 // Define a type for the product with packages
 type ProductWithPackages = PrismaProduct & {
@@ -50,8 +51,20 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const productsCategory = await getProductBasedOnCategory(product.categoryId);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.description,
+    description: product.description,
+  };
+
   return (
-    <div>
+    <section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <Suspense fallback={<Loading />}>
         <ProductContainer
           product={productData}
@@ -64,7 +77,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
       <Suspense fallback={<Loading />}>
         <CarouselComponent like={true} products={productsCategory} />
       </Suspense>
-    </div>
+    </section>
   );
 };
 
@@ -90,3 +103,13 @@ export async function generateMetadata({
     category: product?.categoryId,
   };
 }
+
+// export const dynamicParams = false
+
+// export async function generateStaticParams() {
+//   const products = await getAllProducts();
+
+//   return products.map((product) => ({
+//     params: { id: product.id },
+//   }));
+// }

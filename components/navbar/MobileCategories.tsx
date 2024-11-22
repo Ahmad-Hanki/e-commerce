@@ -26,8 +26,8 @@ const MobileCategories = ({ categories }: { categories: UpperCategory[] }) => {
                   href={`/category/${category.id}`}
                   className={cn(
                     "cursor-pointer text-3xl lowercase first-letter:uppercase",
-                    pathname == `category/${category}`
-                      ? "text-primary"
+                    pathname.includes(`category/${category.id}`)
+                      ? "text-primary underline"
                       : "text-gray-600"
                   )}
                 >
