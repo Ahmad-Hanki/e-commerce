@@ -10,7 +10,6 @@ import { notFound } from "next/navigation";
 import getProductBasedOnCategory from "@/actions/getProductBasedOnCategory";
 import getProductImages from "@/actions/getProductImages";
 import { Metadata } from "next";
-import getAllProducts from "@/actions/getAllProducts";
 
 // Define a type for the product with packages
 type ProductWithPackages = PrismaProduct & {
