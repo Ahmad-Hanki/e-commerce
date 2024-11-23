@@ -11,7 +11,6 @@ import Link from "next/link";
 import DashboardIcon from "@/public/icons/DashboardIcon";
 import Cart from "../cart/Cart";
 import AccountDropDownMenu from "./AccountDropDownMenu";
-import { Separator } from "../ui/separator";
 
 interface PcDownerNavProps {
   categories: UpperCategory[];
