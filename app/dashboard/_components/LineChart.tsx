@@ -33,7 +33,7 @@ interface ChartProps {
 const chartConfig = {
   totalOrders: {
     label: "Total Orders",
-    color: "hsl(var(--chart-1))",
+    color: "blue",
   },
 } satisfies ChartConfig;
 

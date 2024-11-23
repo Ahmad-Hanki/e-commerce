@@ -22,13 +22,13 @@ const SearchBar = () => {
             setSearch(e.target.value);
           }}
           value={search}
-          className="flex-1 min-h-[60px] h-full border-r-0 rounded-r-none text-2xl"
+          className="flex-1 min-h-[40px] h-full border-r-0 rounded-r-none text-2xl"
         />
 
         <Button
           disabled={search == ""}
           onClick={goTo}
-          className="min-h-[60px] h-full border-l-0 rounded-l-none"
+          className="min-h-[40px] h-full border-l-0 rounded-l-none"
         >
           <SearchIcon />
         </Button>

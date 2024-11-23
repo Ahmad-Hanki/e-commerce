@@ -17,7 +17,9 @@ const Links = ({
 
   const active =
     pathName === item.href ||
-    (item.href !== "/" && pathName.includes(item.href));
+    (item.href !== "/" &&
+      item.href !== "/dashboard" &&
+      pathName.includes(item.href));
 
   return (
     <Link
@@ -27,7 +29,7 @@ const Links = ({
           : item.href
       }
       className={cn(
-        "text-base text-muted-foreground hover:text-yellow-500 transition-all duration-300 hover:underline",
+        "text-base hover:text-primary/70 transition-all duration-300 hover:underline",
         active && "text-lg text-primary ",
         className
       )}

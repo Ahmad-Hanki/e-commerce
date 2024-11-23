@@ -36,7 +36,7 @@ const AccountDropDownMenu = () => {
           </DropdownMenuItem>
           <DropdownMenuItem>
             <LogoutLink>
-              <div className="flex justify-between gap-2 items-center transition-all duration-300  hover:text-yellow-500">
+              <div className="flex justify-between gap-2 items-center transition-all duration-300  hover:text-primary/70">
                 <LogOut className="w-9 h-9 lg:w-6 lg:h-6" />
                 <p>Çıkış Yap</p>
               </div>

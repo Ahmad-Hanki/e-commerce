@@ -27,9 +27,9 @@ const Summery = ({
     <div className="space-y-7 pt-10 md:pt-0">
       <Separator />
 
-      <h2 className="text-3xl font-semibold text-primary ">Özet</h2>
+      <h2 className="text-3xl font-semibold  ">Özet</h2>
       <div>
-        <h3 className="text-xl font-semibold text-primary">Ürünler</h3>
+        <h3 className="text-xl font-semibold ">Ürünler</h3>
         <div className="space-y-3">
           {products.map((product, index) => (
             <div key={index} className="flex justify-between">

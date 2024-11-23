@@ -14,7 +14,7 @@ const Hero = ({
   desc: string;
 }) => {
   return (
-    <div className="bg-gray-100 ">
+    <div className="">
       <Container>
         <div
           className={cn(

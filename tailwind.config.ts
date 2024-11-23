@@ -84,6 +84,10 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    fontFamily: {
+      geistSans: ["var(--font-geist-sans)"],
+      geistMono: ["var(--font-geist-mono)"],
+    },
   },
   plugins: [require("tailwindcss-animate")],
 };

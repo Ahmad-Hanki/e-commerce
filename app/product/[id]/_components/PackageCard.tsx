@@ -58,7 +58,7 @@ const PackageCard = ({
               className={cn(
                 "relative flex flex-col gap-3 items-center p-1 cursor-pointer aspect-square",
                 pkg.id == pack.id
-                  ? "bg-primary text-secondary"
+                  ? "bg-primary text-white"
                   : "text-secondary-foreground",
                 !pack.inStock && "hidden"
               )}

@@ -72,7 +72,7 @@ const CartItemCard = ({ item }: CartItemCardProps) => {
           <p className="text-base text-gray-500 line-through ">
             {item?.oldPrice && `Eski Fiyat: ${item?.oldPrice} ₺`}
           </p>
-          <p className="text-lg text-primary font-medium">
+          <p className="text-lg  font-medium">
             Fiyat: {item.price} ₺
           </p>
         </div>
@@ -81,7 +81,7 @@ const CartItemCard = ({ item }: CartItemCardProps) => {
         </p>
         <div className="flex gap-3 items-center">
           <Truck className="text-blue-600 h-6 w-6" />
-          <p className="text-lg text-primary ">Ücretsiz kargo</p>
+          <p className="text-lg  ">Ücretsiz kargo</p>
         </div>
 
         <div className="flex flex-col gap-3 w-fit">

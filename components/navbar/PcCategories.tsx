@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 import { UpperCategory } from "@prisma/client";
 import Link from "next/link";
@@ -21,15 +22,17 @@ export function PcCategory({ categories }: PcCategoryProps) {
     };
   });
   return (
-    <div className="flex justify-start items-center gap-2">
+    <div className="flex justify-start items-center  ">
       {categoriesLink.map((category) => (
-        <Button className="text-xl px-0" key={category.name} variant={"link"}>
-          <Link
-            className={`text-base text-muted-foreground hover:text-yellow-500 transition-all duration-300 hover:underline ${
-              category.active ? "text-lg text-primary " : ""
-            }`}
-            href={category.href}
-          >
+        <Button
+          className={cn(
+            "text-xl hover:bg-primary/90 transition-all duration-300 py-7 px-2",
+            category.active ? "bg-primary" : ""
+          )}
+          key={category.name}
+          variant={"ghost"}
+        >
+          <Link className={`text-xl text-white `} href={category.href}>
             {category.name}
           </Link>
         </Button>

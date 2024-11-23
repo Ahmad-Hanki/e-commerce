@@ -26,11 +26,19 @@ const Navbar = async () => {
   return (
     <>
       <div className=" z-30 relative">
-        <div className="py-4">
-          <div className="hidden lg:block">
+        <div className="pt-4 bg-popover">
+          <div className="hidden lg:block space-y-4">
             <Container>
               <PcNavbar />
             </Container>
+
+            <PcDownerNav
+              admin={admin}
+              kindeId={kindeId}
+              cartLength={cartLength}
+              isLoggedIn={isLoggedIn}
+              categories={categories}
+            />
           </div>
           <div className="lg:hidden fixed w-full inset-0 bg-popover h-fit py-2 px-4">
             <Container>
@@ -44,14 +52,6 @@ const Navbar = async () => {
             </Container>
           </div>
         </div>
-        
-        <PcDownerNav
-          admin={admin}
-          kindeId={kindeId}
-          cartLength={cartLength}
-          isLoggedIn={isLoggedIn}
-          categories={categories}
-        />
       </div>
     </>
   );
