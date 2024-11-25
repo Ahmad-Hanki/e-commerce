@@ -5,6 +5,8 @@ import { FormattedOrder } from "../_actions/getAllOrders";
 import Image from "next/image";
 import { getCurrentYMD } from "@/utils/getCurrentYMD";
 import { StatusRadio } from "./StatusRadio";
+import { Eye } from "lucide-react";
+import Link from "next/link";
 
 export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
   {
@@ -52,8 +54,6 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
     },
   },
 
-
-
   {
     id: "quantity",
     header: () => (
@@ -76,16 +76,14 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
   {
     id: "PackageName",
     header: () => (
-      <div className="text-start max-w-[250px] min-w-[120px]">
-        Paketin Adi:
-      </div>
+      <div className="text-start max-w-[250px] min-w-[120px]">Paketin Adi:</div>
     ),
     cell: ({ row }) => {
       const data = row.original;
       return (
         <div className="flex flex-col gap-3">
           {data.orderItems.map((item, ix) => (
-            <p key={ix}>{item.PackageName}</p> 
+            <p key={ix}>{item.PackageName}</p>
           ))}
         </div>
       );
@@ -183,6 +181,23 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return <div>{data.userAddress.fullName}</div>;
+    },
+  },
+
+  {
+    id: "details",
+    header: () => (
+      <div className="text-start max-w-[250px] min-w-[120px]">Detailer</div>
+    ),
+    cell: ({ row }) => {
+      const data = row.original;
+      return (
+        <div>
+          <Link href={`/dashboard/order/findOrder/${data.id}`}>
+            <Eye size={24} />
+          </Link>
+        </div>
+      );
     },
   },
 

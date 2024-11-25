@@ -6,7 +6,6 @@ import axios from "axios";
 export type RefundRequestData = {
   data: {
     merchant_id?: string;
-
     user_ip?: string; // User IP
     paytr_token?: string; // PayTR refund token
     merchant_oid: string; // Order ID
@@ -38,7 +37,7 @@ const CreateRefundToken = async ({ data }: RefundRequestData) => {
     data.user_name,
     data.user_address,
     data.user_phone,
-    data.test_mode,
+    data.test_mode ?? "1",
   ].join("");
 
   const refundToken = crypto
@@ -75,7 +74,6 @@ const CreateRefundToken = async ({ data }: RefundRequestData) => {
       return response.data;
     }
   } catch (error) {
-    // Handle errors
     if (axios.isAxiosError(error) && error.response) {
       console.error("Error response:", error.response.data);
     } else {

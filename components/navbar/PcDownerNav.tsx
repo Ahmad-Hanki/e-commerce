@@ -15,7 +15,6 @@ import AccountDropDownMenu from "./AccountDropDownMenu";
 interface PcDownerNavProps {
   categories: UpperCategory[];
   isLoggedIn: boolean;
-
   kindeId: string;
   cartLength: number;
   admin: boolean;

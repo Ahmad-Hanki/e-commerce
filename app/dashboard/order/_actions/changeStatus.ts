@@ -11,7 +11,6 @@ const changeStatusAction = async (orderId: string, status: OrderStatus) => {
       data: { status },
     });
 
-    console.log(`Order ${orderId} status changed to ${status}`);
     revalidatePath("/dashboard/order/newOrder");
     return true;
   } catch (error) {

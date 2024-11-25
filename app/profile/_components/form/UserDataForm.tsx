@@ -40,7 +40,6 @@ const UserDataForm = ({
 
   const handleCheckboxChange = (checked: boolean) => {
     seteFatura(checked);
-    console.log(checked);
   };
 
   const isSubmitting = async (data: ZodTypeProp) => {

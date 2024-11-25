@@ -11,8 +11,6 @@ export const POST = async (req: Request) => {
     const formData = await req.text();
     const callback = Object.fromEntries(new URLSearchParams(formData));
 
-    console.log(callback);
-
     // Generate hash
     const paytr_token =
       callback.merchant_oid +

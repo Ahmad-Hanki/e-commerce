@@ -43,9 +43,6 @@ const createOrder = async (userDataId: string) => {
       return "";
     }
 
-    console.log("totalAmount", totalAmount);
-    console.log("totalBeforeDiscount", totalBeforeDiscount);
-
     const user = await prisma.user.findUnique({
       where: { kindeId },
       select: { id: true },
