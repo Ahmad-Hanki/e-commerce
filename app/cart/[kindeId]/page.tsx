@@ -61,11 +61,10 @@ const CartPage = async ({
   const totalAmount = packageData.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
-
   const totalBeforeDiscount = packageData.reduce((acc, item) => {
-    return acc + item.oldPrice * item.quantity; // Use oldPrice for total before discount
+    const priceBeforeDiscount = item.oldPrice > 0 ? item.oldPrice : item.price; // Fallback to current price if no oldPrice
+    return acc + priceBeforeDiscount * item.quantity;
   }, 0);
-
   return (
     <div>
       <Container>

@@ -7,7 +7,7 @@ import getAllOrders from "../_actions/getAllOrders";
 import { OrdersColumns } from "../_components/columns";
 
 const NewOrdersPage = async () => {
-  const allOrders = await getAllOrders("PENDING");
+  const allOrders = await getAllOrders("CONFIRMED");
   return (
     <div>
       <div className="mt-[88px] sm:mt-[10px] w-full flex-1">
