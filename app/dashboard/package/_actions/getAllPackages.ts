@@ -14,7 +14,6 @@ export type FormattedPackage = {
   productImage?: string;
 };
 
-// Modify the function to specify the return type
 const getAllPackages = async (): Promise<FormattedPackage[]> => {
   try {
     const packages = await prisma.package.findMany({
@@ -39,9 +38,7 @@ const getAllPackages = async (): Promise<FormattedPackage[]> => {
       },
     });
 
-    console.log(packages);
 
-    // Formatting the data to match the Package type
     return packages.map((pkg) => ({
       id: pkg.id,
       name: pkg.name,

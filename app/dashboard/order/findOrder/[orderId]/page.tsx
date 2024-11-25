@@ -1,7 +1,5 @@
 import { Suspense } from "react";
-import getSpecificOrder, {
-  OrderResponse,
-} from "@/app/my-orders/_actions/getSpecificOrder";
+import { OrderResponse } from "@/app/my-orders/_actions/getSpecificOrder";
 import OrderData from "@/app/my-orders/_components/OrderData";
 import Loading from "@/components/loading";
 import prisma from "@/lib/db";

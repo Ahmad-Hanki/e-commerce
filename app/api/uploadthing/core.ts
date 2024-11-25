@@ -17,7 +17,6 @@ export const ourFileRouter = {
     image: {
       maxFileSize: "4MB",
       maxFileCount: 10,
-     
     },
   })
     .middleware(async () => {
@@ -27,10 +26,14 @@ export const ourFileRouter = {
 
       return { userId: user.id };
     })
-    .onUploadComplete(async ({ metadata, file }) => {
-
-      return { uploadedBy: metadata.userId };
-    }),
+    .onUploadComplete(
+      async ({
+        metadata,
+        //  file
+      }) => {
+        return { uploadedBy: metadata.userId };
+      }
+    ),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
