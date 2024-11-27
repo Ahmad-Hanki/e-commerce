@@ -19,7 +19,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ChartContainer } from "@/components/ui/chart";
-import Container from "@/components/Container";
 
 // Define the type for the chart data
 interface ChartData {
