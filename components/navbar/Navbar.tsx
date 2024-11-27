@@ -6,6 +6,12 @@ import getKindeId from "@/actions/getKindeId";
 import getCartLength from "@/actions/getCartLength";
 import getUpperCategories from "@/app/dashboard/upperCategory/_actions/getUpperCategories";
 import PcDownerNav from "./PcDownerNav";
+import {
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+  TwitterLogoIcon,
+} from "@radix-ui/react-icons";
 
 export const admins = ["itxti909@gmail.com", "kocticarettrendyol@gmail.com"];
 
@@ -26,8 +32,24 @@ const Navbar = async () => {
   return (
     <>
       <div className=" z-30 relative">
-        <div className="pt-4 bg-popover">
+        <div className="bg-popover">
           <div className="hidden lg:block space-y-4">
+            <div className="bg-primary py-2">
+              <Container>
+                {/* upper navbar */}
+                <div className="flex justify-between items-center text-lg">
+                  <p>Müşteri Hizmetleri : 0850 888 0 887</p>
+
+                  <div className="flex items-center gap-2">
+                    <InstagramLogoIcon className=" hover:text-secondary-foreground transition-all duration-300 cursor-pointer w-5 h-5" />
+                    <TwitterLogoIcon className=" hover:text-secondary-foreground transition-all duration-300 cursor-pointer w-5 h-5" />
+                    <LinkedInLogoIcon className=" hover:text-secondary-foreground transition-all duration-300 cursor-pointer w-5 h-5" />
+                    <GitHubLogoIcon className=" hover:text-secondary-foreground transition-all duration-300 cursor-pointer w-5 h-5" />
+                  </div>
+                </div>
+              </Container>
+            </div>
+
             <Container>
               <PcNavbar />
             </Container>

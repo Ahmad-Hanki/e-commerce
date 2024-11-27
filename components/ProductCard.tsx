@@ -58,7 +58,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {product.rating && product.rating != 0 && (
               <div className=" w-full flex items-center ">
                 {[...Array(product.rating)].map((_, index) => (
-                  <p key={index} className="text-yellow-400 text-2xl">
+                  <p key={index} className="text-primary text-2xl">
                     ★
                   </p>
                 ))}

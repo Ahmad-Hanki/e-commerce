@@ -68,7 +68,7 @@ const CreateRefundToken = async ({ data }: RefundRequestData) => {
         path: "/",
         secure: true,
         sameSite: "strict",
-        expires: new Date(Date.now() + 2 * 60 * 1000), // Expires in 2 minutes
+        expires: new Date(Date.now() + 3 * 60 * 1000), // Expires in 3 minutes
       });
 
       return response.data;

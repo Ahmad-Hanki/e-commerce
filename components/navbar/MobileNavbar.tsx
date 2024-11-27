@@ -22,6 +22,9 @@ import MobileCategories from "./MobileCategories";
 import DashboardIcon from "@/public/icons/DashboardIcon";
 import { UpperCategory } from "@prisma/client";
 
+import ProfileIcon from "@/public/icons/ProfileIcon";
+import BillIcon from "@/public/icons/BillIcon";
+
 interface MobileNavbarProps {
   isLoggedIn: boolean;
   kindeId: string;
@@ -49,11 +52,13 @@ const MobileNavbar = ({
       title: "Profile",
       url: "/profile",
       active: pathname.includes("/profile"),
+      icon: <ProfileIcon className="w-[36px] h-[36px] " />,
     },
     {
       title: "My Orders",
       url: "/my-orders",
       active: pathname.includes("/my-orders"),
+      icon: <BillIcon className="w-[36px] h-[36px] " />,
     },
   ];
 
@@ -88,11 +93,6 @@ const MobileNavbar = ({
         </div>
 
         <div className="z-[100] flex gap-4 items-center">
-          {admin && (
-            <Link href={"/dashboard"}>
-              <DashboardIcon className="transition-all duration-300  hover:text-yellow-500 w-8 h-8 lg:w-6 lg:h-6" />
-            </Link>
-          )}
           {!open && <Cart cartLength={cartLength} kindeId={kindeId} />}
 
           <Hamburger
@@ -121,7 +121,7 @@ const MobileNavbar = ({
                   <Link
                     key={index}
                     href={link.url}
-                    className={`text-4xl text-primary/80 ${
+                    className={`text-4xl ${
                       link.active ? "text-primary  underline" : ""
                     }`}
                   >
@@ -153,16 +153,26 @@ const MobileNavbar = ({
                       <Link
                         key={index}
                         href={link.url}
-                        className={`text-4xl ${
+                        className={`text-3xl flex items-center gap-3 ${
                           link.active ? "text-primary" : ""
                         }`}
                       >
+                        {link.icon}
                         {link.title}
                       </Link>
                     ))}
+                    {admin && (
+                      <Link
+                        href={"/dashboard"}
+                        className={`text-3xl flex items-center gap-3`}
+                      >
+                        <DashboardIcon className="w-[36px] h-[36px] " />
+                        <p className="text-3xl">Dashboard</p>
+                      </Link>
+                    )}
                     <LogoutLink>
                       <div className="flex items-center gap-2 cursor-pointer">
-                        <LogOut className="w-8 h-8 " />
+                        <LogOut className="w-[36px] h-[36px] " />
                         <p className="text-3xl">Çıkış Yap</p>
                       </div>
                     </LogoutLink>
@@ -175,13 +185,13 @@ const MobileNavbar = ({
                 Şahitkamil/Gaziantep
               </p>
               <div className="mt-5 flex flex-col gap-1">
-                <p className="text-primary/80 text-lg">Bize Ulaşın</p>
+                <p className="text-lg">Bize Ulaşın</p>
 
                 <p className=" text-2xl">+90 552 680 80 00</p>
               </div>
 
               <div className="mt-5 flex flex-col gap-1">
-                <p className="text-primary/80 text-lg">Bize Takip Edin</p>
+                <p className="text-lg">Bize Takip Edin</p>
 
                 <div className=" flex gap-3">
                   <InstagramLogoIcon

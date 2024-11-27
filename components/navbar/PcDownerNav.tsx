@@ -7,8 +7,6 @@ import {
   RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { LogIn, User } from "lucide-react";
-import Link from "next/link";
-import DashboardIcon from "@/public/icons/DashboardIcon";
 import Cart from "../cart/Cart";
 import AccountDropDownMenu from "./AccountDropDownMenu";
 
@@ -75,13 +73,8 @@ const PcDownerNav = ({
                 </>
               ) : (
                 <div className="flex items-center gap-4">
-                  {admin && (
-                    <Link href={"/dashboard"}>
-                      <DashboardIcon className="transition-all duration-300   hover:text-primary/70 w-9 h-9 lg:w-6 lg:h-6" />
-                    </Link>
-                  )}
                   <Cart cartLength={cartLength} kindeId={kindeId} />
-                  <AccountDropDownMenu />
+                  <AccountDropDownMenu admin ={admin}/>
                 </div>
               )}
             </div>
@@ -89,7 +82,7 @@ const PcDownerNav = ({
         </Container>
       </div>
       <div className="pb-5 bg-background">
-        <div className="mt-6 bg-primary/70 ">
+        <div className="mt-6 bg-secondary-foreground ">
           <Container>
             <PcCategory categories={categories} />
           </Container>

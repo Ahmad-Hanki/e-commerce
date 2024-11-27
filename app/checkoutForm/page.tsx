@@ -11,12 +11,12 @@ const CheckOutFormPage = async () => {
   }
 
   return (
-    <div className="h-full ">
+    <div className="h-full">
       <Script src="https://www.paytr.com/js/iframeResizer.min.js"></Script>
       <iframe
         src={`https://www.paytr.com/odeme/guvenli/${token}`}
         id="paytriframe"
-        className="w-full !min-h-[800px] !max-h-[3000px] !overflow-auto !h-full"
+        className="w-full !min-h-[1200px] sm:!min-h-[1000px] md:!min-h-[800px] !overflow-auto"
       ></iframe>
       <script style={{ height: "1000px" }}>
         iFrameResize({},&apos;#paytriframe&apos;);

@@ -29,7 +29,7 @@ const UserDataRadio = ({
 
   return (
     <div className="pb-10 w-full">
-      <h2 className="text-primary mb-3">Lütfen adres verilerinizi seçin</h2>
+      <h2 className=" mb-3">Lütfen adres verilerinizi seçin</h2>
       <DropdownMenu>
         <DropdownMenuTrigger className="w-full bg-gray-200" asChild>
           <Button variant="outline" className="w-full">
@@ -46,7 +46,7 @@ const UserDataRadio = ({
               <DropdownMenuRadioItem
                 key={user.id}
                 value={user.id}
-                className="p-2 flex flex-col gap-2 items-start"
+                className="p-2 flex flex-col gap-2 items-start py-3"
               >
                 {user.id === userDataId && <CheckCircle />}
                 <div>
@@ -83,7 +83,7 @@ const UserDataRadio = ({
                 )}
               </DropdownMenuRadioItem>
             ))}
-            <Link className="my-4" href={`/profile/${userId}`}>
+            <Link className="py-4" href={`/profile/${userId}`}>
               <Button>Başka bir adres verisi kullanmak istiyorum </Button>
             </Link>
           </DropdownMenuRadioGroup>

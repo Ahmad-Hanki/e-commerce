@@ -54,11 +54,11 @@ const CreatePaytrToken = async (
   data.max_installment = 0;
 
   data.test_mode = "1";
-  data.timeout_limit = 2; // mins
+  data.timeout_limit = 3; // mins
 
   data.merchant_oid = res;
-  data.merchant_ok_url = `${process.env.BASE_URL}/payment/${data.merchant_oid}/success`;
-  data.merchant_fail_url = `${process.env.BASE_URL}/payment/${data.merchant_oid}/fail`;
+  data.merchant_ok_url = `${process.env.BASE_URL}/my-orders`;
+  data.merchant_fail_url = `${process.env.BASE_URL}/fail`;
 
   data.user_basket = JSON.stringify(data.user_basket);
 

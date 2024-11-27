@@ -56,9 +56,9 @@ const PackageCard = ({
               onClick={() => setPkg(pack)}
               key={pack.id}
               className={cn(
-                "relative flex flex-col gap-3 items-center p-1 cursor-pointer aspect-square",
+                "relative flex flex-col gap-3 items-center p-1 cursor-pointer aspect-square transition-all duration-300",
                 pkg.id == pack.id
-                  ? "bg-primary text-white"
+                  ? "bg-primary "
                   : "text-secondary-foreground",
                 !pack.inStock && "hidden"
               )}
@@ -74,7 +74,7 @@ const PackageCard = ({
                 <p className="text-base text-gray-500 line-through ">
                   {pack?.oldPrice && `Eski Fiyat: ${pack?.oldPrice} ₺`}
                 </p>
-                <p className="text-lg text-yellow-400 font-medium">
+                <p className="text-lg text-red-400 font-medium">
                   Fiyat: {pack.price} ₺
                 </p>
 

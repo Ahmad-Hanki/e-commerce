@@ -29,7 +29,7 @@ const DashboardNavbar = () => {
   ];
   return (
     <div>
-      <div className="w-full flex justify-center gap-6 bg-primary-foreground flex-wrap">
+      <div className="w-full flex justify-center gap-6 flex-wrap">
         {linkes.map((item) => (
           <Links key={item.href} item={item} />
         ))}
