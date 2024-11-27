@@ -17,7 +17,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import Container from "@/components/Container";
 
 // Define the type for the chart data
 interface ChartData {
@@ -39,12 +38,11 @@ const chartConfig = {
 
 export default function LineChartComponent({ data }: ChartProps) {
   return (
-    <div className="pb-20">
-      <Container>
+    <div className="flex-1 w-full" >
         <Card>
           <CardHeader>
-            <CardTitle>Line Chart - Total Orders</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
+            <CardTitle>Toplam Siparişler</CardTitle>
+            <CardDescription>2024 - 2025</CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer config={chartConfig}>
@@ -79,15 +77,11 @@ export default function LineChartComponent({ data }: ChartProps) {
             </ChartContainer>
           </CardContent>
           <CardFooter className="flex-col items-start gap-2 text-sm">
-            <div className="flex gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
+
             <div className="leading-none text-muted-foreground">
-              Showing total orders for the last 6 months
-            </div>
+            Son 12 ayın toplam siparişleri gösteriliyor            </div>
           </CardFooter>
         </Card>
-      </Container>
     </div>
   );
 }

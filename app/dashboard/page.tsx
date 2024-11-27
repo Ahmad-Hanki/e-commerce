@@ -7,9 +7,11 @@ export default async function ChartPage() {
   const chartData = await getChartOrderData();
 
   return (
-    <div>
-      <Chart data={chartData} />
-      <LineChartComponent data={chartData} />
+    <div className="py-20 px-10">
+        <div className="flex items-center justify-center gap-3">
+          <Chart data={chartData} />
+          <LineChartComponent data={chartData} />
+        </div>
     </div>
   );
 }

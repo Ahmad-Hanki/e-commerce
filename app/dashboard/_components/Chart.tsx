@@ -1,6 +1,5 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -11,7 +10,14 @@ import {
   Legend,
 } from "recharts";
 
-import { CardDescription, CardFooter, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ChartContainer } from "@/components/ui/chart";
 import Container from "@/components/Container";
 
@@ -35,49 +41,46 @@ const chartConfig = {
 
 export default function Chart({ data }: ChartProps) {
   return (
-    <div className="py-20">
-      <Container>
-        <div>
-          <CardTitle>Bar Chart - Total Payment</CardTitle>
-          <CardDescription>January - June 2024</CardDescription>
-        </div>
-        <div>
-          <ChartContainer config={chartConfig}>
-            <BarChart className="w-full" height={250} data={data}>
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="month"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                tickFormatter={(value) => value.slice(0, 3)} // Format month abbreviation
-              />
-              <YAxis />
-              <Tooltip
-                formatter={(value) => [value, chartConfig.totalPayment.label]} // Tooltip only for totalPayment
-              />
-              <Legend
-                formatter={() => chartConfig.totalPayment.label} // Legend only for totalPayment
-              />
+    <div className="flex-1 w-full">
+        <Card>
+          <CardHeader>
+            <CardTitle>Toplam Ödeme</CardTitle>
+            <CardDescription>2024 - 2025</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={chartConfig}>
+              <BarChart className="w-full" height={250} data={data}>
+                <CartesianGrid vertical={false} />
+                <XAxis
+                  dataKey="month"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                  tickFormatter={(value) => value.slice(0, 3)} // Format month abbreviation
+                />
+                <YAxis />
+                <Tooltip
+                  formatter={(value) => [value, chartConfig.totalPayment.label]} // Tooltip only for totalPayment
+                />
+                <Legend
+                  formatter={() => chartConfig.totalPayment.label} // Legend only for totalPayment
+                />
 
-              <Bar
-                dataKey="totalPayment"
-                fill={chartConfig.totalPayment.color}
-                radius={[4, 4, 0, 0]}
-                barSize={45} // Adjust the width of the bar to fit the container better
-              />
-            </BarChart>
-          </ChartContainer>
-        </div>
-        <CardFooter className="flex-col items-start gap-2 text-sm">
-          <div className="flex gap-2 font-medium leading-none">
-            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-          </div>
-          <div className="leading-none text-muted-foreground">
-            Showing data for the last 6 months
-          </div>
-        </CardFooter>
-      </Container>
+                <Bar
+                  dataKey="totalPayment"
+                  fill={chartConfig.totalPayment.color}
+                  radius={[4, 4, 0, 0]}
+                  barSize={45} // Adjust the width of the bar to fit the container better
+                />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+          <CardFooter className="flex-col items-start gap-2 text-sm">
+            <div className="leading-none text-muted-foreground">
+              Son 12 aya ait veriler gösteriliyor
+            </div>
+          </CardFooter>
+        </Card>
     </div>
   );
 }
