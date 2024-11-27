@@ -1,11 +1,23 @@
-import { Mail, Phone } from "lucide-react";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import Logo from "../Logo";
 import SearchBar from "./SearchBar";
-import Link from "next/link";
+import { LogIn, User } from "lucide-react";
+import Cart from "../cart/Cart";
+import AccountDropDownMenu from "./AccountDropDownMenu";
 
-interface PcNavbarProps {}
+interface PcNavbarProps {
+  isLoggedIn: boolean;
+  kindeId: string;
+  cartLength: number;
+  admin: boolean;
+}
 
-const PcNavbar = ({}: PcNavbarProps) => {
+const PcNavbar = ({
+  admin,
+  cartLength,
+  isLoggedIn,
+  kindeId,
+}: PcNavbarProps) => {
   return (
     <div>
       <div className="flex items-center justify-between gap-5 ">
@@ -13,22 +25,28 @@ const PcNavbar = ({}: PcNavbarProps) => {
 
         <SearchBar />
 
-        <div className="flex items-center gap-5 ">
-          <div className="flex items-center gap-1 transition-all duration-300 hover:text-primary/80">
-            <Mail size={20} />
-            <Link
-              className="text-lg"
-              href="mailto:email@provider.com?subject=Hello%20there&body=How%20are%20you?"
-            >
-              Email@provider.com
-            </Link>
-          </div>
-          <div className="flex items-center gap-1 transition-all duration-300 hover:text-primary/80">
-            <Phone size={20} />
-            <Link className="text-lg" href="tel:+1234567890">
-              +1 234 567 890
-            </Link>
-          </div>
+        <div className="flex items-center gap-4 ">
+          {!isLoggedIn ? (
+            <>
+              <LoginLink postLoginRedirectURL="/createUser">
+                <div className="flex justify-between gap-2 items-center transition-all duration-300  hover:text-primary/70">
+                  <LogIn className="w-9 h-9 lg:w-6 lg:h-6" />
+                  <p>Oturum Aç</p>
+                </div>
+              </LoginLink>
+              <RegisterLink postLoginRedirectURL="/createUser">
+                <div className="flex justify-between gap-2 items-center transition-all duration-300   hover:text-primary/70">
+                  <User className="w-9 h-9 lg:w-6 lg:h-6" />
+                  <p>Kayıt Ol</p>
+                </div>
+              </RegisterLink>
+            </>
+          ) : (
+            <div className="flex items-center gap-2">
+              <Cart cartLength={cartLength} kindeId={kindeId} />
+              <AccountDropDownMenu admin={admin} />
+            </div>
+          )}
         </div>
       </div>
     </div>

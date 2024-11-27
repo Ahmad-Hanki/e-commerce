@@ -17,8 +17,8 @@ const AccountDropDownMenu = ({ admin }: { admin: boolean }) => {
   return (
     <div>
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex items-center border p-2 px-4 gap-2 rounded-xl">
-          <User className="w-9 h-9 lg:w-6 lg:h-6" />
+        <DropdownMenuTrigger className="flex items-center border p-2 px-4 gap-2 rounded-xl transition-all duration-300  hover:text-primary">
+          <User className="w-9 h-9 lg:w-6 lg:h-6 " />
           Hesabım
         </DropdownMenuTrigger>
         <DropdownMenuContent>

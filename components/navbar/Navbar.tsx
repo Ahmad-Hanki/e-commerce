@@ -51,16 +51,15 @@ const Navbar = async () => {
             </div>
 
             <Container>
-              <PcNavbar />
+              <PcNavbar
+                admin={admin}
+                kindeId={kindeId}
+                cartLength={cartLength}
+                isLoggedIn={isLoggedIn}
+              />
             </Container>
 
-            <PcDownerNav
-              admin={admin}
-              kindeId={kindeId}
-              cartLength={cartLength}
-              isLoggedIn={isLoggedIn}
-              categories={categories}
-            />
+            <PcDownerNav categories={categories} />
           </div>
           <div className="lg:hidden fixed w-full inset-0 bg-popover h-fit py-2 px-4">
             <Container>

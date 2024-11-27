@@ -9,10 +9,10 @@ interface CartProps {
 
 const Cart = ({ kindeId, cartLength }: CartProps) => {
   return (
-    <Link href={`/cart/${kindeId}`} className="relative flex items-center gap-2 border p-2 rounded-xl">
+    <Link href={`/cart/${kindeId}`} className="relative flex items-center gap-2 border p-2 rounded-xl px-4 transition-all duration-300  hover:text-primary">
       <CartIcon
         className={cn(
-          "transition-all duration-300  hover:text-yellow-500 w-9 h-9 lg:w-6 lg:h-6"
+          " w-9 h-9 lg:w-6 lg:h-6"
         )}
         
       />
