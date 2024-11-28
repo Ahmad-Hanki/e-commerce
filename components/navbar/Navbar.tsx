@@ -34,7 +34,7 @@ const Navbar = async () => {
       <div className=" z-30 relative">
         <div className="bg-popover">
           <div className="hidden lg:block space-y-4">
-            <div className="bg-primary py-2">
+            <div className="bg-primary py-2 text-white">
               <Container>
                 {/* upper navbar */}
                 <div className="flex justify-between items-center text-lg">

@@ -34,7 +34,7 @@ export default function CarouselComponent({
             {products.map((product) => (
               <CarouselItem
                 key={product.id}
-                className=" md:basis-1/2 lg:basis-1/3 group px-4"
+                className=" md:basis-1/2 lg:basis-1/3 xl:basis-1/4 group px-4"
               >
                 <Link href={`/product/${product.id}`} className="p-1">
                   <Card className="px-4 py-3">

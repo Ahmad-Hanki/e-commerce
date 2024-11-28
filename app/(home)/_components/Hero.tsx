@@ -2,6 +2,8 @@ import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+import effect from "@/public/images/effect.gif";
 const Hero = ({
   img,
   reverse,
@@ -14,22 +16,30 @@ const Hero = ({
   desc: string;
 }) => {
   return (
-    <div className="">
+    <div className="bg-[#e6f5ff]">
       <Container>
         <div
           className={cn(
-            "flex sm:items-center sm:min-h-[100vh] gap-5",
+            "flex sm:items-center sm:min-h-[100vh] gap-5 py-20 relative",
             reverse && "sm:flex-row-reverse"
           )}
         >
-          <div className="flex-1 space-y-5 sm:py-10 py-20">
+          {!reverse && (
+            <Image
+              className="object-cover object-center"
+              src={effect}
+              alt="effect"
+              fill
+            />
+          )}
+          <div className="flex-1 sm:py-10 flex flex-col gap-7 z-10">
             <div className="space-y-2 ">
               <h1 className="text-6xl font-semibold text-primary">{title}</h1>
               <p className="text-2xl ">{desc}</p>
             </div>
-            <div>
+            <Link href={"/product"}>
               <Button className="px-4 py-2 text-xl">Şimdi Alışveriş Yap</Button>
-            </div>
+            </Link>
           </div>
           <div className="flex-1 w-full hidden sm:block">
             <div className="relative overflow-hidden aspect-[12/12] h-full w-full">
