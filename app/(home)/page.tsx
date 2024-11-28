@@ -1,7 +1,7 @@
 import MostSells from "./_components/MostSells";
 import Hero from "./_components/Hero";
 import img1 from "@/public/images/watch.png";
-import img2 from "@/public/images/model.png";
+import img2 from "@/public/images/xbox.png";
 import getRandomProducts from "@/actions/getRandomProducts";
 import CarouselComponent from "@/components/Carousel";
 
@@ -14,6 +14,8 @@ import TwoProducts from "./_components/TwoProducts";
 import ScrollableTrends from "./_components/ScrollableTrends";
 import Hero2 from "./_components/Hero2";
 import ThreeCards from "./_components/ThreeCards";
+import Adband from "./_components/Adband";
+import CategoriesGrid from "./_components/CategoriesGrid";
 
 export default async function Home() {
   const mostSailed = await getMostSailedProducts();
@@ -29,13 +31,15 @@ export default async function Home() {
       />
       {/* <Landing /> */}
       <Features />
-
+      <CategoriesGrid />
       <Hero2 />
-      <ThreeCards />
-      <ScrollableTrends products={mostSailed} />
-
-      <MostSells products={mostSailed} />
       <TwoProducts />
+
+      <ScrollableTrends products={mostSailed} />
+      <Adband />
+      <MostSells products={mostSailed} />
+
+      <ThreeCards />
       <NewProducts products={newProducts} />
       <Hero
         img={img1}

@@ -1,6 +1,4 @@
 import Image from "next/image";
-
-import newImage from "@/public/images/new.png";
 import Link from "next/link";
 import { FormattedProductWithPhoto } from "@/actions/getMostSailedProducts";
 import { Button } from "./ui/button";
