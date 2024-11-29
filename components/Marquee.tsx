@@ -1,25 +1,22 @@
-import * as React from "react";
-
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
 import { FormattedProductWithPhoto } from "@/actions/getMostSailedProducts";
 
-export default function CarouselComponent({
+import Marquee from "react-fast-marquee";
+
+export default function MarqueeComponent({
   products,
   like,
 }: {
   products: FormattedProductWithPhoto[];
   like?: boolean;
 }) {
+  const duplicatedProducts = products.length
+    ? Array(10).fill(products[0]) // Repeat the first product 10 times
+    : [];
+
   return (
     <div className="py-20">
       <Container>
@@ -29,16 +26,18 @@ export default function CarouselComponent({
         <h2 className="text-4xl font-semibold  mb-6">
           {!like && "Sizin için seçildi"}
         </h2>
-        <Carousel className="w-full">
-          <CarouselContent>
-            {products.map((product) => (
-              <CarouselItem
-                key={product.id}
-                className=" md:basis-1/2 lg:basis-1/3 xl:basis-1/4 group px-4"
-              >
+        <Marquee
+          gradient={false}
+          speed={40}
+          pauseOnHover={true}
+          className="w-full !overflow-visible"
+        >
+          <div className="w-full flex items-center ">
+            {duplicatedProducts.map((product, i) => (
+              <div key={i} className="group px-4">
                 <Link href={`/product/${product.id}`} className="p-1">
                   <Card className="px-4 py-3">
-                    <CardContent className="aspect-square rounded-2xl relative overflow-hidden p-0">
+                    <CardContent className="aspect-square rounded-2xl relative overflow-hidden p-0 duration-300 ease-in-out transition-all group-hover:scale-105">
                       <Image
                         src={product.primaryImageUrl}
                         fill
@@ -54,7 +53,7 @@ export default function CarouselComponent({
                         </p>
                       </div>
                       <div className="flex items-center gap-4">
-                      <p className="text-primary text-2xl font-semibold">
+                        <p className="text-primary text-2xl font-semibold">
                           {product.price} ₺
                         </p>
                         {product.oldPrice && (
@@ -62,17 +61,14 @@ export default function CarouselComponent({
                             {product.oldPrice} ₺
                           </p>
                         )}
-                       
                       </div>
                     </div>
                   </Card>
                 </Link>
-              </CarouselItem>
+              </div>
             ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+          </div>
+        </Marquee>
       </Container>
     </div>
   );

@@ -31,7 +31,7 @@ const data2 = [
 
 const Hero2 = () => {
   return (
-    <div className="pb-20 " >
+    <div className="" >
       <Container>
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col h-full justify-between gap-3 md:gap-20 flex-1 w-full">
@@ -41,7 +41,7 @@ const Hero2 = () => {
                   {item.icon}
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold">{item.title}</h2>
+                  <h5 className="text-2xl font-semibold">{item.title}</h5>
                   <p>{item.desc}</p>
                 </div>
               </div>

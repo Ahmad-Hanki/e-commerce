@@ -44,7 +44,7 @@ const Features = () => {
                   {feature.icon}
                 </div>
               </div>
-              <h3 className="text-lg font-semibold">{feature.title}</h3>
+              <h4 className="text-lg font-semibold">{feature.title}</h4>
             </div>
           ))}
         </div>

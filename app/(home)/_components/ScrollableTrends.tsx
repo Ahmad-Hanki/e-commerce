@@ -19,7 +19,7 @@ function ScrollableTrends({
   products: FormattedProductWithPhoto[];
 }) {
   return (
-    <div className="pt-20">
+    <div className="py-20">
       <Container>
         <div className="flex flex-col gap-4 sm:gap-20 sm:flex-row sm:items-center sm:justify-between">
           <div className="sm:w-[30%] text-center">
@@ -40,7 +40,7 @@ function ScrollableTrends({
                 >
                   <Link href={`/product/${product.id}`} className="p-1">
                     <Card className="px-4 py-3">
-                      <CardContent className="aspect-square rounded-2xl relative overflow-hidden p-0">
+                      <CardContent className="aspect-square rounded-2xl relative overflow-hidden p-0 duration-300 ease-in-out transition-all group-hover:scale-105">
                         <Image
                           src={product.primaryImageUrl}
                           fill

@@ -15,9 +15,9 @@ const Landing = () => {
       <div className="absolute w-full h-full inset-0 flex items-center justify-center">
         <Container>
           <div className="space-y-5 max-w-xl ">
-            <h1 className="text-4xl font-semibold text-primary ">
+            <h6 className="text-4xl font-semibold text-primary ">
               Kaliteli Ürünler, Uygun Fiyatlar
-            </h1>
+            </h6>
             <p className=" text-3xl ">
               Özenle seçilmiş geniş ürün yelpazemizle tanışın! Uygun fiyatlar ve
               güvenilir alışveriş deneyimi için hemen keşfedin.

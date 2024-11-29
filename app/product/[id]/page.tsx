@@ -4,7 +4,7 @@ import IsAuthenticated from "@/actions/isAuthenticated";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
 import getProductWithPackage from "@/actions/getProductWithPackage";
-import CarouselComponent from "@/components/Carousel";
+import CarouselComponent from "@/components/Marquee";
 import createOrFindUser from "@/actions/createOrFindUser";
 import { notFound } from "next/navigation";
 import getProductBasedOnCategory from "@/actions/getProductBasedOnCategory";

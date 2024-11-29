@@ -16,9 +16,9 @@ const TwoProducts = () => {
             />
           </div>
           <div className="flex-1 w-full aspect-square flex flex-col justify-center items-center">
-            <h2 className="text-4xl font-semibold text-primary mb-6">
+            <h6 className="text-4xl font-semibold text-primary mb-6">
               sıcak fırsatlar
-            </h2>
+            </h6>
             <p className="text-2xl text-center">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
               tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.

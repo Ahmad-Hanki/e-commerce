@@ -29,11 +29,11 @@ const ThreeCards = () => {
   return (
     <div className="py-20  bg-[#e6f5ff]">
       <Container>
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between w-full">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between w-full ">
           {data.map((item, index) => (
             <div
               key={index}
-              className="md:flex-1 w-full relative h-[300px] md:h-[550px]"
+              className="md:flex-1 w-full relative h-[300px] md:h-[550px] group cursor-pointer overflow-hidden"
             >
               <Image
                 src={item.img}
@@ -41,12 +41,13 @@ const ThreeCards = () => {
                 className="object-cover object-center"
                 fill
               />
-              <div className="absolute inset-0 w-full h-full bg-black/40" />
+              <div className="absolute inset-0 w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <div className="absolute inset-0 flex items-end  z-10 w-full h-full pb-5 px-5">
-                <div className=" text-white">
-                  <h2 className="text-2xl font-semibold">{item.title}</h2>
-                  <p>{item.desc}</p>
+              {/* Text */}
+              <div className="absolute inset-0 flex items-end justify-start p-5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10 ">
+                <div className="text-white">
+                  <h6 className="text-2xl font-semibold">{item.title}</h6>
+                  <p className="mt-2">{item.desc}</p>
                   <Button className="mt-3 text-2xl">Ürünü İncele</Button>
                 </div>
               </div>

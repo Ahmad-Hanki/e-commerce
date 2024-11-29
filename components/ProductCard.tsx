@@ -12,9 +12,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <Link href={`/product/${product.id}`}>
         <div
           key={product.id}
-          className="flex flex-col gap-2 py-6 group h-full min-w-[300px] "
+          className="flex flex-col gap-2 py-6 group h-full min-w-[300px] group overflow-hidden"
         >
-          <div className="relative rounded-2xl  aspect-square w-full bg-[#e6f5ff]">
+          <div className="relative rounded-2xl  aspect-square w-full bg-[#e6f5ff] ">
+            <div className="absolute inset-0 w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[7]" />
+
+            <div className="absolute inset-0 flex items-end justify-start p-5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-10 ">
+              <div className="text-white">
+                <Button className="mt-3 text-2xl">Ürünü İncele </Button>
+              </div>
+            </div>
+
             <Image
               src={product.primaryImageUrl}
               alt={product.description}
@@ -57,7 +65,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
           </div>
 
-          <Button className="w-fit text-xl ">Sepete Ekle</Button>
+          <Button className="sm:hidden w-fit text-xl ">Sepete Ekle</Button>
         </div>
       </Link>
     </div>

@@ -10,7 +10,7 @@ const Adband = () => {
         <div className="bg-[#e6f5ff]">
           <div className="flex justify-between items-center sm:px-10">
             <div className="w-full space-y-4 flex flex-col items-center sm:items-start">
-              <h2 className="text-4xl font-semibold text-red-600">Indirim!</h2>
+              <h3 className="text-4xl font-semibold text-red-600">Indirim!</h3>
               <p className="text-2xl"> 
                 2. Ürüne %50 İndirim Fırsatı
               </p>
