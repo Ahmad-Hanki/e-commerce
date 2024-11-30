@@ -45,17 +45,11 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div
-          className="flex flex-col justify-between"
-          style={{
-            height:
-              data.orderItems.length > 1
-                ? `${data.orderItems.length * 50}px`
-                : "auto",
-          }}
-        >
+        <div className="flex flex-col gap-3">
           {data.orderItems.map((item, ix) => (
-            <p key={ix}>{item.product.description}</p>
+            <div key={ix} className="h-[50px] grid place-content-center">
+              <p>{item.product.description}</p>
+            </div>
           ))}
         </div>
       );
@@ -72,16 +66,12 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div
-        className="flex flex-col justify-between"
-        style={{
-          height:
-            data.orderItems.length > 1
-              ? `${data.orderItems.length * 50}px`
-              : "auto",
-        }}
-      >          {data.orderItems.map((item, ix) => (
-            <p key={ix}>{item.quantity}</p>
+        <div className="flex flex-col justify-between gap-3">
+          {" "}
+          {data.orderItems.map((item, ix) => (
+            <div key={ix} className="h-[50px] grid place-content-center">
+              <p>{item.quantity}</p>
+            </div>
           ))}
         </div>
       );
@@ -96,16 +86,11 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div
-        className="flex flex-col justify-between"
-        style={{
-          height:
-            data.orderItems.length > 1
-              ? `${data.orderItems.length * 50}px`
-              : "auto",
-        }}
-      >          {data.orderItems.map((item, ix) => (
-            <p key={ix}>{item.PackageName}</p>
+        <div className="flex flex-col justify-between gap-3">
+          {data.orderItems.map((item, ix) => (
+            <div key={ix} className="h-[50px] grid place-content-center">
+              <p>{item.PackageName}</p>
+            </div>
           ))}
         </div>
       );
@@ -122,16 +107,12 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div
-        className="flex flex-col justify-between"
-        style={{
-          height:
-            data.orderItems.length > 1
-              ? `${data.orderItems.length * 50}px`
-              : "auto",
-        }}
-      >          {data.orderItems.map((item, ix) => (
-            <p key={ix}>{item.pieces}</p> // Corrected to access the 'pieces' property
+        <div className="flex flex-col justify-between gap-3">
+          
+          {data.orderItems.map((item, ix) => (
+            <div key={ix} className="h-[50px] grid place-content-center">
+              <p>{item.pieces}</p> 
+            </div>
           ))}
         </div>
       );
@@ -146,18 +127,13 @@ export const OrdersColumns: ColumnDef<FormattedOrder>[] = [
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <div
-        className="flex flex-col justify-between"
-        style={{
-          height:
-            data.orderItems.length > 1
-              ? `${data.orderItems.length * 50}px`
-              : "auto",
-        }}
-      >          {data.orderItems.map((item, ix) => (
-            <p key={ix}>
-              {item.price} x {item.quantity}
-            </p>
+        <div className="flex flex-col justify-between gap-3">
+          {data.orderItems.map((item, ix) => (
+            <div key={ix} className="h-[50px] grid place-content-center">
+              <p>
+                {item.price} x {item.quantity}
+              </p>
+            </div>
           ))}
         </div>
       );
