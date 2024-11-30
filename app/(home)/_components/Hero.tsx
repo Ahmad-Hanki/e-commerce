@@ -16,7 +16,7 @@ const Hero = ({
   desc: string;
 }) => {
   return (
-    <div className="bg-[#e6f5ff]">
+    <div className={cn("bg-gradient-to-b", reverse ? "start" : "end")}>
       <Container>
         <div
           className={cn(

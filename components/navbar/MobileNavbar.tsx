@@ -93,7 +93,7 @@ const MobileNavbar = ({
         </div>
 
         <div className="z-[100] flex gap-4 items-center">
-          {!open && <Cart cartLength={cartLength} kindeId={kindeId} />}
+          {isLoggedIn && <Cart cartLength={cartLength} kindeId={kindeId} />}
 
           <Hamburger
             toggled={open}

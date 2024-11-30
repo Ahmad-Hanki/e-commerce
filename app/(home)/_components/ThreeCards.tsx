@@ -27,7 +27,7 @@ const data = [
 
 const ThreeCards = () => {
   return (
-    <div className="py-20  bg-[#e6f5ff]">
+    <div className="py-20  bg-gradient-to-t end-reverse">
       <Container>
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between w-full ">
           {data.map((item, index) => (

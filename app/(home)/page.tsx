@@ -14,7 +14,7 @@ import TwoProducts from "./_components/TwoProductsBand";
 import ScrollableTrends from "./_components/ScrollableTrends";
 import Hero2 from "./_components/Hero2";
 import ThreeCards from "./_components/ThreeCards";
-// import Adband from "./_components/Adband";
+import Adband from "./_components/Adband";
 import CategoriesGrid from "./_components/CategoriesGrid";
 import FlexProducts from "./_components/FlexProducts";
 import ProductsWithBackground from "./_components/ProductsWithBackground";
@@ -38,7 +38,6 @@ export default async function Home() {
 
       <ScrollableTrends products={mostSailed} />
       <TwoProducts />
-      {/* <Adband /> */}
       <MostSells products={mostSailed} />
 
       <ThreeCards />
@@ -54,6 +53,9 @@ export default async function Home() {
       <CarouselComponent products={randomProducts} />
 
       <ProductsWithBackground />
+
+      <Adband />
+
     </div>
   );
 }

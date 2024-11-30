@@ -12,7 +12,7 @@ const CategoryNamePage = async ({
   }>;
 }) => {
   const { q } = await searchParams;
-  if (q == "") {
+  if (q == "" || !q) {
     notFound();
   }
   const products = await getProductsSearch(q);

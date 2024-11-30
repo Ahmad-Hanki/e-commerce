@@ -4,7 +4,7 @@ import pc from "@/public/images/pc.png";
 import Image from "next/image";
 const TwoProducts = () => {
   return (
-    <div className="bg-[#e6f5ff] py-20">
+    <div className="bg-gradient-to-b start-reverse py-20">
       <Container>
         <div className="flex flex-col md:flex-row md:justify-between gap-4 md:items-center">
           <div className="flex-1 w-full relative aspect-square">
